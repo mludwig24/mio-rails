@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html data-ng-app="homeIndex">
+<head>
+  <title>MioRails</title>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag params[:controller] %>
+</head>
+<body>
+
+<div class="content">
+	<%= yield %>
+</div>
+
+</body>
+</html>
