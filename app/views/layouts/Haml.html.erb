@@ -52,10 +52,6 @@
             <li><%= link_to "Link2", "/path2"  %></li>
             <li><%= link_to "Link3", "/path3"  %></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to t('nav.english'), url_for(:locale => 'en-US') %></li>
-            <li><%= link_to t('nav.spanish'), url_for(:locale => 'es-MX') %></li>
-          </ul>
         </div>
       </div>
     </div>
@@ -68,12 +64,12 @@
         </div>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
-            <h3>Progress</h3>
+            <h3>Sidebar</h3>
             <ul class="nav nav-list">
-              <li><%= link_to "Quote", "#"  %></li>
-                <li><%= link_to "Select Policy", "#"  %></li>
-                <li><%= link_to "Your Info", "#"  %></li>
-                <li><%= link_to "Payment", "#"  %></li>
+              <li class="nav-header">Sidebar</li>
+              <li><%= link_to "Link1", "/path1"  %></li>
+              <li><%= link_to "Link2", "/path2"  %></li>
+              <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

@@ -38,4 +38,17 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'rails-i18n', '~> 4.0.0'
+gem 'http_accept_language'
+
 gem 'angularjs-rails', '~> 1.2.16'
+gem 'validates_timeliness', '~> 3.0'
+
+gem 'haml'
+
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails",
+	github: 'seyhunak/twitter-bootstrap-rails',
+	branch: 'bootstrap3'
+gem 'bootstrap_form'

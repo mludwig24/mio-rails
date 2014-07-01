@@ -3,8 +3,22 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'quotes#new'
+  scope "(:locale)", locale: /en-US|es-MX|en|es/ do
+    resources :quotes
+  end
+  get '/:locale', to: 'quotes#new', locale: /en-US|es-MX|en|es/
 
+  scope "/api/" do
+    get '/vehicles/', to: 'vehicles#list'
+    get '/vehicles/:type', to: 'vehicles#type'
+    get '/vehicles/:type/:vehicle_type', 
+      to: 'vehicles#vehicle_type'
+    get '/vehicles/:type/:vehicle_type/:make', 
+      to: 'vehicles#make'
+    get '/vehicles/:type/:vehicle_type/:make/:model', 
+      to: 'vehicles#model'
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

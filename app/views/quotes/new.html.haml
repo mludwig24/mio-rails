@@ -1,0 +1,31 @@
+%h2
+	= t('quote.headers.new_quote')
+
+
+= bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+	%h3
+		= t('quote.headers.travel_dates')
+	= f.date_select :enter_date
+	= f.date_select :leave_date
+	%h3
+		= t('quote.headers.vehicle_information')
+	= f.select :vehicle_type, [[t('general.forms.select_one'), -1],]
+	= f.select :year, [[t('general.forms.select_one'), -1],]
+	= f.select :make_id, [[t('general.forms.select_one'), -1],]
+	= f.select :model_id, [[t('general.forms.select_one'), -1],]
+	= f.select :value, [[t('general.forms.select_one'), -1],]
+	%h3
+		= t('quote.headers.towed_units')
+	= f.select :towing, [[t('quote.towing.not_towing_anything'), 0], ]
+	%h3
+		= t('quote.headers.coverage_information')
+	= f.select :liability_limit, [[number_to_currency(50000), 50000], 
+		[number_to_currency(100000), 100000], 
+		[number_to_currency(300000), 300000], 
+		[number_to_currency(500000), 500000], ]
+	= f.form_group :fixed_deductibles, label: { text: t('quote.fixed_deductibles') } do
+		= f.radio_button :fixed_deductibles, 1, label: t('yes'), inline: true
+		= f.radio_button :fixed_deductibles, 0, label: t('no'), inline: true
+	%hr
+	%div.col-sm-9.col-sm-offset-3
+		= f.primary t('quote.buttons.get_quote')

@@ -1,0 +1,16 @@
+<div class="progress progress-striped" data-ng-show="isBusy">
+    <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+</div>
+<div data-ng-show="!isBusy">
+    <div class="topicsCount">There are {{ data.topics.length }} topics.</div>
+    <div>
+        <a href="#/newmessage">Create Message</a>
+    </div>
+    <div class="topics" data-ng-repeat="topic in data.topics">
+        <h2>{{ topic.title }}</h2>
+        <p>{{ topic.body }}</p>
+        <ul class="replies" data-ng-repeat="reply in topic.replies">
+            <li>{{ reply.created | date:"short" }}:  {{ reply.body }}</li>
+        </ul>
+    </div>
+</div>
