@@ -2,17 +2,26 @@
 	= t('quote.headers.new_quote')
 
 
-= bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+= bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9", html: { "ng-controller" => "MakeModelController" }) do |f|
 	%h3
 		= t('quote.headers.travel_dates')
 	= f.date_select :enter_date
 	= f.date_select :leave_date
 	%h3
 		= t('quote.headers.vehicle_information')
-	= f.select :vehicle_type, [[t('general.forms.select_one'), -1],]
-	= f.select :year, [[t('general.forms.select_one'), -1],]
-	= f.select :make_id, [[t('general.forms.select_one'), -1],]
-	= f.select :model_id, [[t('general.forms.select_one'), -1],]
+	= f.select :vehicle_type, [], {include_blank: t('general.forms.select_one')},
+		"ng-options" => "vt.label for vt in vehicle_types",
+		"ng-model" => "vehicle_type",
+		"ng-change" => "updateVehicleType()"
+	= f.select :year, [[t('general.forms.select_one'), -1], ]
+	= f.select :make_id, [], {include_blank: t('general.forms.select_one')},
+		"ng-options" => "make.label for make in makes",
+		"ng-model" => "make",
+		"ng-change" => "updateMake()"
+	= f.select :model_id, [], {include_blank: t('general.forms.select_one')},
+		"ng-options" => "model.label for model in models",
+		"ng-model" => "model",
+		"ng-change" => "update()"
 	= f.select :value, [[t('general.forms.select_one'), -1],]
 	%h3
 		= t('quote.headers.towed_units')
