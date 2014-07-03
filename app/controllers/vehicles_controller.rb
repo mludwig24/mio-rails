@@ -5,7 +5,7 @@ class VehiclesController < ApplicationController
 		@vehicle = Vehicle.new(params)
 		respond_to do |format|
 			format.json { render :json => @vehicle }
-			format.xml  { render :xml => @vehicle }
+			format.xml  { render :xml => @vehicle.to_xml }
 			## Default to json even for HTML.
 			format.html { render :json => @vehicle }
 		end

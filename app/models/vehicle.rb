@@ -1,6 +1,9 @@
 class Vehicle
-	require 'json'
+	include ActiveModel::Serializers::Xml
+	require 'active_support' ## for 'to_xml' and 'to_json'.
 	require 'net/http'
+	attr_accessor :type, :vehicle_type, :make, :model,
+		:types, :vehicle_types, :makes, :models, :body_styles
 	def initialize(options)
 		@type = options[:type]
 		@vehicle_type = options[:vehicle_type]
@@ -22,6 +25,16 @@ class Vehicle
 	end
 	def addBodyStyles(body_styles)
 		@body_styles = body_styles
+	end
+
+	def attributes=(hash)
+		hash.each do |key, value|
+			instance_variable_set("@#{key}", value)
+		end
+	end
+
+	def attributes
+		instance_values
 	end
 
 	private
