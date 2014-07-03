@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   get '/:locale', to: 'quotes#new', locale: /en-US|es-MX|en|es/
 
   scope "/api/" do
-    get '/vehicles/', to: 'vehicles#list'
-    get '/vehicles/:type', to: 'vehicles#type'
+    get '/vehicles/', to: 'vehicles#proxy'
+    get '/vehicles/:type', to: 'vehicles#proxy'
     get '/vehicles/:type/:vehicle_type', 
-      to: 'vehicles#vehicle_type'
+      to: 'vehicles#proxy'
     get '/vehicles/:type/:vehicle_type/:make', 
-      to: 'vehicles#make'
+      to: 'vehicles#proxy'
     get '/vehicles/:type/:vehicle_type/:make/:model', 
-      to: 'vehicles#model'
+      to: 'vehicles#proxy'
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
