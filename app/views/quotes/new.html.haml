@@ -1,7 +1,6 @@
 %h2
 	= t('quote.headers.new_quote')
 
-
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9", html: { "ng-controller" => "MakeModelController" }) do |f|
 	%h3
 		= t('quote.headers.travel_dates')
@@ -23,6 +22,9 @@
 		"ng-model" => "model",
 		"ng-change" => "update()"
 	= f.select :value, [[t('general.forms.select_one'), -1],]
+	= f.static_control :body_style, label: t('quote.form.body_style') do
+		%span{"ng-repeat" => "body_style in body_styles"}
+			{{body_style.label}}{{$last ? '' : ' / '}}
 	%h3
 		= t('quote.headers.towed_units')
 	= f.select :towing, [[t('quote.towing.not_towing_anything'), 0], ]

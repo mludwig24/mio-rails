@@ -19,7 +19,7 @@ class Quote
 		:api_key, :agtdst, :office_code, :power_unit
 	attr_accessor :vehicle_type, :year, :make_id,
 		:model_id, :value, :towing, :liability_limit,
-		:fixed_deductibles
+		:fixed_deductibles, :body_style
 	validates_presence_of :enter_date, :leave_date, 
 		:username, :api_key
 	validates_date :enter_date, :leave_date
