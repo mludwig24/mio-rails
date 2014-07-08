@@ -12,28 +12,41 @@
 		"ng-options" => "vt.label for vt in vehicle_types",
 		"ng-model" => "vehicle_type",
 		"ng-change" => "updateVehicleType()"
-	= f.select :year, [[t('general.forms.select_one'), -1], ]
+	= f.select :year, [[t('general.forms.select_one'), -1], options_for_select(@quote.valid_years.sort.reverse)]
 	= f.select :make_id, [], {include_blank: t('general.forms.select_one')},
 		"ng-options" => "make.label for make in makes",
 		"ng-model" => "make",
 		"ng-change" => "updateMake()"
-	= f.select :model_id, [], {include_blank: t('general.forms.select_one')},
-		"ng-options" => "model.label for model in models",
-		"ng-model" => "model",
-		"ng-change" => "update()"
-	= f.select :value, [[t('general.forms.select_one'), -1],]
+	= f.static_control_div nil, label: t('quote.vehicle_information.model_id') do
+		= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
+			"ng-options" => "model.label for model in models",
+			"ng-model" => "model",
+			"ng-change" => "update()",
+			"ng-show" => "has_models",
+			"class" => "form-control"
+		= text_field_tag :quote, nil,
+			"placeholder" => t('quote.vehicle_information.other_model_placeholder'),
+			"ng-hide" => "has_models",
+			"class" => "form-control"
+	= f.select :value, [[t('quote.vehicle_information.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
+		{include_blank: t('general.forms.select_one')}
 	= f.static_control :body_style, label: t('quote.form.body_style') do
 		%span{"ng-repeat" => "body_style in body_styles"}
-			{{body_style.label}}{{$last ? '' : ' / '}}
 	%h3
 		= t('quote.headers.towed_units')
-	= f.select :towing, [[t('quote.towing.not_towing_anything'), 0], ]
+	= f.select :towing, [[t('quote.towing.not_towing_anything'), 0]] + (1..10).to_a.collect { |i| [t('quote.vehicle_information.towing_anything_value_label', :count => i), i]}, {},
+		"ng-model" => "towed_units"
+	%div{"ng-repeat" => "i in towed_units | range:towed_units"}
+		%h4
+			{{ "#{ t('quote.headers.towed_unit_sub') }" | format : $index + 1 }}
+		= f.static_control :towed_unit_type, label: t('quote.form.towed_unit_type') do
+			= select nil, :towed_unit_type, [], {include_blank: t('general.forms.select_one')},
+				"class" => "form-control",
+				"ng-options" => "type.label for type in towed_unit_types",
+				"ng-model" => "towed_unit_type"
 	%h3
 		= t('quote.headers.coverage_information')
-	= f.select :liability_limit, [[number_to_currency(50000), 50000], 
-		[number_to_currency(100000), 100000], 
-		[number_to_currency(300000), 300000], 
-		[number_to_currency(500000), 500000], ]
+	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }
 	= f.form_group :fixed_deductibles, label: { text: t('quote.fixed_deductibles') } do
 		= f.radio_button :fixed_deductibles, 1, label: t('yes'), inline: true
 		= f.radio_button :fixed_deductibles, 0, label: t('no'), inline: true

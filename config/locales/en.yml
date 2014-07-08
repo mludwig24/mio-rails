@@ -32,11 +32,17 @@ en-US: &en-US
     headers:
       new_quote: "Crate Quote"
       travel_dates: "Dates Traveling To Mexico"
+      towed_unit_sub: "Towed Unit {1}"
+    vehicle_information:
+      other_model_placeholder: "model"
+      towing_anything_value_label: 
+        zero: "Not towing anything"
+        one: "Towing %{count} item"
+        other: "Towing %{count} items"
     buttons:
       get_quote: "Show Quotes"
   greetings:
     hello: "Hi, world"
     goodbye: "Peace, world!"
-
 en:
   <<: *en-US

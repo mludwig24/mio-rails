@@ -36,6 +36,8 @@ es-MX: &es-MX
     headers:
       new_quote: "Spanish New Quote"
       travel_dates: "Spanish Dates Traveling To Mexico"
+    vehicle_information:
+      other_model_placeholder: "modelo"
     buttons:
       get_quote: "¡Ver mi cotización!"
   greetings:
