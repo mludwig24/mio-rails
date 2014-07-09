@@ -25,6 +25,7 @@ en-US: &en-US
       quote:
         enter_date: "Date Entering Mexico"
         leave_date: "Date Leaving Mexico"
+        towing: "Towing Coverage"
   nav:
     english: "English"
     spanish: "Espanol"
@@ -36,11 +37,13 @@ en-US: &en-US
     vehicle_information:
       other_model_placeholder: "model"
       towing_anything_value_label: 
-        zero: "Not towing anything"
-        one: "Towing %{count} item"
-        other: "Towing %{count} items"
+        zero: "Declined - Never towing in Mexico"
+        one: "Towing up to %{count} unit"
+        other: "Towing up to %{count} units"
     buttons:
       get_quote: "Show Quotes"
+    disclosure:
+      towed_units_disclosure: "Each self propelled vehicle that is being towed must ALSO have its own insurance policy when it is being driven."
   greetings:
     hello: "Hi, world"
     goodbye: "Peace, world!"

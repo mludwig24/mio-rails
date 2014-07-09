@@ -30,12 +30,17 @@
 			"class" => "form-control"
 	= f.select :value, [[t('quote.vehicle_information.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
 		{include_blank: t('general.forms.select_one')}
-	= f.static_control :body_style, label: t('quote.form.body_style') do
-		%span{"ng-repeat" => "body_style in body_styles"}
 	%h3
 		= t('quote.headers.towed_units')
-	= f.select :towing, [[t('quote.towing.not_towing_anything'), 0]] + (1..10).to_a.collect { |i| [t('quote.vehicle_information.towing_anything_value_label', :count => i), i]}, {},
+	= f.select :towing, (0..10).to_a.collect { |i| [t('quote.vehicle_information.towing_anything_value_label', :count => i), i]}, {},
 		"ng-model" => "towed_units"
+	%div{"ng-show" => "towed_units > 0"}
+		%hr
+		%h4
+			= t('quote.disclosure.towed_units_disclosure_header')
+		%p 
+			= t('quote.disclosure.towed_units_disclosure')
+		%hr
 	%div{"ng-repeat" => "i in towed_units | range:towed_units"}
 		%h4
 			{{ "#{ t('quote.headers.towed_unit_sub') }" | format : $index + 1 }}
@@ -60,6 +65,9 @@
 	= f.form_group :fixed_deductibles, label: { text: t('quote.fixed_deductibles') } do
 		= f.radio_button :fixed_deductibles, 1, label: t('yes'), inline: true
 		= f.radio_button :fixed_deductibles, 0, label: t('no'), inline: true
+	%h3
+		= t('quote.headers.underwriting_information')
+	Moo
 	%hr
 	%div.col-sm-9.col-sm-offset-3
 		= f.primary t('quote.buttons.get_quote')
