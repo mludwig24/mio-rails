@@ -42,7 +42,7 @@
 		= f.static_control :towed_unit_type, label: t('quote.form.towed_unit_type') do
 			= select nil, :towed_unit_type, [], {include_blank: t('general.forms.select_one')},
 				"class" => "form-control",
-				"ng-options" => "type.label for type in towed_unit_types",
+				"ng-options" => "type.en for type in towed_unit_types",
 				"ng-model" => "towed_unit_type"
 	%h3
 		= t('quote.headers.coverage_information')

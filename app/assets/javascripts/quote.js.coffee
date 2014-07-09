@@ -30,7 +30,6 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 	$scope.towed_units = 0 ## Default to not towing.
 	$scope.initialize = ->
 		$http.get($scope.getUrl('towed')).success (data) ->
-			console.log(data.vehicle_types)
 			angular.copy data.vehicle_types, $scope.towed_unit_types if data.vehicle_types
 		$scope.update()
 	$scope.update = ->
@@ -59,6 +58,4 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 		api_url.push(this.make.id) if this.make
 		api_url.push(this.model.id) if this.model
 		api_url.join '/'
-	$scope.updateTowedUnits = ->
-		console.log "updateTowedUnits"
 	$scope.initialize()
