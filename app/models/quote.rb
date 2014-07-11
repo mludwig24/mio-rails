@@ -1,6 +1,6 @@
 class Quote
 	include ActiveModel::Model
-
+	
 	def initialize(quote_data=nil)
 		if quote_data
 			self.enter_date = quote_data.enter_date
@@ -22,7 +22,9 @@ class Quote
 		:api_key, :agtdst, :office_code, :power_unit
 	attr_accessor :vehicle_type, :year, :make_id,
 		:model_id, :value, :towing, :liability_limit,
-		:fixed_deductibles, :body_style
+		:fixed_deductibles, :body_style, :beyond_freezone,
+		:under21, :uscoll_sc, :days_veh_in_mexico,
+		:visit_reason
 	validates_presence_of :enter_date, :leave_date, 
 		:username, :api_key
 	validates_date :enter_date, :leave_date

@@ -26,22 +26,27 @@ en-US: &en-US
         enter_date: "Date Entering Mexico"
         leave_date: "Date Leaving Mexico"
         towing: "Towing Coverage"
+        uscoll_sc: "Do you carry Collision and Theft coverage on your current US/Canadian insurance policy?"
+        under21: "Will there be drivers operating this vehicle, under 21 or over 80 years of age?"
+        beyond_freezone: "Are you traveling ONLY in the states of Baja and/or Sonora? If you are unsure, please say no."
+        visit_reason: "Which of the following best describes the reason for your visit to Mexico?"
+        days_veh_in_mexico: "How many days per year is the vehicle in Mexico?"
   nav:
     english: "English"
     spanish: "Espanol"
   quote:
-    headers:
-      new_quote: "Crate Quote"
-      travel_dates: "Dates Traveling To Mexico"
-      towed_unit_sub: "Towed Unit {1}"
-    vehicle_information:
+    form:
+      header:
+        new_quote: "Create Quote"
+        travel_dates: "Dates Traveling To Mexico"
+        towed_unit_sub: "Towed Unit {1}"
       other_model_placeholder: "model"
       towing_anything_value_label: 
         zero: "Declined - Never towing in Mexico"
         one: "Towing up to %{count} unit"
         other: "Towing up to %{count} units"
-    buttons:
-      get_quote: "Show Quotes"
+      buttons:
+        get_quote: "Show Quotes"
     disclosure:
       towed_units_disclosure: "Each self propelled vehicle that is being towed must ALSO have its own insurance policy when it is being driven."
   greetings:
