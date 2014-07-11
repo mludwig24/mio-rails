@@ -27,7 +27,6 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 	$scope.body_styles ?= []
 	$scope.towed_unit_types ?= []
 	$scope.has_models = true
-	$scope.towed_units = 0 ## Default to not towing.
 	$scope.initialize = ->
 		$http.get($scope.getUrl('towed')).success (data) ->
 			angular.copy data.vehicle_types, $scope.towed_unit_types if data.vehicle_types

@@ -3,18 +3,20 @@ class Quote
 	
 	def initialize(quote_data=nil)
 		if quote_data
-			self.enter_date = quote_data.enter_date
-			self.leave_date = quote.leave_date
-			self.username = quote.username
-			self.api_key = quote.api_key
+			@enter_date = quote_data.enter_date
+			@leave_date = quote.leave_date
+			@username = quote.username
+			@api_key = quote.api_key
 			if quote.policy
 				@policy = Policy.new(quote.policy)
 			end
 			@power_unit = PowerUnit.new(quote)
 			@limits = Limits.new(quote)
 		else
-			self.enter_date = Date.today
-			self.leave_date = Date.today
+			@enter_date = Date.today
+			@leave_date = Date.tomorrow
+			@fixed_deductibles = @beyond_freezone = 
+				@under21 = @uscoll_sc = 0
 		end
 	end
 
@@ -45,7 +47,16 @@ class Quote
 		return values
 	end
 	def valid_liability_limits
-		[50000, 10000, 300000, 500000]
+		[50000, 100000, 300000, 500000]
+	end
+	def valid_visit_reasons
+		[
+			1, # Driving to Vacation Destination/Tourist Visa
+			2, # Visiting Friends or Family
+			3, # Business/Work/School/Frequent Commuter
+			4, # Temporary Mexico Resident Visa Holder
+			5,  # Permanent Mexico Resident Visa Holder
+		]
 	end
 
 	private

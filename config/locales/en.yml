@@ -30,6 +30,12 @@ en-US: &en-US
         under21: "Will there be drivers operating this vehicle, under 21 or over 80 years of age?"
         beyond_freezone: "Are you traveling ONLY in the states of Baja and/or Sonora? If you are unsure, please say no."
         visit_reason: "Which of the following best describes the reason for your visit to Mexico?"
+        visit_reasons:
+          "1": "Driving to Vacation Destination/Tourist Visa"
+          "2": "Visiting Friends or Family"
+          "3": "Business/Work/School/Frequent Commuter"
+          "4": "Temporary Mexico Resident Visa Holder"
+          "5": "Permanent Mexico Resident Visa Holder"
         days_veh_in_mexico: "How many days per year is the vehicle in Mexico?"
   nav:
     english: "English"
