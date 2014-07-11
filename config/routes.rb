@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'quotes#new'
+  root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
   scope "(:locale)", locale: /en-US|es-MX|en|es/ do
     resources :quotes
   end
