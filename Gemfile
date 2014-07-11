@@ -54,3 +54,7 @@ gem "twitter-bootstrap-rails",
 	github: 'seyhunak/twitter-bootstrap-rails',
 	branch: 'bootstrap3'
 gem 'bootstrap_form'
+
+group :development do
+	gem 'guard-livereload', require: false
+end
