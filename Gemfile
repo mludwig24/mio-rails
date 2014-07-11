@@ -54,6 +54,8 @@ gem "twitter-bootstrap-rails",
 	github: 'seyhunak/twitter-bootstrap-rails',
 	branch: 'bootstrap3'
 gem 'bootstrap_form'
+## Gives javascript access to translations.
+gem "i18n-js"
 
 group :development do
 	gem 'guard-livereload', require: false

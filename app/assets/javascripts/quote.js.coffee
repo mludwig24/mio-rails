@@ -42,6 +42,7 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 				else
 					$scope.has_models = true
 			angular.copy data.body_styles, $scope.body_styles if data.body_styles
+			console.log(I18n.t('greetings.hello'))
 	$scope.updateVehicleType = ->
 		$scope.make = ""
 		$scope.model = ""

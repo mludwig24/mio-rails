@@ -16,4 +16,6 @@
 // require turbolinks
 //= require angular
 //= require angular-route
+//= require i18n
+//= require i18n/translations
 //= require_tree .

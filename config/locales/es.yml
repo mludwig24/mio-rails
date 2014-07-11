@@ -41,8 +41,8 @@ es-MX: &es-MX
     buttons:
       get_quote: "¡Ver mi cotización!"
   greetings:
-    hello: "Hola, world"
-    goodbye: "Despedida, world!"
+    hello: "Hola mundo!"
+    goodbye: "Adios mundo!"
 
 es:
   <<: *es-MX
