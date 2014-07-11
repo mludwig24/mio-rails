@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
-  scope "(:locale)", locale: /en-US|es-MX|en|es/ do
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :quotes
   end
   get '/:locale', to: 'quotes#new', locale: /en-US|es-MX|en|es/
