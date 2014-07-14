@@ -55,7 +55,9 @@ gem "twitter-bootstrap-rails",
 	branch: 'bootstrap3'
 gem 'bootstrap_form'
 ## Gives javascript access to translations.
-gem "i18n-js"
+gem "i18n-js" 
+## Gives the ability to validate dates easily:
+gem 'date_validator', '~> 0.7.0'
 
 group :development do
 	gem 'guard-livereload', require: false
