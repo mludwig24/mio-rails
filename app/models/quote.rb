@@ -15,8 +15,6 @@ class Quote
 		else
 			@enter_date = Date.today
 			@leave_date = Date.tomorrow
-			@fixed_deductibles = @beyond_freezone = 
-				@under21 = @uscoll_sc = 0
 		end
 	end
 
