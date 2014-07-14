@@ -24,7 +24,7 @@ class Quote
 		:model_id, :value, :towing, :liability_limit,
 		:fixed_deductibles, :body_style, :beyond_freezone,
 		:under21, :uscoll_sc, :days_veh_in_mexico,
-		:visit_reason
+		:visit_reason, :other_model
 	validates_presence_of :enter_date, :leave_date, 
 		:username, :api_key
 	validates_date :enter_date, :leave_date

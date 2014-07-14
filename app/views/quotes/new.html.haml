@@ -28,7 +28,7 @@
 				"ng-show" => "has_models",
 				"ng-disabled" => "models.length == 0",
 				"class" => "form-control"
-			= text_field_tag :quote, nil,
+			= text_field_tag "quote[other_model]", @quote.other_model,
 				"placeholder" => t('quote.form.other_model_placeholder'),
 				"ng-hide" => "has_models",
 				"class" => "form-control"
