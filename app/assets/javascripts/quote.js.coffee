@@ -27,6 +27,7 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 	$scope.body_styles ?= []
 	$scope.towed_unit_types ?= []
 	$scope.has_models = true
+	$scope.dl_quote = false
 	$scope.initialize = ->
 		$http.get($scope.getUrl('towed')).success (data) ->
 			angular.copy data.vehicle_types, $scope.towed_unit_types if data.vehicle_types
@@ -42,15 +43,24 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 				else
 					$scope.has_models = true
 			angular.copy data.body_styles, $scope.body_styles if data.body_styles
-			console.log(I18n.t('greetings.hello'))
 	$scope.updateVehicleType = ->
+		if $scope.vehicle_type && $scope.vehicle_type.id == 22 
+			## "Driver's License"
+			$scope.dl_quote = true
+		else
+			$scope.dl_quote = false
 		$scope.make = ""
+		$scope.makes = []
 		$scope.model = ""
+		$scope.models = []
 		$scope.body_style = ""
+		$scope.body_styles = []
 		$scope.update()
 	$scope.updateMake = ->
 		$scope.model = ""
+		$scope.models = []
 		$scope.body_style = ""
+		$scope.body_styles = []
 		$scope.update()
 	$scope.getUrl = (type="power") ->
 		api_url = [ String.format("/api/vehicles/{1}", type) ]

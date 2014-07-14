@@ -12,55 +12,59 @@
 		"ng-options" => "vt.label for vt in vehicle_types",
 		"ng-model" => "vehicle_type",
 		"ng-change" => "updateVehicleType()"
-	= f.select :year, options_for_select(@quote.valid_years.sort.reverse),
-		{include_blank: t('general.forms.select_one')}
-	= f.select :make_id, [], {include_blank: t('general.forms.select_one')},
-		"ng-options" => "make.label for make in makes",
-		"ng-model" => "make",
-		"ng-change" => "updateMake()"
-	= f.static_control_div nil, label: t('activemodel.attributes.quote.model_id') do
-		= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
-			"ng-options" => "model.label for model in models",
-			"ng-model" => "model",
-			"ng-change" => "update()",
-			"ng-show" => "has_models",
-			"class" => "form-control"
-		= text_field_tag :quote, nil,
-			"placeholder" => t('quote.form.other_model_placeholder'),
-			"ng-hide" => "has_models",
-			"class" => "form-control"
-	= f.select :value, [[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
-		{include_blank: t('general.forms.select_one')}
+	%div{"ng-hide" => "dl_quote"}
+		= f.select :year, options_for_select(@quote.valid_years.sort.reverse),
+			{include_blank: t('general.forms.select_one')}
+		= f.select :make_id, [], {include_blank: t('general.forms.select_one')},
+			"ng-options" => "make.label for make in makes",
+			"ng-model" => "make",
+			"ng-disabled" => "makes.length == 0",
+			"ng-change" => "updateMake()"
+		= f.static_control_div nil, label: t('activemodel.attributes.quote.model_id') do
+			= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
+				"ng-options" => "model.label for model in models",
+				"ng-model" => "model",
+				"ng-change" => "update()",
+				"ng-show" => "has_models",
+				"ng-disabled" => "models.length == 0",
+				"class" => "form-control"
+			= text_field_tag :quote, nil,
+				"placeholder" => t('quote.form.other_model_placeholder'),
+				"ng-hide" => "has_models",
+				"class" => "form-control"
+		= f.select :value, [[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
+			{include_blank: t('general.forms.select_one')}
 	%h3
 		= t('quote.form.header.towed_units')
 	= f.select :towing, (0..10).to_a.collect { |i| [t('quote.form.towing_anything_value_label', :count => i), i]}, {},
 		"ng-model" => "towed_units",
 		"ng-init" => "towed_units = #{@quote.towing ? @quote.towing : 0}"
-	%div{"ng-show" => "towed_units > 0"}
-		%hr
-		%h4
-			= t('quote.disclosure.towed_units_disclosure_header')
-		%p 
-			= t('quote.disclosure.towed_units_disclosure')
-		%hr
-	%div{"ng-repeat" => "i in towed_units | range:towed_units"}
-		%h4
-			{{ "#{ t('quote.form.header.towed_unit_sub') }" | format : $index + 1 }}
-		= f.static_control :towed_unit_type, label: t('activemodel.attributes.quote.towed_unit_type') do
-			= select nil, "towed_unit_{{i}}_type", [], {include_blank: t('general.forms.select_one')},
-				"class" => "form-control",
-				"ng-options" => "type.en for type in towed_unit_types",
-				"ng-model" => "towed_unit_type"
-		= f.static_control :towed_unit_year, label: t('activemodel.attributes.quote.towed_unit_year') do
-			= select nil, "towed_unit_{{i}}_year",
-				options_for_select(@quote.valid_years.sort.reverse),
-				{include_blank: t('general.forms.select_one')},
-				"class" => "form-control"
-		= f.static_control :towed_unit_value, label: t('activemodel.attributes.quote.towed_unit_value') do
-			= select nil, "towed_unit_{{i}}_value", 
-				[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
-				{include_blank: t('general.forms.select_one')},
-				"class" => "form-control"
+	%div{"ng-hide" => "dl_quote"}
+		%div{"ng-show" => "towed_units > 0"}
+			%hr
+			%h4
+				= t('quote.disclosure.towed_units_disclosure_header')
+			%p 
+				= t('quote.disclosure.towed_units_disclosure')
+			%hr
+		%div{"ng-repeat" => "i in towed_units | range:towed_units"}
+			%h4
+				{{ "#{ t('quote.form.header.towed_unit_sub') }" | format : $index + 1 }}
+			= f.static_control :towed_unit_type, label: t('activemodel.attributes.quote.towed_unit_type') do
+				= select nil, "towed_unit_{{i}}_type", [], {include_blank: t('general.forms.select_one')},
+					"class" => "form-control",
+					"ng-options" => "type.en for type in towed_unit_types",
+					"ng-model" => "towed_unit_type"
+			= f.static_control :towed_unit_year, label: t('activemodel.attributes.quote.towed_unit_year') do
+				= select nil, "towed_unit_{{i}}_year",
+					options_for_select(@quote.valid_years.sort.reverse),
+					{include_blank: t('general.forms.select_one')},
+					"class" => "form-control"
+			= f.static_control :towed_unit_value, label: t('activemodel.attributes.quote.towed_unit_value') do
+				= select nil, "towed_unit_{{i}}_value", 
+					[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
+					{include_blank: t('general.forms.select_one')},
+					"class" => "form-control"
 	%h3
 		= t('quote.form.header.coverage_information')
 	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }
@@ -69,7 +73,8 @@
 		= f.radio_button :fixed_deductibles, 0, label: t('no'), inline: true
 	%h3
 		= t('quote.form.header.underwriting_information')
-	= f.select :days_veh_in_mexico, [[t('general.forms.select_one'), -1], options_for_select(@quote.valid_years.sort.reverse)]
+	= f.select :days_veh_in_mexico, options_for_select(@quote.valid_days_veh_in_mexico.collect { |i| [t("activemodel.attributes.quote.days_veh_in_mexico_options.#{i}"), i]}),
+		{include_blank: t('general.forms.select_one')}
 	= f.select :visit_reason, options_for_select(@quote.valid_visit_reasons.collect { |i| [t("activemodel.attributes.quote.visit_reasons.#{i}"), i]}),
 		{include_blank: t('general.forms.select_one')}
 	= f.form_group :beyond_freezone, label: { text: t('activemodel.attributes.quote.beyond_freezone') } do
@@ -84,4 +89,4 @@
 	%hr
 	%div.col-sm-7.col-sm-offset-5
 		= f.primary t('quote.form.buttons.get_quote')
-		= f.button t('quote.form.buttons.get_help')
+		= f.button t('quote.form.buttons.get_help'), :class => "btn btn-lrg"
