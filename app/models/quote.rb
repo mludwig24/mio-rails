@@ -56,7 +56,14 @@ class Quote
 			5,  # Permanent Mexico Resident Visa Holder
 		]
 	end
-
+	def valid_days_veh_in_mexico
+		[
+			1, # Less than 30
+			2, # Between 31 and 90
+			3, # Between 90 and 180
+			4, # More than 180
+		]
+	end
 	private
 
 	def validate_enter_date
