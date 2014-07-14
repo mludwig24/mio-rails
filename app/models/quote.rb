@@ -10,7 +10,7 @@ end
 class Quote
 	include ActiveModel::Model
 	
-	def initialize(quote_data=nil)
+	def initializeFoo(quote_data=nil)
 		if quote_data
 			@enter_date = Date.new_from_date_select(quote_data, 'enter_date')
 			@leave_date = Date.new_from_date_select(quote_data, 'leave_date')
@@ -19,11 +19,8 @@ class Quote
 			if quote_data['policy']
 				@policy = Policy.new(quote_data.policy)
 			end
-			# @power_unit = PowerUnit.new(quote_data)
-			# @limits = Limits.new(quote_data)
-		else
-			@enter_date = Date.today
-			@leave_date = Date.tomorrow
+			@power_unit = PowerUnit.new(quote_data)
+			@limits = Limits.new(quote_data)
 		end
 	end
 

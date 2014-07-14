@@ -4,8 +4,12 @@
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
 	%h3
 		= t('quote.form.header.travel_dates')
-	= f.date_select :enter_date
-	= f.date_select :leave_date
+	= f.date_select :enter_date, start_year: Date.today.year,
+		end_year: (Date.today + 1.year).year,
+		default: Date.today
+	= f.date_select :leave_date, start_year: Date.today.year,
+		end_year: (Date.today + 1.year).year,
+		default: Date.today + 1.day
 	%h3
 		= t('quote.form.header.vehicle_information')
 	= f.select :vehicle_type, [], {include_blank: t('general.forms.select_one')},
