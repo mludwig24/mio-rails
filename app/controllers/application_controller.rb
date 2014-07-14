@@ -1,3 +1,13 @@
+## Re-open the date class to help with the date_select form element.
+class Date
+	def self.new_from_date_select(hash, key)
+		Date.new(hash["#{key}(1i)"].to_i,
+			hash["#{key}(2i)"].to_i, 
+			hash["#{key}(3i)"].to_i)
+	end
+end
+
+
 class ApplicationController < ActionController::Base
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.
