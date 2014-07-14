@@ -37,6 +37,11 @@ en-US: &en-US
           "4": "Temporary Mexico Resident Visa Holder"
           "5": "Permanent Mexico Resident Visa Holder"
         days_veh_in_mexico: "How many days per year is the vehicle in Mexico?"
+        days_veh_in_mexico_options:
+          "1": "Less than 30 days"
+          "2": "Between 31 and 90 days"
+          "3": "Between 90 and 180 days"
+          "4": "More than 180 days"
   nav:
     english: "English"
     spanish: "Espanol"
