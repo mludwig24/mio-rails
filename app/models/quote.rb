@@ -10,7 +10,7 @@ end
 class Quote
 	include ActiveModel::Model
 	
-	def initializeFoo(quote_data=nil)
+	def initialize(quote_data=nil)
 		if quote_data
 			@enter_date = Date.new_from_date_select(quote_data, 'enter_date')
 			@leave_date = Date.new_from_date_select(quote_data, 'leave_date')
@@ -19,8 +19,8 @@ class Quote
 			if quote_data['policy']
 				@policy = Policy.new(quote_data.policy)
 			end
-			@power_unit = PowerUnit.new(quote_data)
-			@limits = Limits.new(quote_data)
+			@power_unit = PowerUnit.new(quote_data.select {|k,v| PowerUnit._validators.keys.include? k})
+			@limits = Limits.new(quote_data.select {|k,v| Limits._validators.keys.include? k})
 		end
 	end
 
@@ -80,7 +80,7 @@ class Quote
 		]
 	end
 
-	private
+	# private
 
 	class Policy
 		include ActiveModel::Model
@@ -93,8 +93,7 @@ class Quote
 	class PowerUnit
 		include ActiveModel::Model
 		@type = "power"
-		attr_accessor  :style, :year, :make, :model
-			:value
+		attr_accessor :style, :year, :make, :model, :value
 		validates_presence_of :style, :year, :make,
 			:model, :value
 	end
