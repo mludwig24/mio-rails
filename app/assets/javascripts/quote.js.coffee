@@ -8,7 +8,14 @@ String.format = (input) ->
 		reg = new RegExp("\\{" + _i + "\\}", "gm");
 		input = input.replace(reg, arg);
 	return input
-
+Array::where = (query) ->
+    return [] if typeof query isnt "object"
+    hit = Object.keys(query).length
+    @filter (item) ->
+        match = 0
+        for key, val of query
+            match += 1 if item[key] is val
+        if match is hit then true else false
 
 ## Setup the basic app for filters and such.
 window.mioApp = angular.module 'mioApp', []
@@ -38,17 +45,31 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 			angular.copy data.makes, $scope.makes if data.makes
 			if data.models
 				angular.copy data.models, $scope.models
-				if $scope.models.length == 0
-					$scope.has_models = false
-				else
-					$scope.has_models = true
+				$scope.has_models = ($scope.models.length != 0)
 			angular.copy data.body_styles, $scope.body_styles if data.body_styles
+			if data.vehicle_types && !$scope.vehicle_type &&
+					$('#quote_vehicle_type').attr('data-default')
+				$scope.vehicle_type = data.vehicle_types.where(
+					id:parseInt($('#quote_vehicle_type').attr('data-default'))
+				)[0]
+				$('#quote_vehicle_type').attr('data-default', '')
+				$scope.update()
+			if data.makes && !$scope.make && 
+					$('#quote_make_id').attr('data-default')
+				$scope.make = data.makes.where(
+					id:parseInt($('#quote_make_id').attr('data-default'))
+				)[0]
+				$('#quote_make_id').attr('data-default', '')
+				$scope.update()
+			if data.models && !$scope.model &&
+					$('#quote_model_id').attr('data-default')
+				$scope.model = data.models.where(
+					id:parseInt($('#quote_model_id').attr('data-default'))
+				)[0]
+				$('#quote_model_id').attr('data-default', '')
+				$scope.update()
 	$scope.updateVehicleType = ->
-		if $scope.vehicle_type && $scope.vehicle_type.id == 22 
-			## "Driver's License"
-			$scope.dl_quote = true
-		else
-			$scope.dl_quote = false
+		$scope.dl_quote = ($scope.vehicle_type && $scope.vehicle_type.id == 22)
 		$scope.make = ""
 		$scope.makes = []
 		$scope.model = ""

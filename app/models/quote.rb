@@ -12,10 +12,7 @@ class Quote
 	
 	def initialize(quote_data=nil)
 		if quote_data
-			@enter_date = Date.new_from_date_select(quote_data, 'enter_date')
-			@leave_date = Date.new_from_date_select(quote_data, 'leave_date')
-			@username = quote_data['username']
-			@api_key = quote_data['api_key']
+			super(quote_data.select {|k,v| self._validators.keys.include? k.to_sym})
 			if quote_data['policy']
 				@policy = Policy.new(quote_data.policy)
 			end
@@ -31,6 +28,10 @@ class Quote
 		:fixed_deductibles, :body_style, :beyond_freezone,
 		:under21, :uscoll_sc, :days_veh_in_mexico,
 		:visit_reason, :other_model
+	validates_presence_of :enter_date, :leave_date,
+		:vehicle_type, :year, :make_id, :value
+	validates :model_id, presence: true, unless: ->(quote){quote.other_model.present?} 
+	validates :other_model, presence: true, unless: ->(quote){quote.model_id.present?}
 	validates :leave_date, :date => {
 		:after_or_equal_to => :enter_date,
 		:before => Proc.new { Date.today + 365 }, ## 1 year days is too far.

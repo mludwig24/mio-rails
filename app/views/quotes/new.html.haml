@@ -13,31 +13,36 @@
 	%h3
 		= t('quote.form.header.vehicle_information')
 	= f.select :vehicle_type, [], {include_blank: t('general.forms.select_one')},
-		"ng-options" => "vt.label for vt in vehicle_types",
+		"ng-options" => "vt.label for vt in vehicle_types track by vt.id",
 		"ng-model" => "vehicle_type",
-		"ng-change" => "updateVehicleType()"
+		"ng-change" => "updateVehicleType()",
+		"data-default" => "#{@quote.vehicle_type.to_i > 0 ? @quote.vehicle_type : -1}"
 	%div{"ng-hide" => "dl_quote"}
-		= f.select :year, options_for_select(@quote.valid_years.sort.reverse),
-			{include_blank: t('general.forms.select_one')}
+		= f.select :year, options_for_select(@quote.valid_years.sort.reverse, @quote.year),
+			{include_blank: t('general.forms.select_one')}, selected: 2010
 		= f.select :make_id, [], {include_blank: t('general.forms.select_one')},
-			"ng-options" => "make.label for make in makes",
+			"ng-options" => "make.label for make in makes track by make.id",
 			"ng-model" => "make",
 			"ng-disabled" => "makes.length == 0",
-			"ng-change" => "updateMake()"
+			"ng-change" => "updateMake()",
+			"data-default" => "#{@quote.make_id.to_i > 0 ? @quote.make_id : -1}"
 		= f.static_control_div nil, label: t('activemodel.attributes.quote.model_id') do
 			= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
-				"ng-options" => "model.label for model in models",
+				"ng-options" => "model.label for model in models track by model.id",
 				"ng-model" => "model",
 				"ng-change" => "update()",
 				"ng-show" => "has_models",
 				"ng-disabled" => "models.length == 0",
-				"class" => "form-control"
+				"class" => "form-control",
+				"data-default" => "#{@quote.model_id.to_i > 0 ? @quote.model_id : -1}"
 			= text_field_tag "quote[other_model]", @quote.other_model,
 				"placeholder" => t('quote.form.other_model_placeholder'),
 				"ng-hide" => "has_models",
 				"class" => "form-control"
 		= f.select :value, [[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
-			{include_blank: t('general.forms.select_one')}
+			{include_blank: t('general.forms.select_one'), selected: @quote.value}
+		%h3
+			= @quote.value
 	%h3
 		= t('quote.form.header.towed_units')
 	= f.select :towing, (0..10).to_a.collect { |i| [t('quote.form.towing_anything_value_label', :count => i), i]}, {},

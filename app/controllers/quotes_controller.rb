@@ -6,6 +6,10 @@ class QuotesController < ApplicationController
 	def new
 		@quote = Quote.new
 	end
+	def create
+		@quote = Quote.new(params['quote'])
+		render "new"
+	end
 	def index
 		@quote = Quote.new
 		render "new"
