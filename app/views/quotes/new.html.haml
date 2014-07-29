@@ -6,7 +6,7 @@
 		= t('quote.form.header.travel_dates')
 	= f.date_select :enter_date, start_year: Date.today.year,
 		end_year: (Date.today + 1.year).year,
-		default: Date.today
+		default: @quote.enter_date || Date.today
 	= f.date_select :leave_date, start_year: Date.today.year,
 		end_year: (Date.today + 1.year).year,
 		default: Date.today + 1.day
@@ -41,8 +41,6 @@
 				"class" => "form-control"
 		= f.select :value, [[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
 			{include_blank: t('general.forms.select_one'), selected: @quote.value}
-		%h3
-			= @quote.value
 	%h3
 		= t('quote.form.header.towed_units')
 	= f.select :towing, (0..10).to_a.collect { |i| [t('quote.form.towing_anything_value_label', :count => i), i]}, {},
@@ -76,15 +74,15 @@
 					"class" => "form-control"
 	%h3
 		= t('quote.form.header.coverage_information')
-	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }
+	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }, {default: @quote.liability_limit }
 	= f.form_group :fixed_deductibles, label: { text: t('activemodel.attributes.quote.fixed_deductibles') } do
 		= f.radio_button :fixed_deductibles, 1, label: t('yes'), inline: true
 		= f.radio_button :fixed_deductibles, 0, label: t('no'), inline: true
 	%h3
 		= t('quote.form.header.underwriting_information')
-	= f.select :days_veh_in_mexico, options_for_select(@quote.valid_days_veh_in_mexico.collect { |i| [t("activemodel.attributes.quote.days_veh_in_mexico_options.#{i}"), i]}),
+	= f.select :days_veh_in_mexico, options_for_select(@quote.valid_days_veh_in_mexico.collect { |i| [t("activemodel.attributes.quote.days_veh_in_mexico_options.#{i}"), i]}, @quote.days_veh_in_mexico),
 		{include_blank: t('general.forms.select_one')}
-	= f.select :visit_reason, options_for_select(@quote.valid_visit_reasons.collect { |i| [t("activemodel.attributes.quote.visit_reasons.#{i}"), i]}),
+	= f.select :visit_reason, options_for_select(@quote.valid_visit_reasons.collect { |i| [t("activemodel.attributes.quote.visit_reasons.#{i}"), i]}, @quote.visit_reason),
 		{include_blank: t('general.forms.select_one')}
 	= f.form_group :beyond_freezone, label: { text: t('activemodel.attributes.quote.beyond_freezone') } do
 		= f.radio_button :beyond_freezone, 1, label: t('yes'), inline: true
