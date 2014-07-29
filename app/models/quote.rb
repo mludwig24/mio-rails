@@ -4,44 +4,65 @@ class Date
 		Date.new(hash["#{key}(1i)"].to_i,
 			hash["#{key}(2i)"].to_i,
 			hash["#{key}(3i)"].to_i)
+	rescue
+		return nil
+	end
+	def self.new_from_date_select!(hash, key)
+		date = self.new_from_date_select(hash, key)
+		if hash && hash.has_key?("#{key}(1i)")
+			hash.delete("#{key}(1i)")
+			hash.delete("#{key}(2i)")
+			hash.delete("#{key}(3i)")
+		end
+		return date
 	end
 end
 
 class Quote
 	include ActiveModel::Model
-	
-	def initialize(quote_data=nil)
-		if quote_data
-			super(quote_data.select {|k,v| self._validators.keys.include? k.to_sym})
-			if quote_data['policy']
-				@policy = Policy.new(quote_data.policy)
-			end
-			@power_unit = PowerUnit.new(quote_data.select {|k,v| PowerUnit._validators.keys.include? k})
-			@limits = Limits.new(quote_data.select {|k,v| Limits._validators.keys.include? k})
-		end
+	def initialize(data=nil)
+		@enter_date = Date.new_from_date_select!(data, "enter_date")
+		@leave_date = Date.new_from_date_select!(data, "leave_date")
+		super
 	end
 
 	attr_accessor :enter_date, :leave_date, :username,
 		:api_key, :agtdst, :office_code, :power_unit
+	## Powerunit.
 	attr_accessor :vehicle_type, :year, :make_id,
 		:model_id, :value, :towing, :liability_limit,
-		:fixed_deductibles, :body_style, :beyond_freezone,
-		:under21, :uscoll_sc, :days_veh_in_mexico,
-		:visit_reason, :other_model
+		:fixed_deductibles, :body_style, :other_model
+	validates :liability_limit, :presence => true,
+		:inclusion => {:in => Proc.new { Quote.valid_liability_limits() }}
+	## Underwriting.
+	attr_accessor :beyond_freezone, :under21, :uscoll_sc,
+		:days_veh_in_mexico, :visit_reason
+	validates :under21, :presence => true,
+		:inclusion => {:in => ["0", "1"]}
+	validates :beyond_freezone, :presence => true,
+		:inclusion => {:in => ["0", "1"]}
+	validates :uscoll_sc, :presence => true,
+		:inclusion => {:in => ["0", "1"]}
+	validates :days_veh_in_mexico, :presence => true,
+		:inclusion => {:in => Proc.new { Quote.valid_days_veh_in_mexico().to_s }}
+	validates :visit_reason, :presence => true,
+		:inclusion => {:in => Proc.new { Quote.valid_visit_reasons().to_s }}
+	## Limits.
+	attr_accessor :liability, :extended_travel
 	validates_presence_of :enter_date, :leave_date,
 		:vehicle_type, :year, :make_id, :value
 	validates :model_id, presence: true, unless: ->(quote){quote.other_model.present?} 
 	validates :other_model, presence: true, unless: ->(quote){quote.model_id.present?}
 	validates :leave_date, :date => {
 		:after_or_equal_to => :enter_date,
-		:before => Proc.new { Date.today + 365 }, ## 1 year days is too far.
+		:before => Proc.new { Date.today + 366 }, ## 1 year days is too far.
 	}
 	validates :enter_date, :date => {
 		:after_or_equal_to => Proc.new { Date.today },
 		:before => Proc.new { Date.today + 90 }, ## 90 days is too far.
 	}
 	validates :year, numericality: { only_integer: true },
-		:inclusion => {:in => Proc.new { self.valid_years() } }
+		:inclusion => {:in => Proc.new { Quote.valid_years().to_s } }
 
 	def self.valid_years
 		years = ((Date.today.year - 35)..Date.today.year).to_a
@@ -60,10 +81,13 @@ class Quote
 		end
 		return values
 	end
-	def valid_liability_limits
+	def self.valid_liability_limits
 		[50000, 100000, 300000, 500000]
 	end
-	def valid_visit_reasons
+	def valid_liability_limits
+		return self.class.valid_liability_limits()
+	end
+	def self.valid_visit_reasons
 		[
 			1, # Driving to Vacation Destination/Tourist Visa
 			2, # Visiting Friends or Family
@@ -72,7 +96,10 @@ class Quote
 			5,  # Permanent Mexico Resident Visa Holder
 		]
 	end
-	def valid_days_veh_in_mexico
+	def valid_visit_reasons
+		return self.class.valid_visit_reasons()
+	end
+	def self.valid_days_veh_in_mexico
 		[
 			1, # Less than 30
 			2, # Between 31 and 90
@@ -80,22 +107,7 @@ class Quote
 			4, # More than 180
 		]
 	end
-
-	# private
-
-	class Policy
-		include ActiveModel::Model
-		attr_accessor :underwriter_id, :term
-	end
-	class Limits
-		include ActiveModel::Model
-		attr_accessor :liability, :extended_travel
-	end
-	class PowerUnit
-		include ActiveModel::Model
-		@type = "power"
-		attr_accessor :style, :year, :make, :model, :value
-		validates_presence_of :style, :year, :make,
-			:model, :value
+	def valid_days_veh_in_mexico
+		return self.class.valid_days_veh_in_mexico()
 	end
 end
