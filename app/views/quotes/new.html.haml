@@ -26,7 +26,7 @@
 			"ng-disabled" => "makes.length == 0",
 			"ng-change" => "updateMake()",
 			"data-default" => "#{@quote.make_id.to_i > 0 ? @quote.make_id : -1}"
-		= f.static_control_div nil, label: t('activemodel.attributes.quote.model_id') do
+		= f.static_control_div :model_id, label: t('activemodel.attributes.quote.model_id') do
 			= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
 				"ng-options" => "model.label for model in models track by model.id",
 				"ng-model" => "model",

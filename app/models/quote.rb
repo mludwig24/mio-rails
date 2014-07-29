@@ -32,8 +32,10 @@ class Quote
 	attr_accessor :vehicle_type, :year, :make_id,
 		:model_id, :value, :towing, :liability_limit,
 		:fixed_deductibles, :body_style, :other_model
+	validates :fixed_deductibles, :presence => true,
+		:inclusion => {:in => ["0", "1"]}
 	validates :liability_limit, :presence => true,
-		:inclusion => {:in => Proc.new { Quote.valid_liability_limits() }}
+		:inclusion => {:in => Proc.new { Quote.valid_liability_limits().to_s }}
 	## Underwriting.
 	attr_accessor :beyond_freezone, :under21, :uscoll_sc,
 		:days_veh_in_mexico, :visit_reason
@@ -51,8 +53,12 @@ class Quote
 	attr_accessor :liability, :extended_travel
 	validates_presence_of :enter_date, :leave_date,
 		:vehicle_type, :year, :make_id, :value
-	validates :model_id, presence: true, unless: ->(quote){quote.other_model.present?} 
-	validates :other_model, presence: true, unless: ->(quote){quote.model_id.present?}
+	validates :model_id, presence: true, 
+		allow_blank: false,
+		unless: "other_model.present?"
+	validates :other_model, presence: true,
+		allow_blank: false,
+		unless: "model_id.present?"
 	validates :leave_date, :date => {
 		:after_or_equal_to => :enter_date,
 		:before => Proc.new { Date.today + 366 }, ## 1 year days is too far.
