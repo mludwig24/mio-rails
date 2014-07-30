@@ -23,6 +23,20 @@ class Quote
 	def initialize(data=nil)
 		@enter_date = Date.new_from_date_select!(data, "enter_date")
 		@leave_date = Date.new_from_date_select!(data, "leave_date")
+		if data && data.has_key?("towing")
+			## Add towing info to the current instance of the object.
+			class <<self
+				self
+			end.class_eval do
+				data["towing"].to_i.times { |c|
+					["type", "year", "value"].each { |label|
+						sym = "towed_unit_#{c+1}_#{label}".to_s
+						attr_accessor sym
+						validates sym, presence: true
+					}
+				}
+			end
+		end
 		super
 	end
 
@@ -35,7 +49,8 @@ class Quote
 	validates :fixed_deductibles, :presence => true,
 		:inclusion => {:in => ["0", "1"]}
 	validates :liability_limit, :presence => true,
-		:inclusion => {:in => Proc.new { Quote.valid_liability_limits().to_s }}
+		:inclusion => {:in => Proc.new { 
+			Quote.valid_liability_limits().to_s }}
 	## Underwriting.
 	attr_accessor :beyond_freezone, :under21, :uscoll_sc,
 		:days_veh_in_mexico, :visit_reason
@@ -46,9 +61,11 @@ class Quote
 	validates :uscoll_sc, :presence => true,
 		:inclusion => {:in => ["0", "1"]}
 	validates :days_veh_in_mexico, :presence => true,
-		:inclusion => {:in => Proc.new { Quote.valid_days_veh_in_mexico().to_s }}
+		:inclusion => {:in => Proc.new { 
+			Quote.valid_days_veh_in_mexico().to_s }}
 	validates :visit_reason, :presence => true,
-		:inclusion => {:in => Proc.new { Quote.valid_visit_reasons().to_s }}
+		:inclusion => {:in => Proc.new { 
+			Quote.valid_visit_reasons().to_s }}
 	## Limits.
 	attr_accessor :liability, :extended_travel
 	validates_presence_of :enter_date, :leave_date,
@@ -68,7 +85,8 @@ class Quote
 		:before => Proc.new { Date.today + 90 }, ## 90 days is too far.
 	}
 	validates :year, numericality: { only_integer: true },
-		:inclusion => {:in => Proc.new { Quote.valid_years().to_s } }
+		:inclusion => {:in => Proc.new { 
+			Quote.valid_years().to_s } }
 
 	def self.valid_years
 		years = ((Date.today.year - 35)..Date.today.year).to_a
