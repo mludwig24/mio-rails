@@ -2,6 +2,12 @@
 	= t('quote.form.header.new_quote')
 
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
+	
+	%ul{"class" => "errors", "ng-show" => "false"}
+		- @quote.errors.each do |key,value|
+			%li{"class" => "has-error", "id" => "error_#{key}"}
+				= value
+
 	%h3
 		= t('quote.form.header.travel_dates')
 	= f.date_select :enter_date, start_year: Date.today.year,
@@ -57,21 +63,33 @@
 		%div{"ng-repeat" => "i in towed_units | range:towed_units"}
 			%h4
 				{{ "#{ t('quote.form.header.towed_unit_sub') }" | format : $index + 1 }}
-			= f.static_control :towed_unit_type, label: t('activemodel.attributes.quote.towed_unit_type') do
-				= select nil, "towed_unit_{{i}}_type", [], {include_blank: t('general.forms.select_one')},
-					"class" => "form-control",
-					"ng-options" => "type.en for type in towed_unit_types",
-					"ng-model" => "towed_unit_type"
-			= f.static_control :towed_unit_year, label: t('activemodel.attributes.quote.towed_unit_year') do
-				= select nil, "towed_unit_{{i}}_year",
-					options_for_select(@quote.valid_years.sort.reverse),
-					{include_blank: t('general.forms.select_one')},
-					"class" => "form-control"
-			= f.static_control :towed_unit_value, label: t('activemodel.attributes.quote.towed_unit_value') do
-				= select nil, "towed_unit_{{i}}_value", 
-					[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
-					{include_blank: t('general.forms.select_one')},
-					"class" => "form-control"
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_type')}"}
+				= f.static_control :towed_unit_type, "label" => t('activemodel.attributes.quote.towed_unit_type') do
+					= select nil, "quote[towed_unit_{{i}}_type]", [], {include_blank: t('general.forms.select_one')},
+						"class" => "form-control",
+						"ng-options" => "type.en for type in towed_unit_types",
+						"ng-model" => "towed_unit_type"
+					%span{"class" => "help-block",
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type')"}
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_year')}"}
+				= f.static_control :towed_unit_year, label: t('activemodel.attributes.quote.towed_unit_year') do
+					= select nil, "quote[towed_unit_{{i}}_year]",
+						options_for_select(@quote.valid_years.sort.reverse),
+						{include_blank: t('general.forms.select_one')},
+						"class" => "form-control"
+					%span{"class" => "help-block",
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_year')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_year')"}
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_value')}"}
+				= f.static_control :towed_unit_value, label: t('activemodel.attributes.quote.towed_unit_value') do
+					= select nil, "quote[towed_unit_{{i}}_value]", 
+						[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
+						{include_blank: t('general.forms.select_one')},
+						"class" => "form-control"
+					%span{"class" => "help-block",
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_value')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_value')"}
 	%h3
 		= t('quote.form.header.coverage_information')
 	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }, {default: @quote.liability_limit }

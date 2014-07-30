@@ -89,4 +89,9 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 		api_url.push(this.make.id) if this.make
 		api_url.push(this.model.id) if this.model
 		api_url.join '/'
+	$scope.hasError = (key) ->
+		return $(key).length > 0
+	$scope.getError = (key) ->
+		console.log(key)
+		return $(key).html()
 	$scope.initialize()
