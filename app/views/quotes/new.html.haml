@@ -67,7 +67,7 @@
 				= f.static_control :towed_unit_type, "label" => t('activemodel.attributes.quote.towed_unit_type') do
 					= select nil, "quote[towed_unit_{{i}}_type]", [], {include_blank: t('general.forms.select_one')},
 						"class" => "form-control",
-						"ng-options" => "type.en for type in towed_unit_types",
+						"ng-options" => "type.en for type in towed_unit_types track by type.id",
 						"ng-model" => "towed_unit_type"
 					%span{"class" => "help-block",
 						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
