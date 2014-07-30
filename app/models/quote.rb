@@ -32,7 +32,8 @@ class Quote
 					["type", "year", "value"].each { |label|
 						sym = "towed_unit_#{c+1}_#{label}".to_s
 						attr_accessor sym
-						validates sym, presence: true
+						validates sym, presence: true,
+							numericality: true
 					}
 				}
 			end
