@@ -7,7 +7,14 @@
 		- @quote.errors.each do |key,value|
 			%li{"class" => "has-error", "id" => "error_#{key}"}
 				= value
-
+	%div{"ng-show" => "false", "id" => "ng-prepopulate"}
+		- @quote.towing.to_i.times do |c|
+			%div{"data-name" => "towed_unit_#{c+1}_type",
+				"data-value" => @quote.send("towed_unit_#{c+1}_type")}
+			%div{"data-name" => "towed_unit_#{c+1}_year",
+				"data-value" => @quote.send("towed_unit_#{c+1}_year")}
+			%div{"data-name" => "towed_unit_#{c+1}_value",
+				"data-value" => @quote.send("towed_unit_#{c+1}_value")}
 	%h3
 		= t('quote.form.header.travel_dates')
 	= f.date_select :enter_date, start_year: Date.today.year,
@@ -57,7 +64,7 @@
 			%hr
 			%h4
 				= t('quote.disclosure.towed_units_disclosure_header')
-			%p 
+			%p
 				= t('quote.disclosure.towed_units_disclosure')
 			%hr
 		%div{"ng-repeat" => "i in towed_units | range:towed_units"}
@@ -67,8 +74,8 @@
 				= f.static_control :towed_unit_type, "label" => t('activemodel.attributes.quote.towed_unit_type') do
 					= select nil, "quote[towed_unit_{{i}}_type]", [], {include_blank: t('general.forms.select_one')},
 						"class" => "form-control",
-						"ng-options" => "type.en for type in towed_unit_types track by type.id",
-						"ng-model" => "towed_unit_type"
+						"ng-options" => "type.id as type.en for type in towed_unit_types",
+						"ng-model" => '$parent["towed_unit_"+i+"_type"]'
 					%span{"class" => "help-block",
 						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
 						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type')"}
@@ -77,7 +84,8 @@
 					= select nil, "quote[towed_unit_{{i}}_year]",
 						options_for_select(@quote.valid_years.sort.reverse),
 						{include_blank: t('general.forms.select_one')},
-						"class" => "form-control"
+						"class" => "form-control",
+						"ng-model" => '$parent["towed_unit_"+i+"_year"]'
 					%span{"class" => "help-block",
 						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_year')",
 						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_year')"}
@@ -86,7 +94,8 @@
 					= select nil, "quote[towed_unit_{{i}}_value]", 
 						[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
 						{include_blank: t('general.forms.select_one')},
-						"class" => "form-control"
+						"class" => "form-control",
+						"ng-model" => '$parent["towed_unit_"+i+"_value"]'
 					%span{"class" => "help-block",
 						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_value')",
 						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_value')"}

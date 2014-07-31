@@ -38,6 +38,7 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 	$scope.initialize = ->
 		$http.get($scope.getUrl('towed')).success (data) ->
 			angular.copy data.vehicle_types, $scope.towed_unit_types if data.vehicle_types
+			$scope.prePopulate()
 		$scope.update()
 	$scope.update = ->
 		$http.get($scope.getUrl()).success (data) ->
@@ -89,9 +90,11 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 		api_url.push(this.make.id) if this.make
 		api_url.push(this.model.id) if this.model
 		api_url.join '/'
+	$scope.prePopulate = () ->
+		for child in $('#ng-prepopulate').children()
+			$scope[$(child).attr('data-name')] = $(child).attr('data-value')
 	$scope.hasError = (key) ->
 		return $(key).length > 0
 	$scope.getError = (key) ->
-		console.log(key)
 		return $(key).html()
 	$scope.initialize()
