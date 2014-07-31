@@ -74,8 +74,11 @@
 				= f.static_control :towed_unit_type, "label" => t('activemodel.attributes.quote.towed_unit_type') do
 					= select nil, "quote[towed_unit_{{i}}_type]", [], {include_blank: t('general.forms.select_one')},
 						"class" => "form-control",
-						"ng-options" => "type.id as type.en for type in towed_unit_types",
-						"ng-model" => '$parent["towed_unit_"+i+"_type"]'
+						"ng-model" => '$parent["towed_unit_"+i+"_type"]' do
+						%option{"ng-repeat" => "tut in towed_unit_types",
+							"value" => "{{tut.id}}",
+							"ng-selected" => 'tut.id == $parent["towed_unit_"+i+"_type"]'}
+							{{tut.en}}
 					%span{"class" => "help-block",
 						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
 						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type')"}
