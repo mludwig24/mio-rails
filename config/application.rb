@@ -23,5 +23,8 @@ module MioRails
     config.i18n.default_locale = "en-US"
     config.i18n.available_locales = ["es-MX", "en-US"]
     config.assets.initialize_on_precompile = true
+
+    ActiveRecord::SessionStore::Session.table_name = 'mio_js_sessions'
+
   end
 end

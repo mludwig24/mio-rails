@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 
 gem 'rails-i18n', '~> 4.0.0'
 gem 'http_accept_language'
+## Store the sessions in the DB.
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 ## Used to make plain objects into xml and json.
 gem 'activesupport', '~> 4.1.1'
 
