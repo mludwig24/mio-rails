@@ -22,4 +22,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: mysql
+  host: <%= ENV['MIO_DB_HOST'] %>
+  username: <%= ENV['MIO_DB_USERNAME'] %>
+  password: <%= ENV['MIO_DB_PASSWORD'] %>
+  database: <%= ENV['MIO_DB_DATABASE'] %>
