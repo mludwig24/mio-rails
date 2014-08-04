@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804153251) do
+ActiveRecord::Schema.define(version: 20140804154412) do
+
+  create_table "mio_js_sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mio_js_sessions", ["session_id"], name: "index_mio_js_sessions_on_session_id", unique: true
+  add_index "mio_js_sessions", ["updated_at"], name: "index_mio_js_sessions_on_updated_at"
 
   create_table "quotes", force: true do |t|
     t.datetime "created_at"
