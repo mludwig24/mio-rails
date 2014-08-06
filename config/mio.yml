@@ -1,6 +1,6 @@
 development:
-  mio_api_username: "test"
-  mio_api_key: "test"
+  mio_api_username: "test3"
+  mio_api_key: "118226b2-1d81-11e4-b4a0-0800271afd7b"
 
 test:
   << *development
