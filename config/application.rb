@@ -26,5 +26,12 @@ module MioRails
 
     ActiveRecord::SessionStore::Session.table_name = 'mio_js_sessions'
 
+    ## Load up the MIO settings.
+    begin
+        ENV.update YAML.load_file('config/mio.yml')[Rails.env]
+    rescue => e
+        puts "Got here!"
+        puts e.message
+    end
   end
 end

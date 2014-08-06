@@ -1,0 +1,9 @@
+development:
+  mio_api_username: "test"
+  mio_api_key: "test"
+
+test:
+  << *development
+
+production:
+  << *development
