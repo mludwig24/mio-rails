@@ -2,9 +2,22 @@
 	%ul
 		- @rates.each do |r|
 			%li
-				%div{"style" => "display: none"}
-					= r.to_json
+				%pre{"style" => "display: none"}
+					= JSON.pretty_generate(r)
 				%img{"src" => r["underwriter_image"]}
 				%br
+				%strong
+					= r["underwriter_name"]
+				%br
+				%i
+					= r["underwriter_coverage_desc"]
+				%br
 				%a{"href" => r["issue_link"]}
-					= r["premium"]
+					= r["total_price"]
+
+%pre{"style" => "display: none"}
+	= JSON.pretty_generate(@rates.api_data)
+
+%h2
+	= t('quote.form.header.edit_quote')
+= render "quote_form", :quote => @quote

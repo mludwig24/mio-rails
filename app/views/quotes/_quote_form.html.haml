@@ -1,0 +1,126 @@
+= bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
+	
+	%ul{"class" => "errors", "ng-show" => "false"}
+		- @quote.errors.each do |key,value|
+			%li{"class" => "has-error", "id" => "error_#{key}"}
+				= value
+	%div{"ng-show" => "false", "id" => "ng-prepopulate"}
+		- @quote.towing.to_i.times do |c|
+			%div{"data-name" => "towed_unit_#{c+1}_type",
+				"data-value" => @quote.send("towed_unit_#{c+1}_type")}
+			%div{"data-name" => "towed_unit_#{c+1}_year",
+				"data-value" => @quote.send("towed_unit_#{c+1}_year")}
+			%div{"data-name" => "towed_unit_#{c+1}_value",
+				"data-value" => @quote.send("towed_unit_#{c+1}_value")}
+	%h3
+		= t('quote.form.header.travel_dates')
+	= f.date_select :enter_date, start_year: Date.today.year,
+		end_year: (Date.today + 1.year).year,
+		default: @quote.enter_date || Date.today
+	= f.date_select :leave_date, start_year: Date.today.year,
+		end_year: (Date.today + 1.year).year,
+		default: Date.today + 1.day
+	%h3
+		= t('quote.form.header.vehicle_information')
+	= f.select :vehicle_type, [], {include_blank: t('general.forms.select_one')},
+		"ng-options" => "vt.label for vt in vehicle_types track by vt.id",
+		"ng-model" => "vehicle_type",
+		"ng-change" => "updateVehicleType()",
+		"data-default" => "#{@quote.vehicle_type.to_i > 0 ? @quote.vehicle_type : -1}"
+	%div{"ng-hide" => "dl_quote"}
+		= f.select :year, options_for_select(@quote.valid_years.sort.reverse, @quote.year),
+			{include_blank: t('general.forms.select_one')}, selected: 2010
+		= f.select :make_id, [], {include_blank: t('general.forms.select_one')},
+			"ng-options" => "make.label for make in makes track by make.id",
+			"ng-model" => "make",
+			"ng-disabled" => "makes.length == 0",
+			"ng-change" => "updateMake()",
+			"data-default" => "#{@quote.make_id.to_i > 0 ? @quote.make_id : -1}"
+		= f.static_control_div :model_id, label: t('activemodel.attributes.quote.model_id') do
+			= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
+				"ng-options" => "model.label for model in models track by model.id",
+				"ng-model" => "model",
+				"ng-change" => "update()",
+				"ng-show" => "has_models",
+				"ng-disabled" => "models.length == 0",
+				"class" => "form-control",
+				"data-default" => "#{@quote.model_id.to_i > 0 ? @quote.model_id : -1}"
+			= text_field_tag "quote[other_model]", @quote.other_model,
+				"placeholder" => t('quote.form.other_model_placeholder'),
+				"ng-hide" => "has_models",
+				"class" => "form-control"
+		= f.select :value, [[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
+			{include_blank: t('general.forms.select_one'), selected: @quote.value}
+	%h3
+		= t('quote.form.header.towed_units')
+	= f.select :towing, (0..10).to_a.collect { |i| [t('quote.form.towing_anything_value_label', :count => i), i]}, {},
+		"ng-model" => "towed_units",
+		"ng-init" => "towed_units = #{@quote.towing ? @quote.towing : 0}"
+	%div{"ng-hide" => "dl_quote"}
+		%div{"ng-show" => "towed_units > 0"}
+			%hr
+			%h4
+				= t('quote.disclosure.towed_units_disclosure_header')
+			%p
+				= t('quote.disclosure.towed_units_disclosure')
+			%hr
+		%div{"ng-repeat" => "i in towed_units | range:towed_units"}
+			%h4
+				{{ "#{ t('quote.form.header.towed_unit_sub') }" | format : $index + 1 }}
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_type')}"}
+				= f.static_control :towed_unit_type, "label" => t('activemodel.attributes.quote.towed_unit_type') do
+					= select nil, "quote[towed_unit_{{i}}_type]", [], {include_blank: t('general.forms.select_one')},
+						"class" => "form-control",
+						"ng-model" => '$parent["towed_unit_"+i+"_type"]' do
+						%option{"ng-repeat" => "tut in towed_unit_types",
+							"value" => "{{tut.id}}",
+							"ng-selected" => 'tut.id == $parent["towed_unit_"+i+"_type"]'}
+							{{tut.en}}
+					%span{"class" => "help-block",
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type')"}
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_year')}"}
+				= f.static_control :towed_unit_year, label: t('activemodel.attributes.quote.towed_unit_year') do
+					= select nil, "quote[towed_unit_{{i}}_year]",
+						options_for_select(@quote.valid_years.sort.reverse),
+						{include_blank: t('general.forms.select_one')},
+						"class" => "form-control",
+						"ng-model" => '$parent["towed_unit_"+i+"_year"]'
+					%span{"class" => "help-block",
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_year')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_year')"}
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_value')}"}
+				= f.static_control :towed_unit_value, label: t('activemodel.attributes.quote.towed_unit_value') do
+					= select nil, "quote[towed_unit_{{i}}_value]", 
+						[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
+						{include_blank: t('general.forms.select_one')},
+						"class" => "form-control",
+						"ng-model" => '$parent["towed_unit_"+i+"_value"]'
+					%span{"class" => "help-block",
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_value')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_value')"}
+	%h3
+		= t('quote.form.header.coverage_information')
+	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }, {default: @quote.liability_limit }
+	= f.form_group :fixed_deductibles, label: { text: t('activemodel.attributes.quote.fixed_deductibles') } do
+		= f.radio_button :fixed_deductibles, 1, label: t('yes'), inline: true
+		= f.radio_button :fixed_deductibles, 0, label: t('no'), inline: true
+	%h3
+		= t('quote.form.header.underwriting_information')
+	= f.select :days_veh_in_mexico, options_for_select(@quote.valid_days_veh_in_mexico.collect { |i| [t("activemodel.attributes.quote.days_veh_in_mexico_options.#{i}"), i]}, @quote.days_veh_in_mexico),
+		{include_blank: t('general.forms.select_one')}
+	= f.select :visit_reason, options_for_select(@quote.valid_visit_reasons.collect { |i| [t("activemodel.attributes.quote.visit_reasons.#{i}"), i]}, @quote.visit_reason),
+		{include_blank: t('general.forms.select_one')}
+	= f.form_group :beyond_freezone, label: { text: t('activemodel.attributes.quote.beyond_freezone') } do
+		= f.radio_button :beyond_freezone, 1, label: t('yes'), inline: true
+		= f.radio_button :beyond_freezone, 0, label: t('no'), inline: true
+	= f.form_group :under21, label: { text: t('activemodel.attributes.quote.under21') } do
+		= f.radio_button :under21, 1, label: t('yes'), inline: true
+		= f.radio_button :under21, 0, label: t('no'), inline: true
+	= f.form_group :uscoll_sc, label: { text: t('activemodel.attributes.quote.uscoll_sc') } do
+		= f.radio_button :uscoll_sc, 1, label: t('yes'), inline: true
+		= f.radio_button :uscoll_sc, 0, label: t('no'), inline: true
+	%hr
+	%div.col-sm-7.col-sm-offset-5
+		= f.primary t('quote.form.buttons.get_quote')
+		= f.button t('quote.form.buttons.get_help'), :class => "btn btn-lrg"
