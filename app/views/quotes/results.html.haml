@@ -1,0 +1,10 @@
+%div
+	%ul
+		- @rates.each do |r|
+			%li
+				%div{"style" => "display: none"}
+					= r.to_json
+				%img{"src" => r["underwriter_image"]}
+				%br
+				%a{"href" => r["issue_link"]}
+					= r["premium"]

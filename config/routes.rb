@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    get '/quotes/results', to: 'quotes#results'
     resources :quotes
   end
-  get '/:locale', to: 'quotes#new', locale: /en-US|es-MX|en|es/
 
   scope "/api/" do
     get '/vehicles/', to: 'vehicles#proxy'
