@@ -28,7 +28,6 @@ class Rater
 	def api_call
 		@api_data ||= format_quote_data(@quote)
 		@rates = quote_api(@api_data.to_json)
-		puts @api_data.to_json
 	end
 	def quote_api(json)
 		@transport ||= Transport.new(json)
@@ -60,10 +59,10 @@ class Rater
 		api_data["power_unit"]["value"] = quote.value.to_i
 		## Underwriting.
 		api_data["underwriting"] = Hash.new()
-		api_data["underwriting"]["drivers_under_21"] = quote.under21 == 1
-		api_data["underwriting"]["collision_in_us"] = quote.uscoll_sc == 1
-		api_data["underwriting"]["fixed_deductible"] = quote.fixed_deductibles == 1
-		api_data["underwriting"]["beyond_freezone"] = quote.beyond_freezone == 1
+		api_data["underwriting"]["drivers_under_21"] = quote.under21.to_i == 1
+		api_data["underwriting"]["collision_in_us"] = quote.uscoll_sc.to_i == 1
+		api_data["underwriting"]["fixed_deductible"] = quote.fixed_deductibles.to_i == 1
+		api_data["underwriting"]["beyond_freezone"] = quote.beyond_freezone.to_i == 1
 		api_data["underwriting"]["days_veh_in_mexico"] = quote.days_veh_in_mexico.to_i
 		api_data["underwriting"]["visit_reason"] = quote.visit_reason.to_i
 		## PolicyHolder.
