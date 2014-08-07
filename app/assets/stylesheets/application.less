@@ -14,3 +14,31 @@
  *= require_self
  *= require rails_bootstrap_forms
  */
+
+.quote_results {
+	& > div {
+		border: 1px solid #CCC;
+	}
+	h2,h3,h4,h5 {
+		text-align: center;
+	}
+	h4 {
+		height: 50px;
+		vertical-align: middle;
+		line-height: 50px;
+	}
+	.quote_result {
+		text-align: center;
+		.buy_now {
+			font-weight: bold;
+		}
+		.term {
+			font-style: italic;
+		}
+	}
+	hr {
+		border-color: #CCC;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}

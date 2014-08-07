@@ -1,3 +1,4 @@
+require 'pp'
 ## Re-open the date class to help with the date_select form element.
 class Date
 	def self.new_from_date_select(hash, key)
@@ -24,7 +25,7 @@ class Rater
 		@quote = quote
 		api_call
 	end
-	attr_accessor :api_data, :transport
+	attr_accessor :api_data, :transport, :rates
 	def api_call
 		@api_data ||= format_quote_data(@quote)
 		@rates = quote_api(@api_data.to_json)
@@ -83,6 +84,15 @@ class Rater
     end
 	def each(&block)
 		@rates.each(&block)
+	end
+	def select(&block)
+		@rates.select(&block)
+	end
+	def underwriters
+		@rates.map { |x| x["underwriter_name"] }.uniq!
+	end
+	def coverages
+		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq!
 	end
 
 	private
