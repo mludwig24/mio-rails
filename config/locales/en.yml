@@ -44,7 +44,7 @@ en-US: &en-US
           "4": "More than 180 days"
   nav:
     english: "English"
-    spanish: "Espanol"
+    spanish: "Español"
   quote:
     form:
       header:
@@ -60,6 +60,14 @@ en-US: &en-US
         get_quote: "Show Quotes"
     disclosure:
       towed_units_disclosure: "Each self propelled vehicle that is being towed must ALSO have its own insurance policy when it is being driven."
+    results:
+      labels:
+        daily: "Daily"
+        sixmo: "Six Month"
+        annual: "Annual"
+      buttons:
+        buy_now: "Buy Now!"
+        details: "Coverage"
   greetings:
     hello: "Hi, world!"
     goodbye: "Peace, world!"
