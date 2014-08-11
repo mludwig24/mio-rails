@@ -21,9 +21,13 @@ end
 
 class Rater
 	include ActiveModel::Model
-	def initialize(quote)
+	def initialize(quote, rates=nil)
 		@quote = quote
-		api_call
+		if rates
+			@rates = rates
+		else
+			api_call()
+		end
 	end
 	attr_accessor :api_data, :transport, :rates
 	def api_call
@@ -36,44 +40,12 @@ class Rater
 			self << rate
 		end
 	end
-	def self.format_quote_data(quote)
-		api_data = Hash.new()
-		## API Key info.
-		api_data["auth"] = Hash.new()
-		api_data["auth"]["username"] = ENV["mio_api_username"]
-		api_data["auth"]["api_key"] = ENV["mio_api_key"]
-		## Travel Dates.
-		api_data["quote"] = Hash.new()
-		api_data["quote"]["effective_date"] = quote.enter_date.strftime("%m%d%Y")
-		api_data["quote"]["expiration_date"] = quote.leave_date.strftime("%m%d%Y")
-		## Limits.
-		api_data["limits"] = Hash.new()
-		api_data["limits"]["liability"] = quote.liability_limit.to_i
-		api_data["limits"]["extended_travel"] = true ## Always include MexVisit.
-		## Power Unit.
-		api_data["power_unit"] = Hash.new()
-		api_data["power_unit"]["type"] = "power" # Always.
-		api_data["power_unit"]["year"] = quote.year
-		api_data["power_unit"]["style"] = quote.vehicle_type
-		api_data["power_unit"]["make"] = quote.make_id
-		api_data["power_unit"]["model"] = quote.model_id
-		api_data["power_unit"]["value"] = quote.value.to_i
-		## Underwriting.
-		api_data["underwriting"] = Hash.new()
-		api_data["underwriting"]["drivers_under_21"] = quote.under21.to_i == 1
-		api_data["underwriting"]["collision_in_us"] = quote.uscoll_sc.to_i == 1
-		api_data["underwriting"]["fixed_deductible"] = quote.fixed_deductibles.to_i == 1
-		api_data["underwriting"]["beyond_freezone"] = quote.beyond_freezone.to_i == 1
-		api_data["underwriting"]["days_veh_in_mexico"] = quote.days_veh_in_mexico.to_i
-		api_data["underwriting"]["visit_reason"] = quote.visit_reason.to_i
-		## PolicyHolder.
-		api_data["policyholder"] = Hash.new()
-		api_data["policyholder"]["license_state"] = "CA"
-		## Drivers.
-		api_data["drivers"] = Array.new()
-		## Towed.
-		api_data["towed"] = Array.new()
-		return api_data
+	def self.format_quote_data(quote, formatter=nil)
+		unless formatter != nil
+			formatter = Formatter_v3.new() ## Default
+		end
+		formatter.quote = quote
+		@api_data = formatter.format()
 	end
 	def format_quote_data(quote)
 		self.class.format_quote_data(quote)
@@ -82,17 +54,41 @@ class Rater
 		@rates ||= Array.new()
         @rates << val
     end
-	def each(&block)
+	def each(rates=nil, &block)
 		@rates.each(&block)
 	end
 	def select(&block)
 		@rates.select(&block)
 	end
+	def count
+		@rates.count
+	end
+	def columns
+		@rates.count / @self.terms.count
+	end
 	def underwriters
 		@rates.map { |x| x["underwriter_name"] }.uniq!
 	end
+	def for(field, value)
+		rates = @rates.select { |r|
+			r[field] == value
+		}
+		Rater.new(@quote, rates)
+	end
+	def for_underwriter(value)
+		self.for("underwriter_name", value)
+	end
 	def coverages
 		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq!
+	end
+	def for_coverage(value)
+		self.for("coverage", value)
+	end
+	def terms
+		@rates.map { |x| x["term"] }.uniq!
+	end
+	def for_term(value)
+		self.for("term", value)
 	end
 
 	private
@@ -113,85 +109,111 @@ class Rater
 			}
 		end
 	end
+	class Formatter
+		def initialize(quote=nil)
+			@quote = quote
+		end
+		def format
+			raise "Not yet implemented.  Please extend this object first."
+		end
+		def quote=(quote)
+			@quote = quote
+		end
+	end
+	class Formatter_v3 < Formatter
+		def format
+			api_data = Hash.new()
+			## API Key info.
+			api_data["auth"] = Hash.new()
+			api_data["auth"]["username"] = ENV["mio_api_username"]
+			api_data["auth"]["api_key"] = ENV["mio_api_key"]
+			## Travel Dates.
+			api_data["quote"] = Hash.new()
+			api_data["quote"]["effective_date"] = @quote.enter_date.strftime("%m%d%Y")
+			api_data["quote"]["expiration_date"] = @quote.leave_date.strftime("%m%d%Y")
+			## Limits.
+			api_data["limits"] = Hash.new()
+			api_data["limits"]["liability"] = @quote.liability_limit.to_i
+			api_data["limits"]["extended_travel"] = true ## Always include MexVisit.
+			## Power Unit.
+			api_data["power_unit"] = Hash.new()
+			api_data["power_unit"]["type"] = "power" # Always.
+			api_data["power_unit"]["year"] = @quote.year
+			api_data["power_unit"]["style"] = @quote.vehicle_type
+			api_data["power_unit"]["make"] = @quote.make_id
+			api_data["power_unit"]["model"] = @quote.model_id
+			api_data["power_unit"]["value"] = @quote.value.to_i
+			## Underwriting.
+			api_data["underwriting"] = Hash.new()
+			api_data["underwriting"]["drivers_under_21"] = @quote.under21.to_i == 1
+			api_data["underwriting"]["collision_in_us"] = @quote.uscoll_sc.to_i == 1
+			api_data["underwriting"]["fixed_deductible"] = @quote.fixed_deductibles.to_i == 1
+			api_data["underwriting"]["beyond_freezone"] = @quote.beyond_freezone.to_i == 1
+			api_data["underwriting"]["days_veh_in_mexico"] = @quote.days_veh_in_mexico.to_i
+			api_data["underwriting"]["visit_reason"] = @quote.visit_reason.to_i
+			## PolicyHolder.
+			api_data["policyholder"] = Hash.new()
+			api_data["policyholder"]["license_state"] = "CA"
+			## Drivers.
+			api_data["drivers"] = Array.new()
+			## Towed.
+			api_data["towed"] = Array.new()
+			return api_data
+		end
+	end
 
 end
 
-class Quote
-	include ActiveModel::Model
-	def initialize(data=nil)
-		@enter_date = Date.new_from_date_select!(data, "enter_date")
-		@leave_date = Date.new_from_date_select!(data, "leave_date")
-		if data && data.has_key?("towing")
-			## Add towing info to the current instance of the object.
-			class <<self
-				self
-			end.class_eval do
-				data["towing"].to_i.times { |c|
-					["type", "year", "value"].each { |label|
-						sym = "towed_unit_#{c+1}_#{label}".to_s
-						attr_accessor sym
-						validates sym, presence: true,
-							numericality: true
-					}
-				}
-			end
-		end
-		super
-	end
+class Towed < ActiveRecord::Base
+	attr_accessor :type, :year, :value
+	belongs_to :quote
+	validates_presence_of :type, :year, :value
+	validates_numericality_of :type, :year, :value
+end
 
-	def get_rates
-		raise "Not valid!  Should not get here!" unless valid?
-		## Create a rater object.
-		return Rater.new(self)
-	end
+class Quote < ActiveRecord::Base
+	before_create :generate_token
+	has_many :towed, dependent: :destroy
 
-	attr_accessor :enter_date, :leave_date, :username,
-		:api_key, :agtdst, :office_code, :power_unit
-	## Powerunit.
-	attr_accessor :vehicle_type, :year, :make_id,
-		:model_id, :value, :towing, :liability_limit,
-		:fixed_deductibles, :body_style, :other_model
 	validates :fixed_deductibles, :presence => true,
-		:inclusion => {:in => ["0", "1"]}
+		:inclusion => {:in => [0, 1]}
 	validates :liability_limit, :presence => true,
 		:inclusion => {:in => Proc.new { 
-			Quote.valid_liability_limits().to_s }}
-	## Underwriting.
-	attr_accessor :beyond_freezone, :under21, :uscoll_sc,
-		:days_veh_in_mexico, :visit_reason
+			Quote.valid_liability_limits() }}
 	validates :under21, :presence => true,
-		:inclusion => {:in => ["0", "1"]}
+		:inclusion => {:in => [0, 1]}
 	validates :beyond_freezone, :presence => true,
-		:inclusion => {:in => ["0", "1"]}
+		:inclusion => {:in => [0, 1]}
 	validates :uscoll_sc, :presence => true,
-		:inclusion => {:in => ["0", "1"]}
+		:inclusion => {:in => [0, 1]}
 	validates :days_veh_in_mexico, :presence => true,
 		:inclusion => {:in => Proc.new { 
-			Quote.valid_days_veh_in_mexico().to_s }}
+			Quote.valid_days_veh_in_mexico() }}
 	validates :visit_reason, :presence => true,
 		:inclusion => {:in => Proc.new { 
-			Quote.valid_visit_reasons().to_s }}
-	## Limits.
-	attr_accessor :liability, :extended_travel
-	validates_presence_of :enter_date, :leave_date,
-		:vehicle_type, :year, :make_id, :value
-	validates :model_id, presence: true, 
-		allow_blank: false,
-		unless: "other_model.present?"
-	validates :other_model, presence: true,
-		allow_blank: false,
-		unless: "model_id.present?"
+			Quote.valid_visit_reasons() }}
+	validates_presence_of :enter_date, :leave_date, :vehicle_type, :year, :make_id, :value
+	validates :model_id, presence: true, allow_blank: false, unless: "other_model.present?"
+	validates :other_model, presence: true, allow_blank: false, unless: "model_id.present?"
+
 	validates :leave_date, :date => {
 		:after_or_equal_to => :enter_date,
-		:before => Proc.new { Date.today + 366 }, ## 1 year days is too far.
-	}
+		## 1 year days is too far.
+		:before => Proc.new { Date.today + 366 }}
 	validates :enter_date, :date => {
 		:after_or_equal_to => Proc.new { Date.today },
 		:before => Proc.new { Date.today + 90 }, ## 90 days is too far.
 	}
 	validates :year, numericality: { only_integer: true },
 		:inclusion => {:in => Proc.new { 
-			Quote.valid_years().to_s } }
+			Quote.valid_years() } }
+
+	def get_rates
+		raise "Not valid!  Should not get here!" unless valid?
+		## Create a rater object.
+		@rates ||= Rater.new(self)
+		return @rates
+	end
 
 	def self.valid_years
 		years = ((Date.today.year - 35)..Date.today.year).to_a
@@ -238,5 +260,14 @@ class Quote
 	end
 	def valid_days_veh_in_mexico
 		return self.class.valid_days_veh_in_mexico()
+	end
+
+	protected
+
+	def generate_token
+		self.token = loop do
+			random_token = SecureRandom.urlsafe_base64(8, false).downcase
+			break random_token unless Quote.exists?(token: random_token)
+		end
 	end
 end
