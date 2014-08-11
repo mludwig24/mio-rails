@@ -38,6 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'mysql'
+
 gem 'rails-i18n', '~> 4.0.0'
 gem 'http_accept_language'
 ## Store the sessions in the DB.
