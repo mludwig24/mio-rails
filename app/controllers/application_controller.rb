@@ -19,11 +19,13 @@ class ApplicationController < ActionController::Base
 	## Change the format if it is mobile.
 	def prepare_for_mobile
 	  session[:mobile_param] = params[:mobile] if params[:mobile]
+	  prepend_view_path Rails.root + 'app' + 'views' + 'mobile' if mobile_device?
 	  # request.format = :mobile if mobile_device?
 	end
 	def which_layout
 	  mobile_device? ? 'mobile' : 'application'
 	end
+	layout :which_layout
 
 	## Setup language.
 	def set_locale ## Pull the locale from the URL.
