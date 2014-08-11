@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: redirect("/%{locale}/quotes/new", status: 302)
-    get '/quotes/results', to: 'quotes#results'
+    get '/quotes/:quote_id/results', to: 'quotes#results'
     resources :quotes
   end
 
