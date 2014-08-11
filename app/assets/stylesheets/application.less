@@ -14,7 +14,9 @@
  *= require_self
  *= require rails_bootstrap_forms
  */
-
+.clear {
+	clear: both;
+}
 .quote_results {
 	& > div {
 		border: 1px solid #CCC;
@@ -22,18 +24,40 @@
 	h2,h3,h4,h5 {
 		text-align: center;
 	}
-	h4 {
+	h5 {
+		font-weight: bold;
+		background-color: #EEE;
+	}
+	h4.underwriter {
 		height: 50px;
 		vertical-align: middle;
 		line-height: 50px;
 	}
 	.quote_result {
 		text-align: center;
+		.total_price {
+			font-weight: bold;
+			margin-bottom: 3px;
+		}
 		.buy_now {
 			font-weight: bold;
+			margin-bottom: 3px;
 		}
 		.term {
 			font-style: italic;
+		}
+		a.btn {
+			width: 100%;
+			white-space: normal;
+			text-align: center;
+		}
+		dl {
+			text-align: left;
+			dd {
+				padding-bottom: 7px;
+				border-bottom: 1px solid #ccc;
+				margin-bottom: 7px;
+			}
 		}
 	}
 	hr {
