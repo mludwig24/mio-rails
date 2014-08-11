@@ -1,4 +1,5 @@
 class QuotesController < ApplicationController
+	before_filter :prepare_for_mobile, :only => [:results,]
 	def show
 		id = params[:id]
 		@quote = Quote.find(id)
@@ -7,19 +8,17 @@ class QuotesController < ApplicationController
 		@quote = Quote.new
 	end
 	def results
-		if !session.has_key?("quote")
-			return redirect_to action: "create"
-		end
-		@quote = session["quote"]
+		id = params[:id]
+		@quote = Quote.find(params[:id])
 		@rates = @quote.get_rates()
 		render "results"
 	end
 	def create
-		@quote = Quote.new(params['quote'])
+		@quote = Quote.new(params[:quote])
 		if @quote.valid?
 			## Redirect.
-			session["quote"] = @quote
-			redirect_to action: 'results'
+			@quote.save
+			redirect_to action: 'results', quote_id: @quote.id
 		else
 			render "new"
 		end
