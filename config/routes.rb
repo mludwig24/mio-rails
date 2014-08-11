@@ -6,7 +6,7 @@
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: redirect("/%{locale}/quotes/new", status: 302)
-    get '/quotes/:quote_id/results', to: 'quotes#results'
+    get '/quotes/q-:token/results', to: 'quotes#results'
     resources :quotes
   end
 
