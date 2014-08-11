@@ -67,7 +67,17 @@ en-US: &en-US
         annual: "Annual"
       buttons:
         buy_now: "Buy Now!"
-        details: "Coverage"
+        details:
+          Extended: "Extended Coverage"
+          Standard: "Standard Coverage"
+          Flex: "Flex Coverage"
+      coverage:
+          collision:
+            header: "Property Damage:"
+            details: "This includes coverage for collision, overturning, glass breakage, and is subject to the deductible."
+          theft:
+            header: "Theft:"
+            details: "This coverage includes total theft of the vehicle. Note that partial theft coverage is not available in Mexico unless you purchase an extended coverage option."
   greetings:
     hello: "Hi, world!"
     goodbye: "Peace, world!"
