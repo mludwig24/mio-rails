@@ -62,21 +62,13 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-<%= content_for?(:sidebar) ? "9" : "12" %>">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <!-- <div class="well sidebar-nav">
-            <h3>Progress</h3>
-            <ul class="nav nav-list">
-              <li><%= link_to "Quote", "#"  %></li>
-                <li><%= link_to "Select Policy", "#"  %></li>
-                <li><%= link_to "Your Info", "#"  %></li>
-                <li><%= link_to "Payment", "#"  %></li>
-            </ul>
-          </div> -->
-        </div><!--/span-->
+        <% if content_for?(:sidebar) %>
+          <%= yield(:sidebar) %>
+        <% end %>
       </div><!--/row-->
 
       <footer>
