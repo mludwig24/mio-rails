@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811194010) do
+ActiveRecord::Schema.define(version: 20140813214806) do
+
+  create_table "apps", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quote_id"
+    t.string   "tid"
+    t.integer  "uid"
+    t.string   "token"
+  end
+
+  add_index "apps", ["quote_id"], name: "index_apps_on_quote_id", using: :btree
 
   create_table "mio_js_sessions", force: true do |t|
     t.string   "session_id", null: false
@@ -51,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140811194010) do
   add_index "quotes", ["token"], name: "index_quotes_on_token", unique: true, using: :btree
 
   create_table "toweds", force: true do |t|
-    t.integer "type"
+    t.integer "type_id"
     t.integer "year"
     t.integer "value"
     t.integer "quote_id"

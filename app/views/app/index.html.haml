@@ -1,0 +1,7 @@
+%h1
+	= t('app.headers.application')
+
+= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "AppController" }) do |f|
+
+	%h3
+		= t('app.form.header.personal_info')
