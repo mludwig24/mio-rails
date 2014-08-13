@@ -17,8 +17,10 @@ Array::where = (query) ->
             match += 1 if item[key] is val
         if match is hit then true else false
 
+window.mioApp = angular.module 'mioApp', [] unless window.mioApp
+
 ## Setup the basic app for filters and such.
-window.mioApp = angular.module 'mioApp', []
+
 mioApp.filter 'range', ->
 	return (input, total) ->
 		total = parseInt total
