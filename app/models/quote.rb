@@ -164,17 +164,12 @@ class Rater
 
 end
 
-class Towed < ActiveRecord::Base
-	attr_accessor :type, :year, :value
-	belongs_to :quote
-	validates_presence_of :type, :year, :value
-	validates_numericality_of :type, :year, :value
-end
-
 class Quote < ActiveRecord::Base
 	before_create :generate_token
 	has_many :towed, dependent: :destroy
-
+	has_one :app, dependent: :destroy
+	accepts_nested_attributes_for :towed
+	
 	validates :fixed_deductibles, :presence => true,
 		:inclusion => {:in => [0, 1]}
 	validates :liability_limit, :presence => true,

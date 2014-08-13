@@ -1,17 +1,21 @@
+
+%div{"ng-show" => "false", "id" => "ng-prepopulate"}
+	- @quote.towing.to_i.times do |c|
+		%div{"data-name" => "towed_unit_#{c+1}_type_id",
+			"data-value" => @quote.towed[c].type_id}
+		%div{"data-name" => "towed_unit_#{c+1}_year",
+			"data-value" => @quote.towed[c].year}
+		%div{"data-name" => "towed_unit_#{c+1}_value",
+			"data-value" => @quote.towed[c].value}
+		%div{"data-name" => "towed_unit_#{c+1}_id",
+			"data-value" => @quote.towed[c].id}
+
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
 	
 	%ul{"class" => "errors", "ng-show" => "false"}
 		- @quote.errors.each do |key,value|
 			%li{"class" => "has-error", "id" => "error_#{key}"}
 				= value
-	%div{"ng-show" => "false", "id" => "ng-prepopulate"}
-		- @quote.towing.to_i.times do |c|
-			%div{"data-name" => "towed_unit_#{c+1}_type",
-				"data-value" => @quote.send("towed_unit_#{c+1}_type")}
-			%div{"data-name" => "towed_unit_#{c+1}_year",
-				"data-value" => @quote.send("towed_unit_#{c+1}_year")}
-			%div{"data-name" => "towed_unit_#{c+1}_value",
-				"data-value" => @quote.send("towed_unit_#{c+1}_value")}
 	%h3
 		= t('quote.form.header.travel_dates')
 	= f.date_select :enter_date, start_year: Date.today.year,
@@ -67,21 +71,26 @@
 		%div{"ng-repeat" => "i in towed_units | range:towed_units"}
 			%h4
 				{{ "#{ t('quote.form.header.towed_unit_sub') }" | format : $index + 1 }}
+			%input{"type" => "hidden",
+				"name" => 'quote[towed_attributes][{{$index}}][id]', 
+				"ng-value" => '$parent["towed_unit_"+i+"_id"]'}
 			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_type')}"}
 				= f.static_control :towed_unit_type, "label" => t('activemodel.attributes.quote.towed_unit_type') do
-					= select nil, "quote[towed_unit_{{i}}_type]", [], {include_blank: t('general.forms.select_one')},
-						"class" => "form-control",
-						"ng-model" => '$parent["towed_unit_"+i+"_type"]' do
+					%select{"name" => "quote[towed_attributes][{{$index}}][type_id]", 
+							"class" => "form-control",
+							"ng-model" => '$parent["towed_unit_"+i+"_type_id"]'}
+						%option{"value" => ""}
+							= t('general.forms.select_one')
 						%option{"ng-repeat" => "tut in towed_unit_types",
 							"value" => "{{tut.id}}",
-							"ng-selected" => 'tut.id == $parent["towed_unit_"+i+"_type"]'}
+							"ng-selected" => 'tut.id == $parent["towed_unit_"+i+"_type_id"]'}
 							{{tut.en}}
 					%span{"class" => "help-block",
 						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
 						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type')"}
 			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_year')}"}
 				= f.static_control :towed_unit_year, label: t('activemodel.attributes.quote.towed_unit_year') do
-					= select nil, "quote[towed_unit_{{i}}_year]",
+					= select nil, "quote[towed_attributes][{{$index}}][year]",
 						options_for_select(@quote.valid_years.sort.reverse),
 						{include_blank: t('general.forms.select_one')},
 						"class" => "form-control",
@@ -91,7 +100,7 @@
 						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_year')"}
 			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_value')}"}
 				= f.static_control :towed_unit_value, label: t('activemodel.attributes.quote.towed_unit_value') do
-					= select nil, "quote[towed_unit_{{i}}_value]", 
+					= select nil, "quote[towed_attributes][{{$index}}][value]", 
 						[[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
 						{include_blank: t('general.forms.select_one')},
 						"class" => "form-control",

@@ -21,8 +21,11 @@ class QuotesController < ApplicationController
 	end
 	def results
 		@quote = Quote.find_by(token: params[:token])
-		if !@quote.valid?
-			redirect_to quote_url(@quote)
+		if @quote == nil ## Not found.
+			return redirect_to quote_path('')
+		end
+		unless @quote.valid? ## Invalid Quote.
+			return redirect_to quote_url(@quote)
 		end
 		@rates = @quote.get_rates()
 		render "results"
@@ -48,7 +51,8 @@ class QuotesController < ApplicationController
 			:model_id, :value, :towing, :liability_limit, 
 			:fixed_deductibles, :body_style, :other_model, :liability, 
 			:extended_travel, :beyond_freezone, :under21, :uscoll_sc, 
-			:days_veh_in_mexico, :visit_reason
+			:days_veh_in_mexico, :visit_reason,
+			:towed_attributes => [ :id, :type_id, :value, :year ]
 		)
 	end
 end
