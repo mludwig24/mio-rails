@@ -11,10 +11,11 @@
     end
     resources :quotes
     resources :toweds
-    scope "/app/a-(:token)/" do
-      get 'personal', to: "app#personal"
+    scope "/apps/a-(:token)/" do
+      get 'personal', to: 'apps#personal'
+      get 'vehicle', to: 'apps#vehicle'
     end
-    resources :app
+    resources :apps
   end
 
   scope "/api/" do

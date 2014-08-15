@@ -16,7 +16,7 @@
 						%span.total_price
 							= number_to_currency(r["total_price"])
 						%br.clear
-						%a.btn.btn-success.buy_now{"href" => app_path(@quote.app ? @quote.app : "", uid: r['underwriter'], tid: r['term'], qid: @quote.token)}
+						%a.btn.btn-success.buy_now{"href" => @quote.app == nil ? new_app_path(uid: r['underwriter'], tid: r['term'], qid: @quote.token) : app_path(@quote.app, uid: r['underwriter'], tid: r['term'], qid: @quote.token)}
 							= t('quote.results.buttons.buy_now')
 						%br.clear
 						%a.btn.btn-default.btn-link.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_details", "data-toggle" => "modal"}

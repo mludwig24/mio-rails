@@ -1,0 +1,18 @@
+- if @app.errors.any?
+	%div#error_explanation
+		%h2
+			= t('global.headers.errors_occurred', count: @quote.errors.count)
+		%ul
+			- @app.errors.full_messages.each do |msg|
+				%li.has_error
+					= msg
+
+= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "AppController" }) do |f|
+	%h3
+		= t('app.form.header.power_unit_info')
+	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
+	= f.text_field :vin
+	%hr
+	%div.col-sm-7.col-sm-offset-5
+		= f.primary t('app.form.buttons.step_2')
+		= f.button t('app.form.buttons.get_help'), :class => "btn btn-lrg"

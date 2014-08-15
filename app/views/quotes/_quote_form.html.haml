@@ -1,3 +1,11 @@
+- if @quote.errors.any?
+	%div#error_explanation
+		%h2
+			= t('global.headers.errors_occurred', count: @quote.errors.count)
+		%ul
+			- @quote.errors.full_messages.each do |msg|
+				%li.has_error
+					= msg
 
 %div{"ng-show" => "false", "id" => "ng-prepopulate"}
 	- @quote.towing.to_i.times do |c|
