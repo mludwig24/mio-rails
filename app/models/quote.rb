@@ -166,9 +166,9 @@ end
 
 class Quote < ActiveRecord::Base
 	before_create :generate_token
-	has_many :towed, dependent: :destroy
+	has_many :toweds, dependent: :destroy
 	has_one :app, dependent: :destroy
-	accepts_nested_attributes_for :towed
+	accepts_nested_attributes_for :toweds
 	
 	validates :fixed_deductibles, :presence => true,
 		:inclusion => {:in => [0, 1]}
