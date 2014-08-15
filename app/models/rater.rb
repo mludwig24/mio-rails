@@ -11,10 +11,12 @@ class Rater
 			api_call()
 		end
 	end
+	## Setup and call the API.
 	def api_call(formatter=nil, transport=nil)
 		@api_data ||= format_quote_data(@quote)
 		@rates = transport_api(@api_data.to_json)
 	end
+	## Do the actual API call.
 	def transport_api(json, transport=nil)
 		if transport == nil
 			transport = Transport_v3
@@ -24,11 +26,12 @@ class Rater
 			self << rate
 		end
 	end
+	## Format ourself into the correct json for @api_data.
 	def self.format_quote_data(quote, formatter=nil)
 		if formatter == nil
 			formatter = Formatter_v3 ## Default
 		end
-		@formatter = formatter.new()
+		@formatter ||= formatter.new()
 		@formatter.quote = quote
 		@api_data = @formatter.format()
 	end
