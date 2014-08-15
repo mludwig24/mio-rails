@@ -1,5 +1,8 @@
 class Rater
 	include ActiveModel::Model
+	attr_accessor :api_data, :transport, :rates, :formatter
+	## `rates` are sent when creating a sub-set of rates.
+	## For example, rates for "GNP Extended".
 	def initialize(quote, rates=nil)
 		@quote = quote
 		if rates
@@ -8,26 +11,29 @@ class Rater
 			api_call()
 		end
 	end
-	attr_accessor :api_data, :transport, :rates
-	def api_call
+	def api_call(formatter=nil, transport=nil)
 		@api_data ||= format_quote_data(@quote)
-		@rates = quote_api(@api_data.to_json)
+		@rates = transport_api(@api_data.to_json)
 	end
-	def quote_api(json)
-		@transport ||= Transport.new(json)
+	def transport_api(json, transport=nil)
+		if transport == nil
+			transport = Transport_v3
+		end
+		@transport ||= transport.new(json)
 		@transport.res["rates"].each do |rate|
 			self << rate
 		end
 	end
 	def self.format_quote_data(quote, formatter=nil)
-		unless formatter != nil
-			formatter = Formatter_v3.new() ## Default
+		if formatter == nil
+			formatter = Formatter_v3 ## Default
 		end
-		formatter.quote = quote
-		@api_data = formatter.format()
+		@formatter = formatter.new()
+		@formatter.quote = quote
+		@api_data = @formatter.format()
 	end
-	def format_quote_data(quote)
-		self.class.format_quote_data(quote)
+	def format_quote_data(quote, formatter=nil)
+		self.class.format_quote_data(quote, formatter)
 	end
 	def <<(val)
 		@rates ||= Array.new()
@@ -45,38 +51,48 @@ class Rater
 	def columns
 		@rates.count / @self.terms.count
 	end
+	## Get a list of underwriters.
+	## Does not break down by coverage (Extended vs Standard).
 	def underwriters
 		@rates.map { |x| x["underwriter_name"] }.uniq!
 	end
+	## Create a new sub-set of raters.
 	def for(field, value)
 		rates = @rates.select { |r|
 			r[field] == value
 		}
+		## Specify the rates to `initialize`, so we don't call
+		## the API again.
 		Rater.new(@quote, rates)
 	end
-	def for_underwriter(value)
+	def for_underwriter(value) ## Proxy to "for".
 		self.for("underwriter_name", value)
 	end
-	def coverages
+	def coverages ## List of coverage options.  Stupid plural.
 		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq!
 	end
-	def for_coverage(value)
+	def for_coverage(value) ## Proxy to "for".
 		self.for("coverage", value)
 	end
-	def terms
+	def terms ## List of terms.
 		@rates.map { |x| x["term"] }.uniq!
 	end
-	def for_term(value)
+	def for_term(value) ## Proxy to "for".
 		self.for("term", value)
 	end
 
 	private
 
-	class Transport
+	class Transport ## How do we send this to the server?
 		attr_accessor :res
 		def initialize(options)
 			@res = JSON.parse(query_remote(options).body)
 		end
+		def query_remote(json)
+			raise "Not yet implemented.  Please extend this object first."
+		end
+	end
+	class Transport_v3 < Transport ## v3 specific version.
 		def query_remote(json)
 			@api_uri ||= URI("https://sb.iigins.com/api/quote.mhtml")
 			req = Net::HTTP::Post.new(@api_uri.path)
@@ -88,7 +104,7 @@ class Rater
 			}
 		end
 	end
-	class Formatter
+	class Formatter ## Base formatter for sending data.
 		def initialize(quote=nil)
 			@quote = quote
 		end
