@@ -8,18 +8,18 @@ class App < ActiveRecord::Base
 		super(params)
 	end
 
-	def self.us_states
-		AppsController.helpers.us_states
+	def self.valid_us_states ## For validation farther down.
+		AppsController.helpers.us_states.map{|x| x[1]} # ["State", "State Code"]
 	end
-	def us_states; self.class.us_states end
+	def valid_us_states; self.class.us_states end
 
 	validates_presence_of :uid, :tid
 	validates_presence_of :first_name, :last_name, :address, :city, :state,
 		:zip, :phone, :email, :license_number, :license_state,
 		:unless => Proc.new { |app| app.step < 1 }
-	validates :state, :inclusion => us_states,
+	validates :state, :inclusion => valid_us_states,
 		:unless => Proc.new { |app| app.step < 1 }
-	validates :license_state, :inclusion => us_states,
+	validates :license_state, :inclusion => valid_us_states,
 		:unless => Proc.new { |app| app.step < 1 }
 	validates_presence_of :vin, :registration, :us_insurance_company,
 		:ownership,
