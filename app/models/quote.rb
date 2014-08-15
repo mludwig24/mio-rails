@@ -1,7 +1,7 @@
 class Quote < ActiveRecord::Base
 	before_create :generate_token
-	has_many :toweds, dependent: :destroy
 	has_one :app, dependent: :destroy
+	has_many :toweds, dependent: :destroy
 	accepts_nested_attributes_for :toweds
 	
 	validates :fixed_deductibles, :presence => true,
@@ -37,6 +37,7 @@ class Quote < ActiveRecord::Base
 		:inclusion => {:in => Proc.new { 
 			Quote.valid_years() } }
 
+	## Go get the rates and cache them.
 	def get_rates
 		raise "Not valid!  Should not get here!" unless valid?
 		## Create a rater object.
@@ -51,22 +52,22 @@ class Quote < ActiveRecord::Base
 		end
 		return years
 	end
-	def valid_years
-		return self.class.valid_years()
-	end
-	def valid_values
+	def valid_years; return self.class.valid_years() end
+
+	def self.valid_values
 		values = [0]
 		(3..400).each do |x|
 			values << x * 1000
 		end
 		return values
 	end
+	def valid_values; self.class.valid_values() end
+
 	def self.valid_liability_limits
 		[50000, 100000, 300000, 500000]
 	end
-	def valid_liability_limits
-		return self.class.valid_liability_limits()
-	end
+	def valid_liability_limits; return self.class.valid_liability_limits() end
+
 	def self.valid_visit_reasons
 		[
 			1, # Driving to Vacation Destination/Tourist Visa
@@ -76,9 +77,8 @@ class Quote < ActiveRecord::Base
 			5,  # Permanent Mexico Resident Visa Holder
 		]
 	end
-	def valid_visit_reasons
-		return self.class.valid_visit_reasons()
-	end
+	def valid_visit_reasons; return self.class.valid_visit_reasons() end
+	
 	def self.valid_days_veh_in_mexico
 		[
 			1, # Less than 30
@@ -87,9 +87,7 @@ class Quote < ActiveRecord::Base
 			4, # More than 180
 		]
 	end
-	def valid_days_veh_in_mexico
-		return self.class.valid_days_veh_in_mexico()
-	end
+	def valid_days_veh_in_mexico; return self.class.valid_days_veh_in_mexico() end
 
 	protected
 

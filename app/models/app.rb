@@ -3,6 +3,7 @@ class App < ActiveRecord::Base
 	before_create :generate_token
 
 	attr_accessor :step
+	
 	def initialize(params)
 		@step = 42 ## Default to higher than max.
 		super(params)
