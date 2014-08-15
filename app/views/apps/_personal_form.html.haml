@@ -15,12 +15,12 @@
 	= f.text_field :last_name
 	= f.text_field :address
 	= f.text_field :city
-	= f.select :state, us_states
+	= f.select :state, us_states, {include_blank: t('general.forms.select_one')}
 	= f.text_field :zip
 	= f.text_field :phone
 	= f.text_field :email
 	= f.text_field :license_number
-	= f.select :license_state, us_states
+	= f.select :license_state, us_states, {include_blank: t('general.forms.select_one')}
 	%hr
 	%div.col-sm-7.col-sm-offset-5
 		= f.primary t('app.form.buttons.step_2')
