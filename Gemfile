@@ -63,6 +63,8 @@ gem 'nested_form'
 gem "i18n-js" 
 ## Gives the ability to validate dates easily:
 gem 'date_validator', '~> 0.7.0'
+## Validate emails.
+gem 'email_validator'
 
 group :development do
 	gem 'guard-livereload', require: false
