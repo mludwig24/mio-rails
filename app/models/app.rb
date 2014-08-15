@@ -8,6 +8,10 @@ class App < ActiveRecord::Base
 
 	attr_accessor :step
 	
+	def to_param
+		self.token
+	end
+
 	def initialize(params)
 		@step = 42 ## Default to higher than max.
 		super(params)

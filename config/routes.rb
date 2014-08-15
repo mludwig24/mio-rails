@@ -11,9 +11,9 @@
     end
     resources :quotes
     resources :toweds
-    scope "/apps/a-(:token)/" do
-      get 'personal', to: 'apps#personal'
-      get 'vehicle', to: 'apps#vehicle'
+    scope "/apps/:token/" do
+      get 'personal', to: 'apps#personal', as: 'app_personal'
+      get 'vehicle', to: 'apps#vehicle', as: 'app_vehicle'
     end
     resources :apps
   end

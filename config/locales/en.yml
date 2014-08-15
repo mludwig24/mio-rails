@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en-US: &en-US
-  activemodel:
+  activerecord:
     attributes:
       quote:
         enter_date: "Date Entering Mexico"
@@ -42,6 +42,12 @@ en-US: &en-US
           "2": "Between 31 and 90 days"
           "3": "Between 90 and 180 days"
           "4": "More than 180 days"
+      app:
+        vin: "Vehicle Identification Number (VIN)"
+    errors:
+      messages:
+        blank: "must be provided"
+        inclusion: "selection was invalid"
   nav:
     english: "English"
     spanish: "Español"

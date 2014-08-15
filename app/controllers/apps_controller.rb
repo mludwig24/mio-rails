@@ -12,7 +12,7 @@ class AppsController < ApplicationController
 		## Check for an update to the underwriter and/or term.
 		@app.update(init_params)
 		if @app.save()
-			redirect_to action: 'personal', token: @app.token
+			redirect_to app_personal_path(@app)
 		end
 	end
 	def show ## Transfer from quotes with an existing app.
@@ -20,7 +20,7 @@ class AppsController < ApplicationController
 		@app.update(init_params)
 		if @app.valid?
 			if @app.save()
-				redirect_to action: 'personal', token: @app.token
+				redirect_to app_personal_path(@app)
 			end
 		end
 	end
@@ -48,7 +48,11 @@ class AppsController < ApplicationController
 	def get_app
 		## Check for an :id, mostly for "update" method.
 		if params.has_key?(:id)
-			@app = App.find(params[:id])
+			begin
+				@app = App.find(params[:id])
+			rescue
+				@app = App.find_by_token(params[:id])
+			end
 		## Check for a :token, used for "personal", "vehicle", etc.
 		elsif params.has_key?(:token)
 			@app = App.find_by(token: params[:token])
@@ -97,7 +101,7 @@ class AppsController < ApplicationController
 	## Redirect and increment the step.
 	def next_step
 		if step == 1
-			redirect_to action: 'vehicle', token: @app.token
+			redirect_to app_vehicle_path(@app)
 		end
 		@app.step += 1
 	end

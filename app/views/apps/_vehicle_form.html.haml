@@ -12,6 +12,9 @@
 		= t('app.form.header.power_unit_info')
 	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
 	= f.text_field :vin
+	= f.text_field :registration
+	= f.text_field :us_insurance_company
+	= f.text_field :ownership
 	%hr
 	%div.col-sm-7.col-sm-offset-5
 		= f.primary t('app.form.buttons.step_2')
