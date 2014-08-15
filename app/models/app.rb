@@ -2,6 +2,10 @@ class App < ActiveRecord::Base
 	belongs_to :quote
 	before_create :generate_token
 
+	def before_validation_on_create
+		self.phone = phone.phone
+	end
+
 	attr_accessor :step
 	
 	def initialize(params)
@@ -19,6 +23,10 @@ class App < ActiveRecord::Base
 		:zip, :phone, :email, :license_number, :license_state,
 		:unless => Proc.new { |app| app.step < 1 }
 	validates :state, :inclusion => valid_us_states,
+		:unless => Proc.new { |app| app.step < 1 }
+	validates :email, :email => {:strict_mode => true},
+		:unless => Proc.new { |app| app.step < 1 }
+	validates :phone, :phone => true,
 		:unless => Proc.new { |app| app.step < 1 }
 	validates :license_state, :inclusion => valid_us_states,
 		:unless => Proc.new { |app| app.step < 1 }
