@@ -9,7 +9,16 @@ class AppsController < ApplicationController
 	def new ## Transfer from the quote.
 		## Save the tid, uid, and qid, and send them to Personal.
 		@app.step = 0
-		if @app.new_record? and @app.valid?
+		## Check for an update to the underwriter and/or term.
+		@app.update(init_params)
+		if @app.save()
+			redirect_to action: 'personal', token: @app.token
+		end
+	end
+	def show ## Transfer from quotes with an existing app.
+		@app.step = 0
+		@app.update(init_params)
+		if @app.valid?
 			if @app.save()
 				redirect_to action: 'personal', token: @app.token
 			end
@@ -54,11 +63,6 @@ class AppsController < ApplicationController
 		## Just make sure we have an @quote for recaps and such.
 		if @app != nil
 			@quote = @app.quote
-		end
-		## Check for an update to the underwriter and/or term.
-		if app_params.has_key?(:uid) || app_params.has_key?(:tid)
-			@app.uid = app_params[:uid]
-			@app.tid = app_params[:tid]
 		end
 	end
 	## Checks the step to determine which parameters to use.
