@@ -1,0 +1,144 @@
+class Rater
+	include ActiveModel::Model
+	def initialize(quote, rates=nil)
+		@quote = quote
+		if rates
+			@rates = rates
+		else
+			api_call()
+		end
+	end
+	attr_accessor :api_data, :transport, :rates
+	def api_call
+		@api_data ||= format_quote_data(@quote)
+		@rates = quote_api(@api_data.to_json)
+	end
+	def quote_api(json)
+		@transport ||= Transport.new(json)
+		@transport.res["rates"].each do |rate|
+			self << rate
+		end
+	end
+	def self.format_quote_data(quote, formatter=nil)
+		unless formatter != nil
+			formatter = Formatter_v3.new() ## Default
+		end
+		formatter.quote = quote
+		@api_data = formatter.format()
+	end
+	def format_quote_data(quote)
+		self.class.format_quote_data(quote)
+	end
+	def <<(val)
+		@rates ||= Array.new()
+        @rates << val
+    end
+	def each(rates=nil, &block)
+		@rates.each(&block)
+	end
+	def select(&block)
+		@rates.select(&block)
+	end
+	def count
+		@rates.count
+	end
+	def columns
+		@rates.count / @self.terms.count
+	end
+	def underwriters
+		@rates.map { |x| x["underwriter_name"] }.uniq!
+	end
+	def for(field, value)
+		rates = @rates.select { |r|
+			r[field] == value
+		}
+		Rater.new(@quote, rates)
+	end
+	def for_underwriter(value)
+		self.for("underwriter_name", value)
+	end
+	def coverages
+		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq!
+	end
+	def for_coverage(value)
+		self.for("coverage", value)
+	end
+	def terms
+		@rates.map { |x| x["term"] }.uniq!
+	end
+	def for_term(value)
+		self.for("term", value)
+	end
+
+	private
+
+	class Transport
+		attr_accessor :res
+		def initialize(options)
+			@res = JSON.parse(query_remote(options).body)
+		end
+		def query_remote(json)
+			@api_uri ||= URI("https://sb.iigins.com/api/quote.mhtml")
+			req = Net::HTTP::Post.new(@api_uri.path)
+			req.set_form_data({'data' => json})
+			sock = Net::HTTP.new(@api_uri.host, @api_uri.port)
+			sock.use_ssl = true ## Required for SSL server port.
+			sock.start { |http|
+				http.request(req)
+			}
+		end
+	end
+	class Formatter
+		def initialize(quote=nil)
+			@quote = quote
+		end
+		def format
+			raise "Not yet implemented.  Please extend this object first."
+		end
+		def quote=(quote)
+			@quote = quote
+		end
+	end
+	class Formatter_v3 < Formatter
+		def format
+			api_data = Hash.new()
+			## API Key info.
+			api_data["auth"] = Hash.new()
+			api_data["auth"]["username"] = ENV["mio_api_username"]
+			api_data["auth"]["api_key"] = ENV["mio_api_key"]
+			## Travel Dates.
+			api_data["quote"] = Hash.new()
+			api_data["quote"]["effective_date"] = @quote.enter_date.strftime("%m%d%Y")
+			api_data["quote"]["expiration_date"] = @quote.leave_date.strftime("%m%d%Y")
+			## Limits.
+			api_data["limits"] = Hash.new()
+			api_data["limits"]["liability"] = @quote.liability_limit.to_i
+			api_data["limits"]["extended_travel"] = true ## Always include MexVisit.
+			## Power Unit.
+			api_data["power_unit"] = Hash.new()
+			api_data["power_unit"]["type"] = "power" # Always.
+			api_data["power_unit"]["year"] = @quote.year
+			api_data["power_unit"]["style"] = @quote.vehicle_type
+			api_data["power_unit"]["make"] = @quote.make_id
+			api_data["power_unit"]["model"] = @quote.model_id
+			api_data["power_unit"]["value"] = @quote.value.to_i
+			## Underwriting.
+			api_data["underwriting"] = Hash.new()
+			api_data["underwriting"]["drivers_under_21"] = @quote.under21.to_i == 1
+			api_data["underwriting"]["collision_in_us"] = @quote.uscoll_sc.to_i == 1
+			api_data["underwriting"]["fixed_deductible"] = @quote.fixed_deductibles.to_i == 1
+			api_data["underwriting"]["beyond_freezone"] = @quote.beyond_freezone.to_i == 1
+			api_data["underwriting"]["days_veh_in_mexico"] = @quote.days_veh_in_mexico.to_i
+			api_data["underwriting"]["visit_reason"] = @quote.visit_reason.to_i
+			## PolicyHolder.
+			api_data["policyholder"] = Hash.new()
+			api_data["policyholder"]["license_state"] = "CA"
+			## Drivers.
+			api_data["drivers"] = Array.new()
+			## Towed.
+			api_data["towed"] = Array.new()
+			return api_data
+		end
+	end
+
+end
