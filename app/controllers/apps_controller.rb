@@ -1,12 +1,13 @@
 class AppsController < ApplicationController
 	before_action :get_app
-	def personal
+	def personal ## Personal information step.
 		@app.step = 1
 	end
-	def vehicle
+	def vehicle ## Vehicle information step.
 		@app.step = 2
 	end
-	def new
+	def new ## Transfer from the quote.
+		## Save the tid, uid, and qid, and send them to Personal.
 		@app.step = 0
 		if @app.new_record? and @app.valid?
 			if @app.save()
@@ -14,6 +15,7 @@ class AppsController < ApplicationController
 			end
 		end
 	end
+	## Saving changes, needs to be aware of the steps.
 	def update
 		@app.step = step
 		@app.update(app_params)
@@ -21,22 +23,27 @@ class AppsController < ApplicationController
 			@app.save()
 			next_step and return
 		end
+		## If the form was invalid:
 		if step == 1
 			render "personal" and return
 		end
 		render "vehicle"
 	end
 	def index
+		## Don't need a list of apps.  Just get rid of them.
 		redirect_to :root
 	end
 
 	private
 	
 	def get_app
+		## Check for an :id, mostly for "update" method.
 		if params.has_key?(:id)
 			@app = App.find(params[:id])
+		## Check for a :token, used for "personal", "vehicle", etc.
 		elsif params.has_key?(:token)
 			@app = App.find_by(token: params[:token])
+		## Check for a :qid, which is mostly for the "new" method.
 		elsif quote_token.has_key?(:qid)
 			@quote = Quote.find_by(token: quote_token[:qid])
 			@app = @quote.app
@@ -44,21 +51,25 @@ class AppsController < ApplicationController
 				@app = @quote.build_app
 			end
 		end
+		## Just make sure we have an @quote for recaps and such.
 		if @app != nil
 			@quote = @app.quote
 		end
+		## Check for an update to the underwriter and/or term.
 		if app_params.has_key?(:uid) || app_params.has_key?(:tid)
 			@app.uid = app_params[:uid]
 			@app.tid = app_params[:tid]
 		end
 	end
+	## Checks the step to determine which parameters to use.
 	def app_params
 		if @app.step == 1
 			return personal_params
-		elsif @app.step == 2
-			return vehicle_params
+		elsif @app.step == 0
+			return init_params
 		end
-		return init_params
+		## Default to the highest level of requirements.
+		return vehicle_params
 	end
 	def personal_params
 		params.require(:app).permit(:first_name, :last_name, :address, 
@@ -66,7 +77,7 @@ class AppsController < ApplicationController
 			:license_state)
 	end
 	def vehicle_params
-		params.requite(:app).permit(:vin, :registration,
+		params.require(:app).permit(:vin, :registration,
 			:us_insurance_company, :ownership)
 	end
 	def init_params
@@ -75,9 +86,11 @@ class AppsController < ApplicationController
 	def quote_token
 		params.permit(:qid)
 	end
+	## Extract the current step from the form submission.
 	def step
 		params.permit(:step)[:step].to_i
 	end
+	## Redirect and increment the step.
 	def next_step
 		if step == 1
 			redirect_to action: 'vehicle', token: @app.token
