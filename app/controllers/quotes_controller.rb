@@ -1,26 +1,25 @@
 class QuotesController < ApplicationController
 	before_filter :prepare_for_mobile
 	def show
-		id = params[:id]
-		@quote = Quote.find(id)
+		@quote = get_quote
 		@quote.valid?
 	end
 	def new
 		@quote = Quote.new
 	end
 	def update
-		@quote = Quote.find(params[:id])
+		@quote = get_quote
 		@quote.update(quote_params)
 		if @quote.valid?
 			## Redirect.
 			@quote.save
-			redirect_to action: 'results', token: @quote.token
+			redirect_to quote_results_path(@quote)
 		else
 			render "new"
 		end
 	end
 	def results
-		@quote = Quote.find_by(token: params[:token])
+		@quote = get_quote
 		if @quote == nil ## Not found.
 			return redirect_to quote_path('')
 		end
@@ -35,7 +34,7 @@ class QuotesController < ApplicationController
 		if @quote.valid?
 			## Redirect.
 			@quote.save()
-			redirect_to action: 'results', token: @quote.token
+			redirect_to quote_results_path(@quote)
 		else
 			render "new"
 		end
@@ -45,6 +44,20 @@ class QuotesController < ApplicationController
 		render "new"
 	end
 	private
+	def get_quote
+		## Check for an :id (which may be a token) mostly for
+		## "update" method.
+		if params.has_key?(:id)
+			begin
+				@quote = Quote.find(params[:id])
+			rescue
+				@quote = Quote.find_by_token(params[:id])
+			end
+		## Check for a :token.
+		elsif params.has_key?(:token)
+			@quote = Quote.find_by(token: params[:token])
+		end
+	end
 	def quote_params
 		params.require(:quote).permit(
 			:enter_date, :leave_date, :vehicle_type, :year, :make_id, 

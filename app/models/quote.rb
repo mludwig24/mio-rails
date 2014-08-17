@@ -37,6 +37,11 @@ class Quote < ActiveRecord::Base
 		:inclusion => {:in => Proc.new { 
 			Quote.valid_years() } }
 
+	## Used to keep the sequential ID out of the URL.
+	def to_param
+		self.token
+	end
+
 	## Go get the rates and cache them.
 	def get_rates
 		raise "Not valid!  Should not get here!" unless valid?
