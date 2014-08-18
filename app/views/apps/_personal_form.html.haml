@@ -1,27 +1,95 @@
 - if @app.errors.any?
 	%div#error_explanation
 		%h2
-			= t('global.headers.errors_occurred', count: @quote.errors.count)
+			= t('global.headers.errors_occurred', count: @app.errors.count)
 		%ul
 			- @app.errors.full_messages.each do |msg|
 				%li.has_error
 					= msg
 
-= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "AppController" }) do |f|
-	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
-	%h3
-		= t('app.form.header.owner_info')
-	= f.text_field :first_name
-	= f.text_field :last_name
-	= f.text_field :address
-	= f.text_field :city
-	= f.select :state, us_states, {include_blank: t('general.forms.select_one')}
-	= f.text_field :zip
-	= f.text_field :phone
-	= f.text_field :email
-	= f.text_field :license_number
-	= f.select :license_state, us_states, {include_blank: t('general.forms.select_one')}
-	%hr
-	%div.col-sm-7.col-sm-offset-5
-		= f.primary t('app.form.buttons.step_2')
-		= f.button t('app.form.buttons.get_help'), :class => "btn btn-lrg"
+%div{"ng-show" => "false", "id" => "ng-prepopulate"}
+	- @app.drivers.each_index do |c|
+		%div{"data-name" => "driver[#{@app.drivers[c].id}][first_name]",
+			"data-value" => @app.drivers[c].first_name}
+		%div{"data-name" => "driver[#{@app.drivers[c].id}][last_name]",
+			"data-value" => @app.drivers[c].last_name}
+		%div{"data-name" => "driver[#{@app.drivers[c].id}][id]",
+			"data-value" => @app.drivers[c].id}
+
+%div{"ng-controller" => "PersonalController", "id" => "app_personal"}
+	= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7") do |f|
+		%div.row-fluid
+			%input{"type" => "hidden", "name" => "step", "value" => @app.step}
+			%h3
+				= t('app.form.header.owner_info')
+			= f.text_field :first_name
+			= f.text_field :last_name
+			= f.text_field :address
+			= f.text_field :city
+			= f.select :state, us_states, {include_blank: t('general.forms.select_one')}
+			= f.text_field :zip
+			= f.text_field :phone
+			= f.text_field :email
+			= f.text_field :license_number
+			= f.select :license_state, us_states, {include_blank: t('general.forms.select_one')}
+			%h3
+				= t('app.form.header.other_drivers')
+		%div.row-fluid
+			%div.col-sm-5
+				= t('app.disclosure.other_drivers')
+			%div.col-sm-7
+				%button.btn.btn-primary{"type" => "button",
+					"data-toggle" => "modal",
+					"data-target" => "#add_driver"}
+					= t('app.form.buttons.add_driver')
+		%div.row-fluid{"ng-repeat" => "driver in drivers"}
+			%h4
+				= t('app.form.header.other_driver')
+			%input{"type" => "hidden",
+				"name" => "app[drivers_attributes][{{$index}}][id]",
+				"ng-model" => "driver.id",
+				"ng-value" => "driver.id"}
+			= f.static_control_div nil, label: t('activerecord.attributes.drivers.first_name') do
+				%input{"name" => "app[drivers_attributes][{{$index}}][first_name]",
+					"class" => "form-control",
+					"ng-model" => "driver.first_name"}
+			= f.static_control_div nil, label: t('activerecord.attributes.drivers.last_name') do
+				%input{"name" => "app[drivers_attributes][{{$index}}][last_name]",
+					"class" => "form-control",
+					"ng-model" => "driver.last_name"}
+		%hr
+		%div.col-sm-7.col-sm-offset-5
+			= f.primary t('app.form.buttons.step_2')
+			= f.button t('app.form.buttons.get_help'), :class => "btn btn-lrg"
+
+	%div.modal.fade#add_driver{"ng-controller" => "DriverController"}
+		%div.modal-dialog
+			%div.modal-content
+				%div.modal-header
+					%button{"type" => "button",
+						"class" => "close",
+						"data-dismiss" => "modal"}
+						%span &times;
+					%h3
+						= t('app.form.header.add_driver')
+				%div.modal-body
+					%div.error_explanation{"ng-show" => "errors.length > 0"}
+						%h4
+							= t('global.headers.errors_occurred')
+						%ul{"ng-repeat" => "error in errors"}
+							%li.has_error{"ng-repeat" => "msg in error.errors"}
+								{{ error.key }} {{ msg }}
+					= bootstrap_form_for(@app.drivers.build,
+						url: app_drivers_path(@app.drivers.build, @app.token),
+						layout: :horizontal, label_col: "col-sm-5",
+						control_col: "col-sm-7",
+						html: {"ng-submit" => "add_driver"}) do |f|
+						= f.text_field :first_name, {"ng-model" => "first_name"} 
+						= f.text_field :last_name, {"ng-model" => "last_name"}
+				%div.modal-footer
+					%button.btn.btn-default{"type" => "button",
+						"data-dismiss" => "modal"}
+						= t('global.cancel')
+					%button.btn.btn-primary{"type" => "button",
+						"ng-click" => "add_driver()"}
+						= t('app.form.buttons.add_driver')

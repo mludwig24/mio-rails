@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814165759) do
+ActiveRecord::Schema.define(version: 20140817134656) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20140814165759) do
   end
 
   add_index "apps", ["quote_id"], name: "index_apps_on_quote_id", using: :btree
+
+  create_table "drivers", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "token"
+    t.integer  "app_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drivers", ["app_id"], name: "index_drivers_on_app_id", using: :btree
 
   create_table "mio_js_sessions", force: true do |t|
     t.string   "session_id", null: false

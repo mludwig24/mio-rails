@@ -7,7 +7,7 @@
 				%li.has_error
 					= msg
 
-= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "AppController" }) do |f|
+= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7") do |f|
 	%h3
 		= t('app.form.header.power_unit_info')
 	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
@@ -15,6 +15,8 @@
 	= f.text_field :registration
 	= f.text_field :us_insurance_company
 	= f.text_field :ownership
+	- @quote.toweds.each do |towed|
+		Moo
 	%hr
 	%div.col-sm-7.col-sm-offset-5
 		= f.primary t('app.form.buttons.step_2')

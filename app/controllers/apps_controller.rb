@@ -32,6 +32,7 @@ class AppsController < ApplicationController
 			@app.save()
 			next_step and return
 		end
+		puts "Moo", @app.drivers.size
 		## If the form was invalid:
 		if step == 1
 			render "personal" and return
@@ -82,7 +83,8 @@ class AppsController < ApplicationController
 	def personal_params
 		params.require(:app).permit(:first_name, :last_name, :address, 
 			:city, :state, :zip, :phone, :email, :license_number,
-			:license_state)
+			:license_state,
+			:drivers_attributes => [ :id, :first_name, :last_name ])
 	end
 	def vehicle_params
 		params.require(:app).permit(:vin, :registration,

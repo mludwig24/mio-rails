@@ -44,6 +44,8 @@ en-US: &en-US
           "4": "More than 180 days"
       app:
         vin: "Vehicle Identification Number (VIN)"
+      driver:
+        first_name: "FORST NAMAGE!"
     errors:
       messages:
         blank: "must be provided"
@@ -84,6 +86,14 @@ en-US: &en-US
           theft:
             header: "Theft:"
             details: "This coverage includes total theft of the vehicle. Note that partial theft coverage is not available in Mexico unless you purchase an extended coverage option."
+  app:
+    form:
+      other_drivers:
+        zero: "Only driven by the owner"
+        one: "One other driver"
+        other: "%{count} other drivers"
+    disclosure:
+      other_drivers: "Add as many drivers as you want!"
   greetings:
     hello: "Hi, world!"
     goodbye: "Peace, world!"

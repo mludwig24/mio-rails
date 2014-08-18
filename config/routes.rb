@@ -9,13 +9,19 @@
     scope "/quotes/(:token)/" do
       get 'results', to: 'quotes#results', as: 'quote_results'
     end
+    
     resources :quotes
     resources :toweds
+    resources :drivers
+
     scope "/apps/:token/" do
       get 'personal', to: 'apps#personal', as: 'app_personal'
       get 'vehicle', to: 'apps#vehicle', as: 'app_vehicle'
+      resources :drivers, :defaults => { :format => 'json' }
     end
-    resources :apps
+    resources :apps do
+      resources :drivers
+    end
   end
 
   scope "/api/" do

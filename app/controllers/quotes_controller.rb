@@ -65,7 +65,7 @@ class QuotesController < ApplicationController
 			:fixed_deductibles, :body_style, :other_model, :liability, 
 			:extended_travel, :beyond_freezone, :under21, :uscoll_sc, 
 			:days_veh_in_mexico, :visit_reason,
-			:towed_attributes => [ :id, :type_id, :value, :year ]
+			:toweds_attributes => [ :id, :type_id, :value, :year ]
 		)
 	end
 end
