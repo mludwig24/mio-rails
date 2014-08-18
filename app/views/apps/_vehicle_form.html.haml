@@ -15,9 +15,27 @@
 	= f.text_field :registration
 	= f.text_field :us_insurance_company
 	= f.text_field :ownership
-	- @quote.toweds.each do |towed|
-		Moo
+	= f.fields_for :quote, @app.quote do |qf|
+		= qf.hidden_field :id
+		= qf.fields_for :toweds do |tf|
+			%h3
+				= t('app.form.header.towed_unit')
+			= tf.hidden_field :id
+			= tf.static_control :year
+			= tf.static_control :type_label
+			= tf.static_control :year
+			= tf.text_field :make
+			= tf.text_field :model
+			= tf.text_field :vin
+			= tf.text_field :license_plate
+			= tf.select :license_plate_state, us_states, 
+				{include_blank: t('general.forms.select_one')}
 	%hr
-	%div.col-sm-7.col-sm-offset-5
-		= f.primary t('app.form.buttons.step_2')
-		= f.button t('app.form.buttons.get_help'), :class => "btn btn-lrg"
+	%div.row-fluid
+		%div.col-sm-5
+			%button.btn.btn-lrg.pull-right{"type" => "button",
+				"data-toggle" => "modal",
+				"data-target" => "#contact_modal"}
+				= t('app.form.button.get_help')
+		%div.col-sm-7
+			= f.primary t('app.form.button.step_3')

@@ -17,6 +17,7 @@
     scope "/apps/:token/" do
       get 'personal', to: 'apps#personal', as: 'app_personal'
       get 'vehicle', to: 'apps#vehicle', as: 'app_vehicle'
+      get 'recap', to: 'apps#recap', as: 'app_recap'
       resources :drivers, :defaults => { :format => 'json' }
     end
     resources :apps do

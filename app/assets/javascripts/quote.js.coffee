@@ -99,4 +99,8 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 		return $(key).length > 0
 	$scope.getError = (key) ->
 		return $(key).html()
+	$scope.getTUType = (type_id) ->
+		for tut in $scope.towed_unit_types
+			if tut.id == parseInt(type_id)
+				return tut.en
 	$scope.initialize()

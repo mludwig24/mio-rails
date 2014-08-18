@@ -27,12 +27,16 @@ class AppsController < ApplicationController
 	## Saving changes, needs to be aware of the steps.
 	def update
 		@app.step = step
+		if @app.step == 2
+			@app.quote.toweds.each do |towed|
+				towed.app_mode = true
+			end
+		end
 		@app.update(app_params)
-		if @app.valid?
+		if @app.valid? and @quote.valid?
 			@app.save()
 			next_step and return
 		end
-		puts "Moo", @app.drivers.size
 		## If the form was invalid:
 		if step == 1
 			render "personal" and return
@@ -88,7 +92,12 @@ class AppsController < ApplicationController
 	end
 	def vehicle_params
 		params.require(:app).permit(:vin, :registration,
-			:us_insurance_company, :ownership)
+			:us_insurance_company, :ownership,
+			:quote_attributes => [ :id, :toweds_attributes => [
+				:id, :make, :model, :vin, :license_plate,
+				:license_plate_state
+			]]
+		)
 	end
 	def init_params
 		params.permit(:uid, :tid)
@@ -104,6 +113,9 @@ class AppsController < ApplicationController
 	def next_step
 		if step == 1
 			redirect_to app_vehicle_path(@app)
+		end
+		if step == 2
+			redirect_to app_recap_path(@app)
 		end
 		@app.step += 1
 	end

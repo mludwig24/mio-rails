@@ -58,9 +58,14 @@
 					"class" => "form-control",
 					"ng-model" => "driver.last_name"}
 		%hr
-		%div.col-sm-7.col-sm-offset-5
-			= f.primary t('app.form.buttons.step_2')
-			= f.button t('app.form.buttons.get_help'), :class => "btn btn-lrg"
+		%div.row-fluid
+			%div.col-sm-5
+				%button.btn.btn-lrg.pull-right{"type" => "button",
+					"data-toggle" => "modal",
+					"data-target" => "#contact_modal"}
+					= t('app.form.button.get_help')
+			%div.col-sm-7
+				= f.primary t('app.form.button.step_2')
 
 	%div.modal.fade#add_driver{"ng-controller" => "DriverController"}
 		%div.modal-dialog

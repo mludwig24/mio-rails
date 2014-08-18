@@ -44,8 +44,11 @@ en-US: &en-US
           "4": "More than 180 days"
       app:
         vin: "Vehicle Identification Number (VIN)"
-      driver:
-        first_name: "FORST NAMAGE!"
+      towed:
+        vin: "Vehicle Identification Number (VIN)"
+      drivers:
+        first_name: "Given Name"
+        last_name: "Family Name"
     errors:
       messages:
         blank: "must be provided"
@@ -64,7 +67,7 @@ en-US: &en-US
         zero: "Declined - Never towing in Mexico"
         one: "Towing up to %{count} unit"
         other: "Towing up to %{count} units"
-      buttons:
+      button:
         get_quote: "Show Quotes"
     disclosure:
       towed_units_disclosure: "Each self propelled vehicle that is being towed must ALSO have its own insurance policy when it is being driven."
@@ -73,7 +76,7 @@ en-US: &en-US
         daily: "Daily"
         sixmo: "Six Month"
         annual: "Annual"
-      buttons:
+      button:
         buy_now: "Buy Now!"
         details:
           Extended: "Extended Coverage"
@@ -92,6 +95,11 @@ en-US: &en-US
         zero: "Only driven by the owner"
         one: "One other driver"
         other: "%{count} other drivers"
+      header:
+        towed_unit: "Towed Unit"
+      button:
+        step_2: "Continue to Vehicle Information"
+        step_3: "Continue to Recap & Payment"
     disclosure:
       other_drivers: "Add as many drivers as you want!"
   greetings:

@@ -82,6 +82,9 @@
 			%input{"type" => "hidden",
 				"name" => 'quote[toweds_attributes][{{$index}}][id]', 
 				"ng-value" => '$parent["towed_unit_"+i+"_id"]'}
+			%input{"type" => "hidden",
+				"name" => 'quote[toweds_attributes][{{$index}}][type_label]', 
+				"ng-value" => 'getTUType($parent["towed_unit_"+i+"_type_id"])'}
 			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_type')}"}
 				= f.static_control :towed_unit_type, "label" => t('activerecord.attributes.quote.towed_unit_type') do
 					%select{"name" => "quote[toweds_attributes][{{$index}}][type_id]", 
@@ -138,6 +141,12 @@
 		= f.radio_button :uscoll_sc, 1, label: t('yes'), inline: true
 		= f.radio_button :uscoll_sc, 0, label: t('no'), inline: true
 	%hr
-	%div.col-sm-7.col-sm-offset-5
-		= f.primary t('quote.form.buttons.get_quote')
-		= f.button t('quote.form.buttons.get_help'), :class => "btn btn-lrg"
+	%div.row-fluid
+		%div.col-sm-5
+			%button.btn.btn-lrg.pull-right{"type" => "button",
+				"data-toggle" => "modal",
+				"data-target" => "#contact_modal"}
+				= t('app.form.button.get_help')
+		%div.col-sm-7
+			= f.primary t('quote.form.button.get_quote')
+		

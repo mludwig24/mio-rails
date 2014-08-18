@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817134656) do
+ActiveRecord::Schema.define(version: 20140818184103) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -92,6 +92,12 @@ ActiveRecord::Schema.define(version: 20140817134656) do
     t.integer "year"
     t.integer "value"
     t.integer "quote_id"
+    t.string  "type_label"
+    t.string  "make"
+    t.string  "model"
+    t.string  "license_plate"
+    t.string  "license_plate_state"
+    t.string  "vin"
   end
 
   add_index "toweds", ["quote_id"], name: "index_toweds_on_quote_id", using: :btree

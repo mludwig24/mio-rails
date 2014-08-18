@@ -3,6 +3,7 @@ class App < ActiveRecord::Base
 	has_many :drivers, dependent: :destroy, class_name: 'Drivers'
 	before_create :generate_token
 	accepts_nested_attributes_for :drivers
+	accepts_nested_attributes_for :quote
 
 	def before_validation_on_create
 		self.phone = phone.phone
