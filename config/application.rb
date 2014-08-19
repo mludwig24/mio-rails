@@ -30,8 +30,7 @@ module MioRails
     begin
         ENV.update YAML.load_file('config/mio.yml')[Rails.env]
     rescue => e
-        puts "Got here!"
-        puts e.message
+        logger.fatal "Failed to load MIO YAML file:  #{e.message}"
     end
   end
 end
