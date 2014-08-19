@@ -1,0 +1,49 @@
+= render "recap_field",
+	label: t('activerecord.attributes.quote.make_id'),
+	value: @quote.make_id
+= render "recap_field",
+	label: t('activerecord.attributes.quote.model_id'),
+	value: @quote.model_id
+= render "recap_field",
+	label: t('activerecord.attributes.quote.year'),
+	value: @quote.year
+= render "recap_field",
+	label: t('activerecord.attributes.quote.value'),
+	value: number_to_currency(@quote.value)
+= render "recap_field",
+	label: t('activerecord.attributes.app.vin'),
+	value: @app.vin
+= render "recap_field",
+	label: t('activerecord.attributes.app.registration'),
+	value: @app.registration
+= render "recap_field",
+	label: t('activerecord.attributes.app.us_insurance_company'),
+	value: @app.us_insurance_company
+= render "recap_field",
+	label: t('activerecord.attributes.app.ownership'),
+	value: @app.ownership
+- @quote.toweds.each do |towed|
+	%div.panel-heading
+		%h3.panel-title
+			= t('app.form.header.towed_unit')
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.make'),
+		value: towed.make
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.model'),
+		value: towed.model
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.year'),
+		value: towed.year
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.value'),
+		value: number_to_currency(towed.value)
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.vin'),
+		value: towed.vin
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.license_plate'),
+		value: towed.license_plate
+	= render "recap_field",
+		label: t('activerecord.attributes.towed.license_plate_state'),
+		value: towed.license_plate_state

@@ -1,0 +1,40 @@
+= render "recap_field",
+	label: t('activerecord.attributes.app.first_name'),
+	value: @app.first_name
+= render "recap_field",
+	label: t('activerecord.attributes.app.last_name'),
+	value: @app.last_name
+= render "recap_field",
+	label: t('activerecord.attributes.app.address'),
+	value: @app.address
+= render "recap_field",
+	label: t('activerecord.attributes.app.city'),
+	value: @app.city
+= render "recap_field",
+	label: t('activerecord.attributes.app.state'),
+	value: @app.state
+= render "recap_field",
+	label: t('activerecord.attributes.app.zip'),
+	value: @app.zip
+= render "recap_field",
+	label: t('activerecord.attributes.app.phone'),
+	value: @app.phone
+= render "recap_field",
+	label: t('activerecord.attributes.app.email'),
+	value: @app.email
+= render "recap_field",
+	label: t('activerecord.attributes.app.license_number'),
+	value: @app.license_number
+= render "recap_field",
+	label: t('activerecord.attributes.app.license_state'),
+	value: @app.license_state
+- @app.drivers.each do |driver|
+	%div.panel-heading
+		%h3.panel-title
+			= t('app.form.header.other_driver')
+	= render "recap_field",
+		label: t('activerecord.attributes.driver.first_name'),
+		value: driver.first_name
+	= render "recap_field",
+		label: t('activerecord.attributes.driver.last_name'),
+		value: driver.last_name

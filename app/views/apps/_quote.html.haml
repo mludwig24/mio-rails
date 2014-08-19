@@ -1,0 +1,27 @@
+= render "recap_field",
+	label: t('activerecord.attributes.quote.enter_date'),
+	value: l(@quote.enter_date)
+= render "recap_field",
+	label: t('activerecord.attributes.quote.leave_date'),
+	value: l(@quote.leave_date)
+= render "recap_field",
+	label: t('activerecord.attributes.quote.liability_limit'),
+	value: number_to_currency(@quote.liability_limit)
+= render "recap_field",
+	label: t('activerecord.attributes.quote.fixed_deductibles'),
+	value: @quote.fixed_deductibles.to_i > 0 ? t('global.yes') : t('global.no')
+= render "recap_field",
+	label: t('activerecord.attributes.quote.days_veh_in_mexico'),
+	value: t("activerecord.attributes.quote.days_veh_in_mexico_options.#{@quote.days_veh_in_mexico}")
+= render "recap_field",
+	label: t('activerecord.attributes.quote.visit_reason'),
+	value: t("activerecord.attributes.quote.visit_reasons.#{@quote.visit_reason}")
+= render "recap_field",
+	label: t('activerecord.attributes.quote.beyond_freezone'),
+	value: @quote.beyond_freezone.to_i > 0 ? t('global.yes') : t('global.no')
+= render "recap_field",
+	label: t('activerecord.attributes.quote.under21'),
+	value: @quote.under21.to_i > 0 ? t('global.yes') : t('global.no')
+= render "recap_field",
+	label: t('activerecord.attributes.quote.uscoll_sc'),
+	value: @quote.uscoll_sc.to_i > 0 ? t('global.yes') : t('global.no')

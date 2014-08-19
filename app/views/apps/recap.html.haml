@@ -1,0 +1,52 @@
+%h1
+	= t('app.headers.recap')
+%div.row-fluid
+	%div.col-sm-6
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.personal')
+			%div.panel-body
+				= render 'personal', quote: @app.quote
+	%div.col-sm-6
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.vehicle')
+			%div.panel-body
+				= render 'vehicle', quote: @app.quote
+%div.row-fluid
+	%div.col-sm-6
+		%div.panel.panel-default#payment
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.payment')
+			%div.panel-body
+				= render 'payment', quote: @app.quote
+	%div.col-sm-6
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('quote.headers.coverage')
+			%div.panel-body
+				= render 'quote', quote: @app.quote
+%hr
+%div.row-fluid
+	%div.col-sm-12
+		%div.panel.panel-default#payment
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.disclosures')
+			%div.panel-body
+				%div.well.well-lg.disclosures
+					= render 'disclosures', quote: @app.quote
+%hr
+%div.row-fluid
+	%div.col-sm-6
+		%button.btn.btn-lrg.pull-right{"type" => "button",
+			"data-toggle" => "modal",
+			"data-target" => "#contact_modal"}
+			= t('app.form.button.have_questions')
+	%div.col-sm-6
+		%button.btn.btn-lrg.btn-primary{"type" => "button"}
+			= t('app.form.button.step_4')

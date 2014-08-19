@@ -6,6 +6,10 @@ class AppsController < ApplicationController
 	def vehicle ## Vehicle information step.
 		@app.step = 2
 	end
+	def recap
+		@app.step = 3
+		# @client_token = Braintree::ClientToken.generate
+	end
 	def new ## Transfer from the quote.
 		## Save the tid, uid, and qid, and send them to Personal.
 		@app.step = 0
