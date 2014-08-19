@@ -1,0 +1,22 @@
+@import "twitter/bootstrap/bootstrap";
+
+.disclosures {
+	height: 250px;
+	overflow-y: scroll;
+	p {
+		text-indent: 10px;
+	}
+	h4:not(:first-child) {
+		padding-top: 10px;
+		border-top: 2px solid #CCC;
+	}
+}
+.recap-field {
+	margin-bottom: 4px;
+	&:hover {
+		background-color: @table-bg-hover
+	}
+	&:nth-child(odd) {
+		background-color: @table-bg-accent;
+	}
+}
