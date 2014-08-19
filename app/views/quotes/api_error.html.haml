@@ -1,0 +1,11 @@
+%h1 API Error Page
+%p
+	Some kind of fancy-pants explination of why the error
+	happened goes here.  Get to it, brain.
+%pre
+	= @error.to_s
+%hr
+%div
+	%h2
+		= t('quote.form.header.edit_quote')
+	= render "quote_form", :quote => @quote

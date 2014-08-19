@@ -26,7 +26,13 @@ class QuotesController < ApplicationController
 		unless @quote.valid? ## Invalid Quote.
 			return redirect_to quote_url(@quote)
 		end
-		@rates = @quote.get_rates()
+		begin
+			@rates = @quote.get_rates()
+		rescue Exception => e
+			@error = e
+			pp e
+			render "api_error" and return
+		end
 		render "results"
 	end
 	def create
