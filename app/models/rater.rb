@@ -1,3 +1,4 @@
+require 'pp'
 class Rater
 	include ActiveModel::Model
 	attr_accessor :api_data, :transport, :rates, :formatter
@@ -22,9 +23,7 @@ class Rater
 			transport = Transport_v3
 		end
 		@transport ||= transport.new(json)
-		@transport.res["rates"].each do |rate|
-			self << rate
-		end
+		@rates = @transport.res["rates"]
 	end
 	## Format ourself into the correct json for @api_data.
 	def self.format_quote_data(quote, formatter=nil)
@@ -38,10 +37,6 @@ class Rater
 	def format_quote_data(quote, formatter=nil)
 		self.class.format_quote_data(quote, formatter)
 	end
-	def <<(val)
-		@rates ||= Array.new()
-        @rates << val
-    end
 	def each(rates=nil, &block)
 		@rates.each(&block)
 	end
@@ -57,7 +52,7 @@ class Rater
 	## Get a list of underwriters.
 	## Does not break down by coverage (Extended vs Standard).
 	def underwriters
-		@rates.map { |x| x["underwriter_name"] }.uniq!
+		@rates.map { |x| x["underwriter_name"] }.uniq
 	end
 	## Create a new sub-set of raters.
 	def for(field, value)
@@ -72,13 +67,13 @@ class Rater
 		self.for("underwriter_name", value)
 	end
 	def coverages ## List of coverage options.  Stupid plural.
-		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq!
+		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq
 	end
 	def for_coverage(value) ## Proxy to "for".
 		self.for("coverage", value)
 	end
 	def terms ## List of terms.
-		@rates.map { |x| x["term"] }.uniq!
+		@rates.map { |x| x["term"] }.uniq
 	end
 	def for_term(value) ## Proxy to "for".
 		self.for("term", value)
@@ -97,11 +92,12 @@ class Rater
 	end
 	class Transport_v3 < Transport ## v3 specific version.
 		def query_remote(json)
-			@api_uri ||= URI("https://sb.iigins.com/api/quote.mhtml")
+			@api_uri ||= URI("#{ENV["mio_api_url"]}/quote.mhtml")
 			req = Net::HTTP::Post.new(@api_uri.path)
 			req.set_form_data({'data' => json})
 			sock = Net::HTTP.new(@api_uri.host, @api_uri.port)
-			sock.use_ssl = true ## Required for SSL server port.
+			## Force SSL if necessary.
+			sock.use_ssl = @api_uri.scheme == "https"
 			sock.start { |http|
 				http.request(req)
 			}

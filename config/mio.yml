@@ -1,9 +1,11 @@
-development:
+development: &development
+  mio_api_url: "http://lightbulb.iig-dev.com:9004/api/"
   mio_api_username: "test3"
   mio_api_key: "118226b2-1d81-11e4-b4a0-0800271afd7b"
 
 test:
-  << *development
+  <<: *development
 
 production:
-  << *development
+  mio_api_url: "https://sb.iigins.com/api/"
+  <<: *development
