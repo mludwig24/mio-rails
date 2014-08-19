@@ -9,6 +9,7 @@ class AppsController < ApplicationController
 	def recap
 		@app.step = 3
 		# @client_token = Braintree::ClientToken.generate
+		@rater = @app.get_rates()
 	end
 	def new ## Transfer from the quote.
 		## Save the tid, uid, and qid, and send them to Personal.

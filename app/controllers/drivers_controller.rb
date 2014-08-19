@@ -22,7 +22,6 @@ class DriversController < ApplicationController
 	end
 	private
 	def get_app
-		puts params
 		@app = App.find_by_token(params[:token] ? params[:token] : params[:app_id])
 	end
 	def driver_params

@@ -46,7 +46,8 @@ class Quote < ActiveRecord::Base
 	def get_rates
 		raise "Not valid!  Should not get here!" unless valid?
 		## Create a rater object.
-		@rates ||= Rater.new(self)
+		@rates = Rater::Rater.new(self)
+		@rates.api_call(Rater::FormatterQuote_v3, Rater::Transporter_v3)
 		return @rates
 	end
 

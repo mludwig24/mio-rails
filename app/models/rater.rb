@@ -1,106 +1,73 @@
 require 'pp'
-class Rater
-	include ActiveModel::Model
-	attr_accessor :api_data, :transport, :rates, :formatter
-	## `rates` are sent when creating a sub-set of rates.
-	## For example, rates for "GNP Extended".
-	def initialize(quote, rates=nil)
-		@quote = quote
-		if rates
-			@rates = rates
-		else
-			api_call()
+module Rater
+	class Rater
+		include ActiveModel::Model
+		attr_accessor :api_data, :transporter, :rates, :formatter
+		## `rates` are sent when creating a sub-set of rates.
+		## For example, rates for "GNP Extended".
+		def initialize(quote, rates=nil)
+			@quote = quote
+			@rates = rates || []
 		end
-	end
-	## Setup and call the API.
-	def api_call(formatter=nil, transport=nil)
-		@api_data ||= format_quote_data(@quote)
-		@rates = transport_api(@api_data.to_json)
-	end
-	## Do the actual API call.
-	def transport_api(json, transport=nil)
-		if transport == nil
-			transport = Transport_v3
+		## Setup and call the API.
+		def api_call(formatter=Transporter, transporter=Formatter)
+			@api_data ||= format_quote_data(@quote, formatter)
+			@rates = transporter_api(@api_data.to_json, transporter)
 		end
-		@transport ||= transport.new(json)
-		@rates = @transport.res["rates"]
-	end
-	## Format ourself into the correct json for @api_data.
-	def self.format_quote_data(quote, formatter=nil)
-		if formatter == nil
-			formatter = Formatter_v3 ## Default
+		## Do the actual API call.
+		def transporter_api(json, transporter)
+			@transporter ||= transporter.new(json)
+			@rates = @transporter.res["rates"]
 		end
-		@formatter ||= formatter.new()
-		@formatter.quote = quote
-		@api_data = @formatter.format()
-	end
-	def format_quote_data(quote, formatter=nil)
-		self.class.format_quote_data(quote, formatter)
-	end
-	def each(rates=nil, &block)
-		@rates.each(&block)
-	end
-	def select(&block)
-		@rates.select(&block)
-	end
-	def count
-		@rates.count
-	end
-	def columns
-		@rates.count / @self.terms.count
-	end
-	## Get a list of underwriters.
-	## Does not break down by coverage (Extended vs Standard).
-	def underwriters
-		@rates.map { |x| x["underwriter_name"] }.uniq
-	end
-	## Create a new sub-set of raters.
-	def for(field, value)
-		rates = @rates.select { |r|
-			r[field] == value
-		}
-		## Specify the rates to `initialize`, so we don't call
-		## the API again.
-		Rater.new(@quote, rates)
-	end
-	def for_underwriter(value) ## Proxy to "for".
-		self.for("underwriter_name", value)
-	end
-	def coverages ## List of coverage options.  Stupid plural.
-		@rates.map { |x| x["underwriter_coverage_desc"] }.uniq
-	end
-	def for_coverage(value) ## Proxy to "for".
-		self.for("coverage", value)
-	end
-	def terms ## List of terms.
-		@rates.map { |x| x["term"] }.uniq
-	end
-	def for_term(value) ## Proxy to "for".
-		self.for("term", value)
-	end
-
-	private
-
-	class Transport ## How do we send this to the server?
-		attr_accessor :res
-		def initialize(options)
-			@res = JSON.parse(query_remote(options).body)
+		## Format ourself into the correct json for @api_data.
+		def self.format_quote_data(quote, formatter)
+			@formatter ||= formatter.new()
+			@formatter.quote = quote
+			@api_data = @formatter.format()
 		end
-		def query_remote(json)
-			raise "Not yet implemented.  Please extend this object first."
+		def format_quote_data(quote, formatter=nil)
+			self.class.format_quote_data(quote, formatter)
 		end
-	end
-	class Transport_v3 < Transport ## v3 specific version.
-		def query_remote(json)
-			@api_uri ||= URI("#{ENV["mio_api_url"]}/quote.mhtml")
-			req = Net::HTTP::Post.new(@api_uri.path)
-			req.set_form_data({'data' => json})
-			sock = Net::HTTP.new(@api_uri.host, @api_uri.port)
-			## Force SSL if necessary.
-			sock.use_ssl = @api_uri.scheme == "https"
-			sock.start { |http|
-				http.request(req)
+		def each(rates=nil, &block)
+			@rates.each(&block)
+		end
+		def select(&block)
+			@rates.select(&block)
+		end
+		def count
+			@rates.count
+		end
+		def columns
+			@rates.count / @self.terms.count
+		end
+		## Get a list of underwriters.
+		## Does not break down by coverage (Extended vs Standard).
+		def underwriters
+			@rates.map { |x| x["underwriter_name"] }.uniq
+		end
+		## Create a new sub-set of raters.
+		def for(field, value)
+			rates = @rates.select { |r|
+				r[field] == value
 			}
+			## Specify the rates to `initialize`, so we don't call
+			## the API again.
+			Rater.new(@quote, rates)
+		end
+		def for_underwriter(value) ## Proxy to "for".
+			self.for("underwriter_name", value)
+		end
+		def coverages ## List of coverage options.  Stupid plural.
+			@rates.map { |x| x["underwriter_coverage_desc"] }.uniq
+		end
+		def for_coverage(value) ## Proxy to "for".
+			self.for("coverage", value)
+		end
+		def terms ## List of terms.
+			@rates.map { |x| x["term"] }.uniq
+		end
+		def for_term(value) ## Proxy to "for".
+			self.for("term", value)
 		end
 	end
 	class Formatter ## Base formatter for sending data.
@@ -114,7 +81,7 @@ class Rater
 			@quote = quote
 		end
 	end
-	class Formatter_v3 < Formatter
+	class FormatterQuote_v3 < Formatter
 		def format
 			api_data = Hash.new()
 			## API Key info.
@@ -155,5 +122,36 @@ class Rater
 			return api_data
 		end
 	end
-
+	class FormatterApp_v3 < FormatterQuote_v3
+		def format
+			api_data = super
+			api_data["policy"] = Hash.new()
+			api_data["policy"]["underwriter_id"] = @quote.app.uid
+			api_data["policy"]["term"] = @quote.app.tid
+			puts api_data
+			return api_data
+		end
+	end
+	class Transporter ## How do we send this to the server?
+		attr_accessor :res
+		def initialize(options)
+			@res = JSON.parse(query_remote(options).body)
+		end
+		def query_remote(json)
+			raise "Not yet implemented.  Please extend this object first."
+		end
+	end
+	class Transporter_v3 < Transporter ## v3 specific version.
+		def query_remote(json)
+			@api_uri ||= URI("#{ENV["mio_api_url"]}/quote.mhtml")
+			req = Net::HTTP::Post.new(@api_uri.path)
+			req.set_form_data({'data' => json})
+			sock = Net::HTTP.new(@api_uri.host, @api_uri.port)
+			## Force SSL if necessary.
+			sock.use_ssl = @api_uri.scheme == "https"
+			sock.start { |http|
+				http.request(req)
+			}
+		end
+	end
 end

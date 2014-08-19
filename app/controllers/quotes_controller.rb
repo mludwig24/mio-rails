@@ -29,8 +29,8 @@ class QuotesController < ApplicationController
 		begin
 			@rates = @quote.get_rates()
 		rescue Exception => e
+			logger.warn "#{@quote.id} threw error #{e.to_s}"
 			@error = e
-			pp e
 			render "api_error" and return
 		end
 		render "results"

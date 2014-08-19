@@ -20,6 +20,15 @@ class App < ActiveRecord::Base
 		super(params)
 	end
 
+	## Go get the rates and cache them.
+	def get_rates
+		raise "Not valid!  Should not get here!" unless valid?
+		## Create a rater object.
+		@rates = Rater::Rater.new(self.quote)
+		@rates.api_call(Rater::FormatterApp_v3, Rater::Transporter_v3)
+		return @rates
+	end
+
 	def self.valid_us_states ## For validation farther down.
 		AppsController.helpers.us_states.map{|x| x[1]} # ["State", "State Code"]
 	end
