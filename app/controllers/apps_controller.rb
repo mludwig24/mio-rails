@@ -38,7 +38,7 @@ class AppsController < ApplicationController
 			end
 		end
 		@app.update(app_params)
-		if @app.valid? and @quote.valid?
+		if @app.valid?
 			@app.save()
 			next_step and return
 		end
