@@ -42,6 +42,8 @@ gem 'mysql'
 
 gem 'rails-i18n', '~> 4.0.0'
 gem 'http_accept_language'
+## Gives javascript access to translations.
+gem "i18n-js"
 ## Store the sessions in the DB.
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 ## Used to make plain objects into xml and json.
@@ -58,9 +60,7 @@ gem "twitter-bootstrap-rails",
 	github: 'seyhunak/twitter-bootstrap-rails',
 	branch: 'bootstrap3'
 gem 'bootstrap_form'
-gem 'nested_form'
-## Gives javascript access to translations.
-gem "i18n-js" 
+gem 'nested_form' 
 ## Gives the ability to validate dates easily:
 gem 'date_validator', '~> 0.7.0'
 ## Validate emails.
