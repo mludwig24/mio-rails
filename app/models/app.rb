@@ -48,31 +48,45 @@ class App < ActiveRecord::Base
 	validates_presence_of :uid, :tid
 	validates_presence_of :first_name, :last_name, :address, :city, :state,
 		:zip, :phone, :email, :license_number, :license_state,
-		:unless => Proc.new { |app| app.step < 1 }
+		:if => Proc.new { |app| app.validate_personal? }
 	validates :state, :inclusion => valid_us_states,
-		:unless => Proc.new { |app| app.step < 1 }
+		:if => Proc.new { |app| app.validate_personal? }
 	validates :email, :email => {:strict_mode => true},
-		:unless => Proc.new { |app| app.step < 1 }
+		:if => Proc.new { |app| app.validate_personal? }
 	validates :phone, :phone => true,
-		:unless => Proc.new { |app| app.step < 1 }
+		:if => Proc.new { |app| app.validate_personal? }
 	validates :license_state, :inclusion => valid_us_states,
-		:unless => Proc.new { |app| app.step < 1 }
+		:if => Proc.new { |app| app.validate_personal? }
 	validates_presence_of :vin, :registration, :us_insurance_company,
 		:us_insurance_policy, :us_insurance_expiration, :ownership,
 		:license_plate, :license_plate_state,
-		:unless => Proc.new { |app| app.step < 2 }
+		:if => Proc.new { |app| app.validate_personal? }
+	validates_presence_of :finance_company, :finance_account,
+		:finance_address, :finance_city, :finance_state, :finance_zip,
+		:if => Proc.new { |app| app.validate_finance? }
+	validates :finance_state, :inclusion => valid_us_states,
+		:if => Proc.new { |app| app.validate_finance? }
 	validates :license_plate_state, :inclusion => valid_us_states,
-		:unless => Proc.new { |app| app.step < 2 }
+		:if => Proc.new { |app| app.validate_personal? }
 	validates :us_insurance_expiration, :date => {
 		:after => Proc.new { Date.today },
 		:before => Proc.new { Date.today + 5.years }, ## 90 days is too far.
-	}, :unless => Proc.new { |app| app.step < 2 }
+	}, :if => Proc.new { |app| app.validate_personal? }
 	validates :ownership, :inclusion => {:in => Proc.new { 
 			App.valid_ownerships() }},
-		:unless => Proc.new { |app| app.step < 2 }
+		:if => Proc.new { |app| app.validate_personal? }
 
 	protected
 
+	def validate_personal?
+		self.step >= 1
+	end
+	def validate_vehicle?
+		self.step >= 2
+	end
+	def validate_finance?
+		self.step >= 2 and %w{leased financed}.include?(self.ownership)
+	end
 	def generate_token
 		self.token = loop do
 			random_token = SecureRandom.urlsafe_base64(8, false).downcase

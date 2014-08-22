@@ -20,3 +20,8 @@ mioApp.controller 'PersonalController', ($scope, $http) ->
 			if !$scope.$$phase
   				$scope.$apply
 	$scope.getDrivers()
+
+mioApp.controller 'VehicleFormController', ($scope, $http) ->
+	$scope.financed_ownership = ->
+		$.inArray($scope.ownership, ["financed", "leased"]) >= 0
+	# pass.

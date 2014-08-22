@@ -7,7 +7,7 @@
 				%li.has_error
 					= msg
 
-= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7") do |f|
+= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "VehicleFormController" }) do |f|
 	%h3
 		= t('app.form.header.power_unit_info')
 	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
@@ -22,7 +22,17 @@
 		end_year: (Date.today + 5.year).year,
 		default: @app.us_insurance_expiration || Date.today
 	= f.select :ownership, options_for_select(@app.valid_ownerships.collect { |o| [t("activerecord.attributes.app.ownerships.#{o}"), o]}, @app.ownership),
-		{include_blank: t('general.forms.select_one')}
+		{include_blank: t('general.forms.select_one')},
+		"ng-model" => "ownership",
+		"ng-init" => "ownership = '#{@app.ownership}'"
+	%div{"ng-show" => "financed_ownership()"}
+		= f.text_field :finance_company
+		= f.text_field :finance_account
+		= f.text_field :finance_address
+		= f.text_field :finance_city
+		= f.select :finance_state, us_states, {include_blank: t('general.forms.select_one')}
+		= f.text_field :finance_zip
+
 	= f.fields_for :quote, @app.quote do |qf|
 		= qf.hidden_field :id
 		= qf.fields_for :toweds do |tf|

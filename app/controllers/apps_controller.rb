@@ -107,8 +107,10 @@ class AppsController < ApplicationController
 	def vehicle_params
 		params.require(:app).permit(:vin, :registration,
 			:us_insurance_company, :us_insurance_policy,
-			:us_insurance_expiration, :ownership,
-			:license_plate, :license_plate_state,
+			:us_insurance_expiration, :ownership, :license_plate,
+			:license_plate_state, :finance_account, :finance_company,
+			:finance_address, :finance_city, :finance_state,
+			:finance_zip,
 			:quote_attributes => [ :id, :toweds_attributes => [
 				:id, :make, :model, :vin, :license_plate,
 				:license_plate_state
