@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818184103) do
+ActiveRecord::Schema.define(version: 20140821234428) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20140818184103) do
     t.string   "registration"
     t.string   "us_insurance_company"
     t.string   "ownership"
+    t.string   "us_insurance_policy"
+    t.date     "us_insurance_expiration"
   end
 
   add_index "apps", ["quote_id"], name: "index_apps_on_quote_id", using: :btree
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140818184103) do
     t.integer  "visit_reason"
     t.string   "other_model"
     t.string   "token"
+    t.integer  "api_quote_id"
   end
 
   add_index "quotes", ["token"], name: "index_quotes_on_token", unique: true, using: :btree

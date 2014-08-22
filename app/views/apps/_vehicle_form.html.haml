@@ -14,7 +14,13 @@
 	= f.text_field :vin
 	= f.text_field :registration
 	= f.text_field :us_insurance_company
-	= f.text_field :ownership
+	= f.text_field :us_insurance_policy
+	= f.date_select :us_insurance_expiration,
+		start_year: Date.today.year,
+		end_year: (Date.today + 5.year).year,
+		default: @app.us_insurance_expiration || Date.today
+	= f.select :ownership, options_for_select(@app.valid_ownerships.collect { |o| [t("activerecord.attributes.app.ownerships.#{o}"), o]}, @quote.visit_reason),
+		{include_blank: t('general.forms.select_one')}
 	= f.fields_for :quote, @app.quote do |qf|
 		= qf.hidden_field :id
 		= qf.fields_for :toweds do |tf|

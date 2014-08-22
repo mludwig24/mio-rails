@@ -2,7 +2,8 @@ require 'pp'
 module Rater
 	class Rater
 		include ActiveModel::Model
-		attr_accessor :api_data, :transporter, :rates, :formatter
+		attr_accessor :api_data, :transporter, :rates,
+			:formatter, :quote_id
 		## `rates` are sent when creating a sub-set of rates.
 		## For example, rates for "GNP Extended".
 		def initialize(quote, rates=nil)
@@ -17,11 +18,14 @@ module Rater
 		## Do the actual API call.
 		def transporter_api(json, transporter)
 			@transporter ||= transporter.new(json)
+			if @transporter.res.has_key?("quote")
+				@quote_id = @transporter.res["quote"]["quote_id"]
+			end
 			@rates = @transporter.res["rates"]
 		end
 		## Format ourself into the correct json for @api_data.
 		def self.format_quote_data(quote, formatter)
-			@formatter ||= formatter.new()
+			@formatter = formatter.new()
 			@formatter.quote = quote
 			@api_data = @formatter.format()
 		end
@@ -82,6 +86,7 @@ module Rater
 		end
 	end
 	class FormatterQuote_v3 < Formatter
+		@@date_format = "%m%d%Y"
 		def format
 			api_data = Hash.new()
 			## API Key info.
@@ -90,8 +95,11 @@ module Rater
 			api_data["auth"]["api_key"] = ENV["mio_api_key"]
 			## Travel Dates.
 			api_data["quote"] = Hash.new()
-			api_data["quote"]["effective_date"] = @quote.enter_date.strftime("%m%d%Y")
-			api_data["quote"]["expiration_date"] = @quote.leave_date.strftime("%m%d%Y")
+			api_data["quote"]["effective_date"] = @quote.enter_date.strftime(@@date_format)
+			api_data["quote"]["expiration_date"] = @quote.leave_date.strftime(@@date_format)
+			if @quote.api_quote_id != nil
+				api_data["quote"]["quote_id"] = @quote.api_quote_id
+			end
 			## Limits.
 			api_data["limits"] = Hash.new()
 			api_data["limits"]["liability"] = @quote.liability_limit.to_i
@@ -128,7 +136,28 @@ module Rater
 			api_data["policy"] = Hash.new()
 			api_data["policy"]["underwriter_id"] = @quote.app.uid
 			api_data["policy"]["term"] = @quote.app.tid
-			puts api_data
+			## Power Unit.
+			api_data["power_unit"]["vin"] = @quote.app.vin
+			api_data["power_unit"]["registration"] = @quote.app.registration
+			api_data["power_unit"]["us_insurance_company"] = @quote.app.us_insurance_company
+			api_data["power_unit"]["us_insurance_policy"] = @quote.app.us_insurance_policy
+			api_data["power_unit"]["us_insurance_expiration"] = @quote.app.us_insurance_expiration.strftime(@@date_format)
+			api_data["power_unit"]["ownership"] = @quote.app.ownership
+			## Policyholder
+			api_data["policyholder"]["first_name"] = @quote.app.first_name
+			api_data["policyholder"]["last_name"] = @quote.app.last_name
+			api_data["policyholder"]["address"] = @quote.app.address
+			api_data["policyholder"]["city"] = @quote.app.city
+			api_data["policyholder"]["state"] = @quote.app.state
+			api_data["policyholder"]["zip"] = @quote.app.zip
+			api_data["policyholder"]["phone"] = @quote.app.phone
+			api_data["policyholder"]["email"] = @quote.app.email
+			api_data["policyholder"]["license_number"] = @quote.app.license_number
+			api_data["policyholder"]["license_state"] = @quote.app.license_state
+			## Payment
+			api_data["payment"] = Hash.new()
+			api_data["payment"]["type"] = "credit_card"
+			pp api_data
 			return api_data
 		end
 	end

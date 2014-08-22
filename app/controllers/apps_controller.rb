@@ -1,3 +1,4 @@
+require 'pp'
 class AppsController < ApplicationController
 	before_action :get_app
 	def personal ## Personal information step.
@@ -8,7 +9,12 @@ class AppsController < ApplicationController
 	end
 	def recap
 		@app.step = 3
-		# @client_token = Braintree::ClientToken.generate
+		unless @app.quote.valid?
+			redirect_to quote_path(@app.quote) and return
+		end
+		unless @app.valid?
+			redirect_to app_personal_path(@app) and return
+		end
 		@rates = @app.get_rates()
 	end
 	def new ## Transfer from the quote.
@@ -97,7 +103,8 @@ class AppsController < ApplicationController
 	end
 	def vehicle_params
 		params.require(:app).permit(:vin, :registration,
-			:us_insurance_company, :ownership,
+			:us_insurance_company, :us_insurance_policy,
+			:us_insurance_expiration, :ownership,
 			:quote_attributes => [ :id, :toweds_attributes => [
 				:id, :make, :model, :vin, :license_plate,
 				:license_plate_state

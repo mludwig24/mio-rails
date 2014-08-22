@@ -34,6 +34,17 @@ class App < ActiveRecord::Base
 	end
 	def valid_us_states; self.class.us_states end
 
+	def self.valid_ownerships
+		[
+			"financed",
+			"leased",
+			"owned",
+			"other_owner",
+			"rental",
+		]
+	end
+	def valid_ownerships; return self.class.valid_ownerships() end
+
 	validates_presence_of :uid, :tid
 	validates_presence_of :first_name, :last_name, :address, :city, :state,
 		:zip, :phone, :email, :license_number, :license_state,
@@ -47,7 +58,14 @@ class App < ActiveRecord::Base
 	validates :license_state, :inclusion => valid_us_states,
 		:unless => Proc.new { |app| app.step < 1 }
 	validates_presence_of :vin, :registration, :us_insurance_company,
-		:ownership,
+		:us_insurance_policy, :us_insurance_expiration, :ownership,
+		:unless => Proc.new { |app| app.step < 2 }
+	validates :us_insurance_expiration, :date => {
+		:after => Proc.new { Date.today },
+		:before => Proc.new { Date.today + 5.years }, ## 90 days is too far.
+	}, :unless => Proc.new { |app| app.step < 2 }
+	validates :ownership, :inclusion => {:in => Proc.new { 
+			App.valid_ownerships() }},
 		:unless => Proc.new { |app| app.step < 2 }
 
 	protected
