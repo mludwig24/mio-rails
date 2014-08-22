@@ -1,1 +1,19 @@
-%div.col-md-12#braintree_div
+- content_for :extra_js do
+	%script{"src" => "https://js.braintreegateway.com/v2/braintree.js",
+		"type" => "text/javascript"}
+	:javascript
+		// braintree.setup("#{@rates.client_key}", 'dropin', {container: 'braintree_div'});
+		braintree.setup("#{@rates.client_key}", 'custom', {id: 'braintree'});
+
+= bootstrap_form_tag(url: app_path(@app), method: :patch, layout: :horizontal, label_col: "col-xs-4", control_col: "col-xs-8", html: {id: 'braintree'}) do |f|
+	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
+	= f.static_control :total_price do
+		= number_to_currency(@rates.rates["total_price"])
+	= f.static_control_div :cc_num do
+		%input.form-control{"data-braintree-name" => "number", "placeholder" => "4111 1111 1111 1111"}
+	= f.static_control_div :cc_exp do
+		%input.form-control{"data-braintree-name" => "expiration_date", "placeholder" => "MM/YY"}
+	%div#braintree_div
+	%div.col-sm-12
+		%button.btn.btn-primary.col-xs-12{"type" => "submit"}
+			= t('app.form.button.step_4')
