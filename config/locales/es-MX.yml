@@ -1,0 +1,19 @@
+---
+es-MX:
+  activemodel:
+    models:
+      quote:
+        one: Cotización
+        other: Cotizaciónes
+    attributes:
+      quote:
+        enter_date: Entering Date
+        leave_date: Date Leaving Mexico
+  quote:
+    headers:
+      new_quote: Spanish New Quote
+      travel_dates: Spanish Dates Traveling To Mexico
+    vehicle_information:
+      other_model_placeholder: modelo
+    buttons:
+      get_quote: "¡Ver mi cotización!"

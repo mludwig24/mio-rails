@@ -1,48 +1,114 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
-es-MX: &es-MX
+---
+es:
   activemodel:
     models:
       quote:
-        one: "Cotización"
-        other: "Cotizaciónes"
+        one: Cotización
+        other: Cotizaciónes
     attributes:
       quote:
-        enter_date: "Entering Date"
-        leave_date: "Date Leaving Mexico"
+        enter_date: Entering Date
+        leave_date: Date Leaving Mexico
   nav:
-    english: "English"
-    spanish: "Español"
+    english: English
+    spanish: Español
   quote:
     headers:
-      new_quote: "Spanish New Quote"
-      travel_dates: "Spanish Dates Traveling To Mexico"
+      new_quote: Spanish New Quote
+      travel_dates: Spanish Dates Traveling To Mexico
     vehicle_information:
-      other_model_placeholder: "modelo"
+      other_model_placeholder: modelo
     buttons:
       get_quote: "¡Ver mi cotización!"
+    form:
+      header:
+        new_quote: Create Quote
+        travel_dates: Dates Traveling To Mexico
+        towed_unit_sub: Towed Unit {1}
+      other_model_placeholder: model
+      towing_anything_value_label:
+        zero: Declined - Never towing in Mexico
+        one: Towing up to %{count} unit
+        other: Towing up to %{count} units
+      button:
+        get_quote: Show Quotes
+    disclosure:
+      towed_units_disclosure: Each self propelled vehicle that is being towed must
+        ALSO have its own insurance policy when it is being driven.
+    results:
+      labels:
+        daily: Daily
+        sixmo: Six Month
+        annual: Annual
+      button:
+        buy_now: Buy Now!
+        details:
+          Extended: Extended Coverage
+          Standard: Standard Coverage
+          Flex: Flex Coverage
+      coverage:
+        collision:
+          header: 'Property Damage:'
+          details: This includes coverage for collision, overturning, glass breakage,
+            and is subject to the deductible.
+        theft:
+          header: 'Theft:'
+          details: This coverage includes total theft of the vehicle. Note that partial
+            theft coverage is not available in Mexico unless you purchase an extended
+            coverage option.
   greetings:
-    hello: "Hola mundo!"
-    goodbye: "Adios mundo!"
-
-es:
-  <<: *es-MX
+    hello: Hola mundo!
+    goodbye: Adios mundo!
+  activerecord:
+    attributes:
+      quote:
+        enter_date: Date Entering Mexico
+        leave_date: Date Leaving Mexico
+        towing: Towing Coverage
+        uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
+          insurance policy?
+        under21: Will there be drivers operating this vehicle, under 21 or over 80
+          years of age?
+        beyond_freezone: Are you traveling ONLY in the states of Baja and/or Sonora?
+          If you are unsure, please say no.
+        visit_reason: Which of the following best describes the reason for your visit
+          to Mexico?
+        visit_reasons:
+          '1': Driving to Vacation Destination/Tourist Visa
+          '2': Visiting Friends or Family
+          '3': Business/Work/School/Frequent Commuter
+          '4': Temporary Mexico Resident Visa Holder
+          '5': Permanent Mexico Resident Visa Holder
+        days_veh_in_mexico: How many days per year is the vehicle in Mexico?
+        days_veh_in_mexico_options:
+          '1': Less than 30 days
+          '2': Between 31 and 90 days
+          '3': Between 90 and 180 days
+          '4': More than 180 days
+      app:
+        vin: Vehicle Identification Number (VIN)
+      towed:
+        vin: Vehicle Identification Number (VIN)
+      drivers:
+        first_name: Given Name
+        last_name: Family Name
+    errors:
+      messages:
+        blank: must be provided
+        inclusion: selection was invalid
+  app:
+    form:
+      other_drivers:
+        zero: Only driven by the owner
+        one: One other driver
+        other: "%{count} other drivers"
+      header:
+        towed_unit: Towed Unit
+      button:
+        step_2: Continue to Vehicle Information
+        step_3: Continue to Recap & Payment
+        step_4: Agree & Purchase
+        have_questions: Purchasing Help
+        get_help: Have questions?  We can help!
+    disclosure:
+      other_drivers: Add as many drivers as you want!

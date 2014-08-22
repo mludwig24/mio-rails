@@ -43,6 +43,8 @@ gem 'mysql'
 gem 'rails-i18n', '~> 4.0.0'
 ## Gives javascript access to translations.
 gem "i18n-js"
+## Auto adds untranslated.
+gem "i18n-tasks"
 gem 'http_accept_language'
 ## Store the sessions in the DB.
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
