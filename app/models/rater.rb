@@ -198,7 +198,6 @@ module Rater
 			## Payment
 			api_data["payment"] = Hash.new()
 			api_data["payment"]["type"] = "credit_card"
-			pp api_data
 			return api_data
 		end
 	end
