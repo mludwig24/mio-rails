@@ -1,3 +1,8 @@
+- content_for :extra_js do
+	%script{"src" => "https://js.braintreegateway.com/v2/braintree.js",
+		"type" => "text/javascript"}
+	:javascript
+		braintree.setup("#{@rates.client_key}", 'dropin', {container: 'braintree_div'});
 %h1
 	= t('app.headers.recap')
 %div.row-fluid

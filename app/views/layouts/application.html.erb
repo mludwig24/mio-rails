@@ -99,5 +99,8 @@
         </div>
       </div>
     </div>
+    <% if content_for?(:extra_js) %>
+      <%= yield(:extra_js) %>
+    <% end %>
   </body>
 </html>
