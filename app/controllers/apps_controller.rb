@@ -16,6 +16,9 @@ class AppsController < ApplicationController
 			redirect_to app_personal_path(@app) and return
 		end
 		@rates = @app.get_rates()
+		if @rates.errors != nil
+			flash[:error] = @rates.errors
+		end
 	end
 	def new ## Transfer from the quote.
 		## Save the tid, uid, and qid, and send them to Personal.
