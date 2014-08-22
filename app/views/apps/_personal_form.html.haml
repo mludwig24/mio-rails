@@ -50,11 +50,11 @@
 				"name" => "app[drivers_attributes][{{$index}}][id]",
 				"ng-model" => "driver.id",
 				"ng-value" => "driver.id"}
-			= f.static_control_div nil, label: t('activerecord.attributes.drivers.first_name') do
+			= f.static_control_div nil, label: t('activerecord.attributes.driver.first_name') do
 				%input{"name" => "app[drivers_attributes][{{$index}}][first_name]",
 					"class" => "form-control",
 					"ng-model" => "driver.first_name"}
-			= f.static_control_div nil, label: t('activerecord.attributes.drivers.last_name') do
+			= f.static_control_div nil, label: t('activerecord.attributes.driver.last_name') do
 				%input{"name" => "app[drivers_attributes][{{$index}}][last_name]",
 					"class" => "form-control",
 					"ng-model" => "driver.last_name"}

@@ -28,9 +28,11 @@ en-US:
           '4': More than 180 days
       app:
         vin: Vehicle Identification Number (VIN)
+        cc_num: "Credit Card Number"
+        cc_exp: "Credit Card Expiration"
       towed:
         vin: Vehicle Identification Number (VIN)
-      drivers:
+      driver:
         first_name: Given Name
         last_name: Family Name
     errors:
@@ -74,7 +76,9 @@ en-US:
           details: This coverage includes total theft of the vehicle. Note that partial
             theft coverage is not available in Mexico unless you purchase an extended
             coverage option.
-  app:
+  apps:
+    payment:
+      cc_num: "Monkeys"
     form:
       other_drivers:
         zero: Only driven by the owner

@@ -5,6 +5,14 @@ class App < ActiveRecord::Base
 	accepts_nested_attributes_for :drivers
 	accepts_nested_attributes_for :quote
 
+	attr_reader :cc_num, :cc_exp
+	def cc_num=(cc_num)
+		raise "Should never try to set a credit card number!"
+	end
+	def cc_exp=(cc_num)
+		raise "Should never try to set a credit card number!"
+	end
+
 	def before_validation_on_create
 		self.phone = phone.phone
 	end
