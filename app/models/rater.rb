@@ -27,7 +27,7 @@ module Rater
 					@transporter.res["payment"].has_key?("client_key")
 				@client_key = @transporter.res["payment"]["client_key"]
 			end
-			@rates = @transporter.res["rates"]
+			@rates = @transporter.res["rate"]
 		end
 		## Format ourself into the correct json for @api_data.
 		def self.format_quote_data(quote, formatter)
