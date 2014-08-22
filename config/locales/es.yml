@@ -126,6 +126,8 @@ es:
         license_plate_state: License plate state
         us_insurance_company: Us insurance company
         ownership: Ownership
+        cc_num: Credit Card Number
+        cc_exp: Credit Card Expiration
       towed:
         vin: Vehicle Identification Number (VIN)
         make: Make
