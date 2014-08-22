@@ -2,7 +2,7 @@ require 'pp'
 module Rater
 	class Rater
 		include ActiveModel::Model
-		attr_accessor :api_data, :transporter, :rates,
+		attr_accessor :api_data, :transporter, :rates, :rate,
 			:formatter, :quote_id, :errors, :client_key
 		## `rates` are sent when creating a sub-set of rates.
 		## For example, rates for "GNP Extended".
@@ -13,7 +13,8 @@ module Rater
 		## Setup and call the API.
 		def api_call(formatter=Transporter, transporter=Formatter)
 			@api_data ||= format_quote_data(@quote, formatter)
-			@rates = transporter_api(@api_data.to_json, transporter)
+			transporter_api(@api_data.to_json, transporter)
+			return @rates ? @rates : @rate
 		end
 		## Do the actual API call.
 		def transporter_api(json, transporter)
@@ -22,12 +23,12 @@ module Rater
 				@quote_id = @transporter.res["quote"]["quote_id"]
 			end
 			@errors = @transporter.res["errors"]
-			pp @transporter.res
 			if @transporter.res.has_key?("payment") and 
 					@transporter.res["payment"].has_key?("client_key")
 				@client_key = @transporter.res["payment"]["client_key"]
 			end
-			@rates = @transporter.res["rate"]
+			@rates = @transporter.res["rates"]
+			@rate = @transporter.res["rate"]
 		end
 		## Format ourself into the correct json for @api_data.
 		def self.format_quote_data(quote, formatter)
@@ -129,10 +130,15 @@ module Rater
 			## PolicyHolder.
 			api_data["policyholder"] = Hash.new()
 			api_data["policyholder"]["license_state"] = "CA"
-			## Drivers.
-			api_data["drivers"] = Array.new()
 			## Towed.
 			api_data["towed"] = Array.new()
+			@quote.toweds.each do |towed|
+				api_data["towed"] << {
+					type: towed.type_id,
+					year: towed.year,
+					value: towed.value,
+				}
+			end
 			return api_data
 		end
 	end
@@ -148,9 +154,17 @@ module Rater
 			api_data["power_unit"]["us_insurance_company"] = @quote.app.us_insurance_company
 			api_data["power_unit"]["us_insurance_policy"] = @quote.app.us_insurance_policy
 			api_data["power_unit"]["us_insurance_expiration"] = @quote.app.us_insurance_expiration.strftime(@@date_format)
-			api_data["power_unit"]["ownership"] = @quote.app.ownership
 			api_data["power_unit"]["license_plate"] = @quote.app.license_plate
 			api_data["power_unit"]["license_plate_state"] = @quote.app.license_plate_state
+			api_data["power_unit"]["ownership"] = @quote.app.ownership
+			if @quote.app.financed?
+				api_data["power_unit"]["finance_company"] = @quote.app.finance_company
+				api_data["power_unit"]["finance_account"] = @quote.app.finance_account
+				api_data["power_unit"]["finance_address"] = @quote.app.finance_address
+				api_data["power_unit"]["finance_city"] = @quote.app.finance_city
+				api_data["power_unit"]["finance_state"] = @quote.app.finance_state
+				api_data["power_unit"]["finance_zip"] = @quote.app.finance_zip
+			end
 			## Policyholder
 			api_data["policyholder"]["first_name"] = @quote.app.first_name
 			api_data["policyholder"]["last_name"] = @quote.app.last_name
@@ -162,9 +176,29 @@ module Rater
 			api_data["policyholder"]["email"] = @quote.app.email
 			api_data["policyholder"]["license_number"] = @quote.app.license_number
 			api_data["policyholder"]["license_state"] = @quote.app.license_state
+			## Drivers
+			api_data["drivers"] = Array.new()
+			@quote.app.drivers.each do |driver|
+				api_data["drivers"] << {first_name: driver.first_name, last_name: driver.last_name}
+			end
+			## Towed
+			@quote.toweds.each_index do |i|
+				towed = @quote.toweds[i]
+				api_data["towed"][i] = {
+					type: towed.type_id,
+					year: towed.year,
+					value: towed.value,
+					make: towed.make,
+					model: towed.model,
+					license_plate: towed.license_plate,
+					license_plate_state: towed.license_plate_state,
+					vin: towed.vin,
+				}
+			end
 			## Payment
 			api_data["payment"] = Hash.new()
 			api_data["payment"]["type"] = "credit_card"
+			pp api_data
 			return api_data
 		end
 	end

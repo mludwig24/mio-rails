@@ -15,9 +15,9 @@ class AppsController < ApplicationController
 		unless @app.valid?
 			redirect_to app_personal_path(@app) and return
 		end
-		@rates = @app.get_rates()
-		if @rates.errors != nil
-			flash[:error] = @rates.errors
+		@rate = @app.get_rates()
+		if @rate.errors != nil
+			flash[:error] = @rate.errors
 		end
 	end
 	def new ## Transfer from the quote.

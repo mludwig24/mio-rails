@@ -28,6 +28,9 @@ class QuotesController < ApplicationController
 		end
 		begin
 			@rates = @quote.get_rates()
+			if @rates.errors != nil
+				flash[:error] = @rates.errors
+			end
 		rescue Exception => e
 			logger.warn "#{@quote.id} threw error #{e.to_s}"
 			@error = e
