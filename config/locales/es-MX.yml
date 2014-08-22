@@ -13,7 +13,187 @@ es-MX:
     headers:
       new_quote: Spanish New Quote
       travel_dates: Spanish Dates Traveling To Mexico
+      coverage: Coverage
     vehicle_information:
       other_model_placeholder: modelo
     buttons:
       get_quote: "¡Ver mi cotización!"
+    form:
+      header:
+        new_quote: Create Quote
+        travel_dates: Dates Traveling To Mexico
+        towed_unit_sub: Towed Unit {1}
+        edit_quote: Edit quote
+        vehicle_information: Vehicle information
+        towed_units: Towed units
+        coverage_information: Coverage information
+        underwriting_information: Underwriting information
+      other_model_placeholder: model
+      towing_anything_value_label:
+        zero: Declined - Never towing in Mexico
+        one: Towing up to %{count} unit
+        other: Towing up to %{count} units
+      button:
+        get_quote: Show Quotes
+      vehicle_value:
+        liability_only: Liability only
+    disclosure:
+      towed_units_disclosure: Each self propelled vehicle that is being towed must
+        ALSO have its own insurance policy when it is being driven.
+      towed_units_disclosure_header: Towed units disclosure header
+    results:
+      labels:
+        daily: Daily
+        sixmo: Six Month
+        annual: Annual
+      button:
+        buy_now: Buy Now!
+        details:
+          Extended: Extended Coverage
+          Standard: Standard Coverage
+          Flex: Flex Coverage
+      coverage:
+        collision:
+          header: 'Property Damage:'
+          details: This includes coverage for collision, overturning, glass breakage,
+            and is subject to the deductible.
+        theft:
+          header: 'Theft:'
+          details: This coverage includes total theft of the vehicle. Note that partial
+            theft coverage is not available in Mexico unless you purchase an extended
+            coverage option.
+      headers:
+        quote_results: Quote results
+        coverage_details: Coverage details
+      buttons:
+        buy_now: Buy now
+        details: Details
+  activerecord:
+    attributes:
+      quote:
+        enter_date: Date Entering Mexico
+        leave_date: Date Leaving Mexico
+        towing: Towing Coverage
+        uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
+          insurance policy?
+        under21: Will there be drivers operating this vehicle, under 21 or over 80
+          years of age?
+        beyond_freezone: Are you traveling ONLY in the states of Baja and/or Sonora?
+          If you are unsure, please say no.
+        visit_reason: Which of the following best describes the reason for your visit
+          to Mexico?
+        visit_reasons:
+          '1': Driving to Vacation Destination/Tourist Visa
+          '2': Visiting Friends or Family
+          '3': Business/Work/School/Frequent Commuter
+          '4': Temporary Mexico Resident Visa Holder
+          '5': Permanent Mexico Resident Visa Holder
+        days_veh_in_mexico: How many days per year is the vehicle in Mexico?
+        days_veh_in_mexico_options:
+          '1': Less than 30 days
+          '2': Between 31 and 90 days
+          '3': Between 90 and 180 days
+          '4': More than 180 days
+        liability_limit: Liability limit
+        fixed_deductibles: Fixed deductibles
+        make_id: Make
+        model_id: Model
+        year: Year
+        value: Value
+        towed_unit_type: Towed unit type
+        towed_unit_year: Towed unit year
+        towed_unit_value: Towed unit value
+      app:
+        vin: Vehicle Identification Number (VIN)
+        first_name: First name
+        last_name: Last name
+        address: Address
+        city: City
+        state: State
+        zip: Zip
+        phone: Phone
+        email: Email
+        license_number: License number
+        license_state: License state
+        registration: Registration
+        license_plate: License plate
+        license_plate_state: License plate state
+        us_insurance_company: Us insurance company
+        ownership: Ownership
+      towed:
+        vin: Vehicle Identification Number (VIN)
+        make: Make
+        model: Model
+        year: Year
+        value: Value
+        license_plate: License plate
+        license_plate_state: License plate state
+      drivers:
+        first_name: Given Name
+        last_name: Family Name
+      driver:
+        first_name: First name
+        last_name: Last name
+    errors:
+      messages:
+        blank: must be provided
+        inclusion: selection was invalid
+  nav:
+    english: English
+    spanish: Español
+  app:
+    form:
+      other_drivers:
+        zero: Only driven by the owner
+        one: One other driver
+        other: "%{count} other drivers"
+      header:
+        towed_unit: Towed Unit
+        other_driver: Other driver
+        owner_info: Owner info
+        other_drivers: Other drivers
+        add_driver: Add driver
+        power_unit_info: Power unit info
+        personal_info: Personal info
+      button:
+        step_2: Continue to Vehicle Information
+        step_3: Continue to Recap & Payment
+        step_4: Agree & Purchase
+        have_questions: Purchasing Help
+        get_help: Have questions?  We can help!
+      recap:
+        button:
+          edit_personal: Edit personal
+          edit_quote: Edit quote
+          edit_vehicle: Edit vehicle
+      buttons:
+        add_driver: Add driver
+    disclosure:
+      other_drivers: Add as many drivers as you want!
+    headers:
+      application: Application
+      new_app: New app
+      personal_info: Personal info
+      recap: Recap
+      personal: Personal
+      vehicle: Vehicle
+      disclosures: Disclosures
+      payment: Payment
+      vehicle_info: Vehicle info
+  greetings:
+    hello: Hi, world!
+    goodbye: Peace, world!
+  global:
+    headers:
+      errors_occurred: Errors occurred
+    cancel: Cancel
+    'yes': 'Yes'
+    'no': 'No'
+    close: Close
+  general:
+    forms:
+      select_one: Select one
+    contact_modal:
+      header: Header
+  'yes': 'Yes'
+  'no': 'No'
