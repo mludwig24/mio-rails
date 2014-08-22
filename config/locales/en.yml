@@ -35,7 +35,7 @@ en:
         towed_unit_type: Towed unit type
         towed_unit_year: Towed unit year
         towed_unit_value: Towed unit value
-      apps:
+      app:
         vin: Vehicle Identification Number (VIN)
         first_name: First name
         last_name: Last name
@@ -52,7 +52,6 @@ en:
         license_plate_state: License plate state
         us_insurance_company: Us insurance company
         ownership: Ownership
-        cc_num: "Credit Card Number"
       towed:
         vin: Vehicle Identification Number (VIN)
         make: Make

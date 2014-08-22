@@ -76,9 +76,7 @@ en-US:
           details: This coverage includes total theft of the vehicle. Note that partial
             theft coverage is not available in Mexico unless you purchase an extended
             coverage option.
-  apps:
-    payment:
-      cc_num: "Monkeys"
+  app:
     form:
       other_drivers:
         zero: Only driven by the owner
