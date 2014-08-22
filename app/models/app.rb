@@ -45,6 +45,13 @@ class App < ActiveRecord::Base
 	end
 	def valid_ownerships; return self.class.valid_ownerships() end
 
+	def self.financed?(ownership)
+		["financed", "leased"].include?(ownership)
+	end
+	def financed?
+		return self.class.financed?(self.ownership)
+	end
+
 	validates_presence_of :uid, :tid
 	validates_presence_of :first_name, :last_name, :address, :city, :state,
 		:zip, :phone, :email, :license_number, :license_state,
@@ -85,7 +92,7 @@ class App < ActiveRecord::Base
 		self.step >= 2
 	end
 	def validate_finance?
-		self.step >= 2 and %w{leased financed}.include?(self.ownership)
+		self.step >= 2 and self.financed?
 	end
 	def generate_token
 		self.token = loop do
