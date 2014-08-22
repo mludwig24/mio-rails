@@ -59,6 +59,9 @@ class App < ActiveRecord::Base
 		:unless => Proc.new { |app| app.step < 1 }
 	validates_presence_of :vin, :registration, :us_insurance_company,
 		:us_insurance_policy, :us_insurance_expiration, :ownership,
+		:license_plate, :license_plate_state,
+		:unless => Proc.new { |app| app.step < 2 }
+	validates :license_plate_state, :inclusion => valid_us_states,
 		:unless => Proc.new { |app| app.step < 2 }
 	validates :us_insurance_expiration, :date => {
 		:after => Proc.new { Date.today },
