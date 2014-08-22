@@ -48,6 +48,10 @@ class Quote < ActiveRecord::Base
 		## Create a rater object.
 		@rates = Rater::Rater.new(self)
 		@rates.api_call(Rater::FormatterQuote_v3, Rater::Transporter_v3)
+		if @rates.quote_id != nil
+			self.api_quote_id = @rates.quote_id
+			self.save()
+		end
 		return @rates
 	end
 
