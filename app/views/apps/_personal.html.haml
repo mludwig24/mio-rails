@@ -38,3 +38,5 @@
 	= render "recap_field",
 		label: t('activerecord.attributes.driver.last_name'),
 		value: driver.last_name
+%a.btn.btn-primary.col-md-12{"href" => app_personal_path(@app)}
+	= t('app.form.recap.button.edit_personal')

@@ -25,3 +25,5 @@
 = render "recap_field",
 	label: t('activerecord.attributes.quote.uscoll_sc'),
 	value: @quote.uscoll_sc.to_i > 0 ? t('global.yes') : t('global.no')
+%a.btn.btn-primary.col-md-12{"href" => quote_path(@app.quote)}
+	= t('app.form.recap.button.edit_quote')
