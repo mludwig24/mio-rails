@@ -3,7 +3,7 @@ module Rater
 	class Rater
 		include ActiveModel::Model
 		attr_accessor :api_data, :transporter, :rates,
-			:formatter, :quote_id
+			:formatter, :quote_id, :errors, :client_key
 		## `rates` are sent when creating a sub-set of rates.
 		## For example, rates for "GNP Extended".
 		def initialize(quote, rates=nil)
@@ -21,7 +21,12 @@ module Rater
 			if @transporter.res.has_key?("quote")
 				@quote_id = @transporter.res["quote"]["quote_id"]
 			end
+			@errors = @transporter.res["errors"]
 			pp @transporter.res
+			if @transporter.res.has_key?("payment") and 
+					@transporter.res["payment"].has_key?("client_key")
+				@client_key = @transporter.res["payment"]["client_key"]
+			end
 			@rates = @transporter.res["rates"]
 		end
 		## Format ourself into the correct json for @api_data.
@@ -160,7 +165,6 @@ module Rater
 			## Payment
 			api_data["payment"] = Hash.new()
 			api_data["payment"]["type"] = "credit_card"
-			pp api_data
 			return api_data
 		end
 	end
