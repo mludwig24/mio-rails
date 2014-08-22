@@ -21,8 +21,10 @@ class Quote < ActiveRecord::Base
 	validates :visit_reason, :presence => true,
 		:inclusion => {:in => Proc.new { 
 			Quote.valid_visit_reasons() }}
-	validates_presence_of :enter_date, :leave_date, :vehicle_type, :year, :make_id, :value
+	validates_presence_of :enter_date, :leave_date, :vehicle_type, :year,
+		:make_id, :make_label, :value
 	validates :model_id, presence: true, allow_blank: false, unless: "other_model.present?"
+	validates :model_label, presence: true, allow_blank: false, unless: "other_model.present?"
 	validates :other_model, presence: true, allow_blank: false, unless: "model_id.present?"
 
 	validates :leave_date, :date => {
@@ -40,6 +42,10 @@ class Quote < ActiveRecord::Base
 	## Used to keep the sequential ID out of the URL.
 	def to_param
 		self.token
+	end
+
+	def model ## Handles model_label or other_model.
+		self.model_id.present? ? self.model_label : self.other_model
 	end
 
 	## Go get the rates and cache them.

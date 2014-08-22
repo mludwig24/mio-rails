@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822215541) do
+ActiveRecord::Schema.define(version: 20140822225656) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20140822215541) do
     t.string   "other_model"
     t.string   "token"
     t.integer  "api_quote_id"
+    t.string   "make_label"
+    t.string   "model_label"
   end
 
   add_index "quotes", ["token"], name: "index_quotes_on_token", unique: true, using: :btree

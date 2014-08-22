@@ -48,6 +48,8 @@
 			"ng-disabled" => "makes.length == 0",
 			"ng-change" => "updateMake()",
 			"data-default" => "#{@quote.make_id.to_i > 0 ? @quote.make_id : -1}"
+		= f.hidden_field :make_label, 
+			"ng-value" => "make.label"
 		= f.static_control_div :model_id, label: t('activerecord.attributes.quote.model_id') do
 			= select :quote, :model_id, [], {include_blank: t('general.forms.select_one')},
 				"ng-options" => "model.label for model in models track by model.id",
@@ -61,6 +63,8 @@
 				"placeholder" => t('quote.form.other_model_placeholder'),
 				"ng-hide" => "has_models",
 				"class" => "form-control"
+		= f.hidden_field :model_label, 
+			"ng-value" => "model.label"
 		= f.select :value, [[t('quote.form.vehicle_value.liability_only'), 0],] + @quote.valid_values[1..-1].collect { |v| [number_to_currency(v), v] },
 			{include_blank: t('general.forms.select_one'), selected: @quote.value}
 	%h3

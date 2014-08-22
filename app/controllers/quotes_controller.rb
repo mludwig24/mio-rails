@@ -73,7 +73,7 @@ class QuotesController < ApplicationController
 			:model_id, :value, :towing, :liability_limit, 
 			:fixed_deductibles, :body_style, :other_model, :liability, 
 			:extended_travel, :beyond_freezone, :under21, :uscoll_sc, 
-			:days_veh_in_mexico, :visit_reason,
+			:days_veh_in_mexico, :visit_reason, :make_label, :model_label,
 			:toweds_attributes => [ :id, :type_id, :type_label, :value, :year ]
 		)
 	end
