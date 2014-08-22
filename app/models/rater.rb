@@ -21,6 +21,7 @@ module Rater
 			if @transporter.res.has_key?("quote")
 				@quote_id = @transporter.res["quote"]["quote_id"]
 			end
+			pp @transporter.res
 			@rates = @transporter.res["rates"]
 		end
 		## Format ourself into the correct json for @api_data.
@@ -143,6 +144,8 @@ module Rater
 			api_data["power_unit"]["us_insurance_policy"] = @quote.app.us_insurance_policy
 			api_data["power_unit"]["us_insurance_expiration"] = @quote.app.us_insurance_expiration.strftime(@@date_format)
 			api_data["power_unit"]["ownership"] = @quote.app.ownership
+			api_data["power_unit"]["license_plate"] = @quote.app.license_plate
+			api_data["power_unit"]["license_plate_state"] = @quote.app.license_plate_state
 			## Policyholder
 			api_data["policyholder"]["first_name"] = @quote.app.first_name
 			api_data["policyholder"]["last_name"] = @quote.app.last_name
