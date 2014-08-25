@@ -75,21 +75,21 @@ class App < ActiveRecord::Base
 	validates_presence_of :vin, :registration, :us_insurance_company,
 		:us_insurance_policy, :us_insurance_expiration, :ownership,
 		:license_plate, :license_plate_state,
-		:if => Proc.new { |app| app.validate_personal? }
+		:if => Proc.new { |app| app.validate_vehicle? }
 	validates_presence_of :finance_company, :finance_account,
 		:finance_address, :finance_city, :finance_state, :finance_zip,
 		:if => Proc.new { |app| app.validate_finance? }
 	validates :finance_state, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_finance? }
 	validates :license_plate_state, :inclusion => valid_us_states,
-		:if => Proc.new { |app| app.validate_personal? }
+		:if => Proc.new { |app| app.validate_vehicle? }
 	validates :us_insurance_expiration, :date => {
 		:after => Proc.new { Date.today },
 		:before => Proc.new { Date.today + 5.years }, ## 90 days is too far.
-	}, :if => Proc.new { |app| app.validate_personal? }
+	}, :if => Proc.new { |app| app.validate_vehicle? }
 	validates :ownership, :inclusion => {:in => Proc.new { 
 			App.valid_ownerships() }},
-		:if => Proc.new { |app| app.validate_personal? }
+		:if => Proc.new { |app| app.validate_vehicle? }
 
 	protected
 
