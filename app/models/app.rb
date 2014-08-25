@@ -17,7 +17,7 @@ class App < ActiveRecord::Base
 		self.phone = phone.phone
 	end
 
-	attr_accessor :step
+	attr_accessor :step, :policy
 	
 	def to_param
 		self.token
@@ -32,8 +32,18 @@ class App < ActiveRecord::Base
 	def get_rates
 		raise "Not valid!  Should not get here!" unless valid?
 		## Create a rater object.
-		@rates = Rater::Rater.new(self.quote)
+		@rates = Rater::Quote.new(self.quote)
 		@rates.api_call(Rater::FormatterApp_v3, Rater::Transporter_v3)
+		return @rates
+	end
+	def get_policy
+		if self.v3_policy_id == nil ## Create a new policy.
+			@rates = Rater::Quote.new(self.quote)
+			@rates.api_call(Rater::FormatterAppPolicy_v3, Rater::Transporter_v3)
+		else
+			@rates = Rater::Policy.new(self)
+			@policy = @rates.api_call(Rater::FormatterPolicy_v3, Rater::TransporterPolicy_v3)
+		end
 		return @rates
 	end
 
