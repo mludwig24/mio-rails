@@ -1,21 +1,36 @@
 - content_for :extra_js do
-	%script{"src" => "https://js.braintreegateway.com/v2/braintree.js",
-		"type" => "text/javascript"}
-	:javascript
-		// braintree.setup("#{@rate.client_key}", 'dropin', {container: 'braintree_div'});
-		braintree.setup("#{@rate.client_key}", 'custom', {id: 'braintree'});
+	%script{"type" => "text/javascript",
+		"src" => "https://js.braintreegateway.com/v2/braintree.js"}
+	:coffeescript
+		jQuery ($) ->
+			braintree.setup "#{@rate.client_key}", 'custom', {id: 'braintree'}
+			# braintree.setup "#{@rate.client_key}", 'dropin', {container: 'braintree_div'}
 
-= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: {id: 'braintree'}) do |f|
-	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
-	= f.static_control :total_price do
-		= number_to_currency(@rate.rate["total_price"])
-	= f.text_field :cc_num, id: "cc_num", name: nil,
-		"data-braintree-name" => "number",
-		"placeholder" => "4111 1111 1111 1111"
-	= f.text_field :cc_exp, id: "cc_exp", name: nil,
-		"data-braintree-name" => "expiration_date",
-		"placeholder" => "MM/YY"
-	%div#braintree_div
-	%div.col-sm-12
-		%button.btn.btn-primary.col-xs-12{"type" => "submit"}
-			= t('app.form.button.step_4')
+%div.modal.fade#payment
+	%div.modal-dialog
+		%div.modal-content
+			= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: {id: 'braintree'}) do |f|
+				%input{:type => "hidden", :name => "step", :value => @app.step}
+				%div.modal-header
+					%button.close{:type => "button", :data => {:dismiss => "modal"}}
+						%span
+							&times;
+					%h3
+						= t('app.headers.payment')
+				%div.modal-body
+					= f.static_control :total_price do
+						= number_to_currency(@rate.rate["total_price"])
+					%div.show
+						= f.text_field :cc_num, id: "cc_num", name: nil,
+							:data => {:braintree_name => "number"},
+							"placeholder" => "4111 1111 1111 1111",
+							"class" => "creditcard required"
+						= f.text_field :cc_exp, id: "cc_exp", name: nil,
+							:data => {:braintree_name => "expiration_date"},
+							"placeholder" => "MM/YY"
+					%div#braintree_div
+				%div.modal-footer
+					%button.btn.btn-default{:type => "button", :data => {:dismiss => "modal"}
+						= t('global.cancel')
+					%button.btn.btn-primary{:type => "submit"}
+						= t('app.form.button.step_4')

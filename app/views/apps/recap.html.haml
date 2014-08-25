@@ -25,7 +25,7 @@
 				= render 'quote', quote: @app.quote
 %hr
 %div.row-fluid.recap
-	%div.col-md-6
+	%div.col-md-12
 		%div.panel.panel-default
 			%div.panel-heading
 				%h3.panel-title
@@ -33,10 +33,12 @@
 			%div.panel-body
 				%div.well.well-lg.disclosures
 					= render 'disclosures', quote: @app.quote
-	%div.col-md-6
-		%div.panel.panel-default#payment
-			%div.panel-heading
-				%h3.panel-title
-					= t('app.headers.payment')
-			%div.panel-body
-				= render 'payment', app: @app, quote: @app.quote, rate: @rate
+				-# Modal is in the payment partial.
+				%button.btn.btn-primary.btn-lg.col-xs-12{:type => "button",
+					:data => {:toggle => "modal",
+						:target => "#payment"}}
+					= t('app.form.button.agree_and_pay')
+				= render 'payment', quote: @app.quote, app: @app, rate: @rate
+
+
+
