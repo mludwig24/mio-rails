@@ -20,6 +20,9 @@ class AppsController < ApplicationController
 			flash[:error] = @rate.errors
 		end
 	end
+	def policy
+		@policy = @app.get_policy()
+	end
 	def new ## Transfer from the quote.
 		## Save the tid, uid, and qid, and send them to Personal.
 		@app.step = 0
@@ -49,13 +52,22 @@ class AppsController < ApplicationController
 		@app.update(app_params)
 		if @app.valid?
 			@app.save()
+			if @app.step == 3 and @app.v3_policy_id == nil ## Issue the policy.
+				@policy = @app.get_policy()
+				@app.v3_policy_id = @policy.policy["policy_id"]
+				@app.save()
+			end
 			next_step and return
 		end
 		## If the form was invalid:
-		if step == 1
-			render "personal" and return
+		case @app.step
+		when 1
+			render "personal"
+		when 2
+			render "vehicle"
+		when 3
+			render "recap"
 		end
-		render "vehicle"
 	end
 	def index
 		## Don't need a list of apps.  Just get rid of them.
@@ -90,13 +102,18 @@ class AppsController < ApplicationController
 	end
 	## Checks the step to determine which parameters to use.
 	def app_params
-		if @app.step == 1
-			return personal_params
-		elsif @app.step == 0
+		case @app.step
+		when 0
 			return init_params
+		when 1
+			return personal_params
+		when 2
+			return vehicle_params
+		when 3
+			return payment_params
+		else
+			return vehicle_params ## Most inclusive.
 		end
-		## Default to the highest level of requirements.
-		return vehicle_params
 	end
 	def personal_params
 		params.require(:app).permit(:first_name, :last_name, :address, 
@@ -117,6 +134,9 @@ class AppsController < ApplicationController
 			]]
 		)
 	end
+	def payment_params
+		params.permit(:payment_method_nonce)
+	end
 	def init_params
 		params.permit(:uid, :tid)
 	end
@@ -129,11 +149,13 @@ class AppsController < ApplicationController
 	end
 	## Redirect and increment the step.
 	def next_step
-		if step == 1
+		case @app.step
+		when 1
 			redirect_to app_vehicle_path(@app)
-		end
-		if step == 2
+		when 2
 			redirect_to app_recap_path(@app)
+		when 3
+			redirect_to app_policy_path(@app)
 		end
 		@app.step += 1
 	end
