@@ -170,6 +170,15 @@ en-US:
       disclosures: Disclosures
       payment: Payment
       vehicle_info: Vehicle info
+    thank_you:
+      policy_pdf:
+        body: Thank you for purchasing.  You're awesome.  More sales verbiage goes here.
+      tnc_pdf:
+        body: You don't have to print this.  It's a massive document that is full of legal crap.  It is just for your reference.  Better verbiage goes here.
+      opt_travel_tnc:
+        body: You don't have to print this, either.  It's another massive document full of even more legal crap.  Good luck actually reading it.
+      check_email:
+        body: You'll also get a copy of this in your email, but it just leads back here, so just click the provided print button.
   nav:
     english: English
     spanish: Español

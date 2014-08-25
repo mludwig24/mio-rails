@@ -1,2 +1,32 @@
-= @app.v3_policy_id
-= @policy.data.inspect()
+%h1
+	= t('app.headers.thank_you')
+%div.row-fluid#thankyou
+	%div.col-sm-6.policy_info
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.print_me')
+			%div.panel-body
+				= render 'print_policy'
+	%div.col-xs-6
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.other_info')
+			%div.panel-body
+				= render 'policy_info'
+%div.row-fluid#contact
+	%div.col-sm-6.policy_info
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.contact_info')
+			%div.panel-body
+				If you run into any trouble, call us!  Contact info goes here.
+	%div.col-xs-6
+		%div.panel.panel-default
+			%div.panel-heading
+				%h3.panel-title
+					= t('app.headers.check_email')
+			%div.panel-body
+				= t('app.thank_you.check_email.body')

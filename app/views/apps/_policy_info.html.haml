@@ -1,0 +1,12 @@
+%p
+	%a.btn.btn-default.col-xs-12{:href => @policy.data["tnc_pdf"]}
+		%span.glyphicon.glyphicon-download
+		= t('app.button.tnc_pdf')
+	= t('app.thank_you.tnc_pdf.body')
+%hr.col-xs-12
+- if @policy.data["opt_travel_tnc_pdf"] != ""
+	%p
+		%a.btn.btn-default.col-xs-12{:href => @policy.data["opt_travel_tnc_pdf"]}
+			%span.glyphicon.glyphicon-download
+			= t('app.button.opt_travel_tnc_pdf')
+		= t('app.thank_you.opt_travel_tnc.body')
