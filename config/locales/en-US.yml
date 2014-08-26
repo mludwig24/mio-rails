@@ -182,6 +182,11 @@ en-US:
   nav:
     english: English
     spanish: Español
+    quote:
+      new: "New Quote"
+      results: "Quote Results"
+    app:
+      personal: "Personal Info"
   greetings:
     hello: Hi, world!
     goodbye: Peace, world!

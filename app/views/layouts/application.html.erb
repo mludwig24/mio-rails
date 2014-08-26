@@ -45,12 +45,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">MIO Rails</a>
+        <a class="navbar-brand" href="/">MIO on Rails</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li><%= link_to t('nav.quote.new'), new_quote_path()  %></li>
+            <% if @quote.valid? %>
+              <li><%= link_to t('nav.quote.results'), quote_results_path(@quote.token) %></li>
+            <% end %>
+            <% if @app %>
+              <li><%= link_to t('nav.app.personal'), app_personal_path(@app) %></li>
+            <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to t('nav.english'), url_for(:locale => 'en-US') %></li>

@@ -143,6 +143,11 @@ es-MX:
   nav:
     english: English
     spanish: Español
+    quote:
+      new: "¡Cotizar Ahora!"
+      results: "Resultados De Cotización"
+    app:
+      personal: "Infomación Personal"
   app:
     form:
       other_drivers:

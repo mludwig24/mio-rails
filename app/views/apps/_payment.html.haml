@@ -30,9 +30,6 @@
 		jQuery('#braintree').submit (e, b) ->
 			unless $('#cc_num').valid() and $('#cc_exp').valid()
 				e.preventDefault()
-			else
-				alert("Success!")
-				e.preventDefault()
 			client.tokenizeCard {number: jQuery('#cc_num').val(), expirationDate: jQuery('#cc_exp').val()}, (err, nonce) ->
 				jQuery('#payment_method_nonce').val(nonce)
 
