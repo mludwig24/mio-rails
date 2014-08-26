@@ -1,16 +1,47 @@
 - content_for :extra_js do
 	%script{"type" => "text/javascript",
 		"src" => "https://js.braintreegateway.com/v2/braintree.js"}
+	%script{"type" => "text/javascript",
+		"src" => "//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"}
 	:coffeescript
-		jQuery ($) ->
-			braintree.setup "#{@rate.client_key}", 'custom', {id: 'braintree'}
-			# braintree.setup "#{@rate.client_key}", 'dropin', {container: 'braintree_div'}
+		jQuery.validator.addMethod 'creditcard-date', (value) ->
+				today = new Date();
+				parts = value.split(/[,\/\\ \-]/)
+				if parseInt(parts[1]) < 100
+					parts[1] = today.getFullYear() - (today.getFullYear() % 100) + parseInt(parts[1])
+				expDate = new Date parts[1], parts[0], 0
+				return (expDate > today)
+			,->
+				return I18n.t('general.date.invalid.future')
+		jQuery.validator.setDefaults {
+			errorClass: 'has-error',
+			validClass: 'has-success',
+			onKeyUp: false,
+			highlight: (element, errorClass) ->
+				jQuery(element).closest('.form-group').addClass(errorClass)
+			unhighlight: (element, errorClass, validClass) ->
+				jQuery(element).closest('.form-group').removeClass(errorClass).addClass(validClass)
+		}
+		jQuery('#braintree').validate()
+	:coffeescript
+		# braintree.setup "#{@rate.client_key}", 'custom', {id: 'braintree'}
+		# braintree.setup "#{@rate.client_key}", 'dropin', {container: 'braintree_div'}
+		client = new braintree.api.Client({clientToken: "#{@rate.client_key}"})
+		jQuery('#braintree').submit (e, b) ->
+			unless $('#cc_num').valid() and $('#cc_exp').valid()
+				e.preventDefault()
+			else
+				alert("Success!")
+				e.preventDefault()
+			client.tokenizeCard {number: jQuery('#cc_num').val(), expirationDate: jQuery('#cc_exp').val()}, (err, nonce) ->
+				jQuery('#payment_method_nonce').val(nonce)
 
 %div.modal.fade#payment
 	%div.modal-dialog
 		%div.modal-content
 			= bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: {id: 'braintree'}) do |f|
 				%input{:type => "hidden", :name => "step", :value => @app.step}
+				%input{:type => "hidden", :name => "payment_method_nonce", :value => "", :id => "payment_method_nonce"}
 				%div.modal-header
 					%button.close{:type => "button", :data => {:dismiss => "modal"}}
 						%span
@@ -23,11 +54,12 @@
 					%div.show
 						= f.text_field :cc_num, id: "cc_num", name: nil,
 							:data => {:braintree_name => "number"},
-							"placeholder" => "4111 1111 1111 1111",
-							"class" => "creditcard required"
+							:placeholder => "4111 1111 1111 1111",
+							:class => "creditcard required"
 						= f.text_field :cc_exp, id: "cc_exp", name: nil,
 							:data => {:braintree_name => "expiration_date"},
-							"placeholder" => "MM/YY"
+							:placeholder => "MM/YY",
+							:class => "creditcard-date required"
 					%div#braintree_div
 				%div.modal-footer
 					%button.btn.btn-default{:type => "button", :data => {:dismiss => "modal"}}

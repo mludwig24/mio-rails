@@ -197,6 +197,9 @@ en-US:
       select_one: Select one
     contact_modal:
       header: Header
+    date:
+      invalid:
+        future: Date must be in the future.
   'yes': 'Yes'
   'no': 'No'
   activemodel:
