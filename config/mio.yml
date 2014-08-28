@@ -8,4 +8,3 @@ test:
 
 production:
   mio_api_url: "https://sb.iigins.com/api/"
-  <<: *development

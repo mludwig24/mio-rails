@@ -54,8 +54,10 @@ class AppsController < ApplicationController
 			@app.save()
 			if @app.step == 3 and @app.v3_policy_id == nil ## Issue the policy.
 				@policy = @app.get_policy()
-				@app.v3_policy_id = @policy.policy["policy_id"]
-				@app.save()
+				if @policy.errors or @policy.data == nil
+					@rate = @policy ## We got a quote back, not a policy.
+					render "recap" and return
+				end
 			end
 			next_step and return
 		end

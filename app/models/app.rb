@@ -5,7 +5,7 @@ class App < ActiveRecord::Base
 	accepts_nested_attributes_for :drivers
 	accepts_nested_attributes_for :quote
 
-	attr_reader :cc_num, :cc_exp
+	attr_reader :cc_num, :cc_exp, :policy, :rates
 	def cc_num=(cc_num)
 		raise "Should never try to set a credit card number!"
 	end
@@ -38,13 +38,18 @@ class App < ActiveRecord::Base
 	end
 	def get_policy
 		if self.v3_policy_id == nil ## Create a new policy.
-			@rates = Rater::Quote.new(self.quote)
-			@rates.api_call(Rater::FormatterAppPolicy_v3, Rater::Transporter_v3)
-		else
-			@rates = Rater::Policy.new(self)
-			@policy = @rates.api_call(Rater::FormatterPolicy_v3, Rater::TransporterPolicy_v3)
+			@rate = Rater::CreatePolicy.new(self.quote)
+			@rate.api_call(Rater::FormatterAppPolicy_v3, Rater::Transporter_v3)
+			if @rate.errors
+				return @rate
+			else
+				self.v3_policy_id = @rate.res["policy"]["policy_id"]
+				self.save()
+			end
 		end
-		return @rates
+		@policy = Rater::Policy.new(self)
+		@policy.api_call(Rater::FormatterPolicy_v3, Rater::TransporterPolicy_v3)
+		return @policy
 	end
 
 	def self.valid_us_states ## For validation farther down.

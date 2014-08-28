@@ -36,7 +36,7 @@ module Rater
 		end
 	end
 	class Quote < Rater
-		attr_accessor :rate, :quote_id, :client_key, :policy
+		attr_accessor :rate, :quote_id, :client_key
 		def process_response(res)
 			@res = res
 			@errors = res["errors"]
@@ -48,7 +48,6 @@ module Rater
 				@client_key = res["payment"]["client_key"]
 			end
 			@data = res["rates"]
-			@policy = res["policy"]
 			@rate = res["rate"]
 			return @data ? @data : @rate
 		end
@@ -94,10 +93,27 @@ module Rater
 			self.for("term", value)
 		end
 	end
+	class CreatePolicy < Quote
+		attr_accessor :rate, :client_key, :policy
+		def process_response(res)
+			@res = res
+			@errors = res["errors"]
+			if res.has_key?("payment") and 
+					res["payment"].has_key?("client_key")
+				@client_key = res["payment"]["client_key"]
+			end
+			@rate = res["rate"]
+			@data = res["policy"]
+			return @data
+		end
+	end
 	class Policy < Rater
 		include ActiveModel::Model
+		attr_accessor :policy
 		def process_response(res)
-			@data = @transporter.res["policy"]
+			@res = res
+			@errors = res["errors"]
+			@data = res["policy"]
 			return @data
 		end
 	end

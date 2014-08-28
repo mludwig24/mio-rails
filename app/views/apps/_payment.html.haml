@@ -24,14 +24,25 @@
 		}
 		jQuery('#braintree').validate()
 	:coffeescript
+		# Open the modal if there are CC errors.
+		unless "#{@rate.errors && @rate.errors.has_key?("credit_card")}" == ""
+			jQuery('#payment').modal('show')
+	:coffeescript
 		# braintree.setup "#{@rate.client_key}", 'custom', {id: 'braintree'}
 		# braintree.setup "#{@rate.client_key}", 'dropin', {container: 'braintree_div'}
 		client = new braintree.api.Client({clientToken: "#{@rate.client_key}"})
 		jQuery('#braintree').submit (e, b) ->
 			unless $('#cc_num').valid() and $('#cc_exp').valid()
-				e.preventDefault()
-			client.tokenizeCard {number: jQuery('#cc_num').val(), expirationDate: jQuery('#cc_exp').val()}, (err, nonce) ->
-				jQuery('#payment_method_nonce').val(nonce)
+				return e.preventDefault()
+			if jQuery('#payment_method_nonce').val() == ""
+				e.preventDefault() ## Can't go until we have a nonce.
+				client.tokenizeCard {number: jQuery('#cc_num').val(), expirationDate: jQuery('#cc_exp').val()}, (err, nonce) ->
+					if err
+						alert err ## Exceptional event.  Shouldn't happen.
+						e.preventDefault()
+					else
+						jQuery('#payment_method_nonce').val(nonce)
+						jQuery('#braintree').submit()
 
 %div.modal.fade#payment
 	%div.modal-dialog
@@ -46,6 +57,11 @@
 					%h3
 						= t('app.headers.payment')
 				%div.modal-body
+					- if @rate.errors && @rate.errors.has_key?("credit_card")
+						%div.credit_card_errors.col-xs-12
+						- @rate.errors["credit_card"].each_pair do |code,msg|
+							%div.alert.alert-danger.col-xs-12
+								= msg
 					= f.static_control :total_price do
 						= number_to_currency(@rate.rate["total_price"])
 					%div.show
