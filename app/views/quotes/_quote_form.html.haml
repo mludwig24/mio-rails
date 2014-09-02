@@ -29,7 +29,8 @@
 	= f.date_select :enter_date,
 		:start_year => Date.today.year,
 		:end_year => (Date.today + 1.year).year,
-		:default => @quote.enter_date || Date.today
+		:default => @quote.enter_date || Date.today,
+		:help => "Lorem ipsum dolem sore."
 	= f.date_select :leave_date,
 		:start_year => Date.today.year,
 		:end_year => (Date.today + 1.year).year,
@@ -128,31 +129,20 @@
 	%h3
 		= t('quote.form.header.coverage_information')
 	= f.select :liability_limit, @quote.valid_liability_limits.collect { |v| [number_to_currency(v), v] }, {:default => @quote.liability_limit }
-	= f.form_group :fixed_deductibles, label: { text: t('activerecord.attributes.quote.fixed_deductibles') } do
-		= f.radio_button :fixed_deductibles, 1, :label => t('yes'), :inline => true
-		= f.radio_button :fixed_deductibles, 0, :label => t('no'), :inline => true
+
+	= render("yes_no", :form => f, :field => :fixed_deductibles,
+		:label => t('activerecord.attributes.quote.fixed_deductibles'))
 	%h3
 		= t('quote.form.header.underwriting_information')
 	= f.select :days_veh_in_mexico, options_for_select(@quote.valid_days_veh_in_mexico.collect { |i| [t("activerecord.attributes.quote.days_veh_in_mexico_options.#{i}"), i]}, @quote.days_veh_in_mexico),
 		{:include_blank => t('general.forms.select_one')}
 	= f.select :visit_reason, options_for_select(@quote.valid_visit_reasons.collect { |i| [t("activerecord.attributes.quote.visit_reasons.#{i}"), i]}, @quote.visit_reason),
 		{:include_blank => t('general.forms.select_one')}
-	= f.form_group :beyond_freezone, :label => { text: t('activerecord.attributes.quote.beyond_freezone') } do
-		= f.radio_button :beyond_freezone, 1, :label => t('yes'), :inline => true
-		= f.radio_button :beyond_freezone, 0, :label => t('no'), :inline => true
-	= f.form_group :under21, label: { text: t('activerecord.attributes.quote.under21') } do
-		= f.radio_button :under21, 1, :label => t('yes'), :inline => true
-		= f.radio_button :under21, 0, :label => t('no'), :inline => true
-	= f.form_group :uscoll_sc, label: { text: t('activerecord.attributes.quote.uscoll_sc') } do
-		= f.radio_button :uscoll_sc, 1, :label => t('yes'), :inline => true
-		= f.radio_button :uscoll_sc, 0, :label => t('no'), :inline => true
+	= render("yes_no", :form => f, :field => :beyond_freezone,
+		:label => t('activerecord.attributes.quote.beyond_freezone'))
+	= render("yes_no", :form => f, :field => :under21,
+		:label => t('activerecord.attributes.quote.under21'))
+	= render("yes_no", :form => f, :field => :uscoll_sc,
+		:label => t('activerecord.attributes.quote.uscoll_sc'))
 	%hr
-	%div.row-fluid
-		%div.col-sm-5
-			%button.btn.btn-lrg.pull-right{:type => "button",
-				"data-toggle" => "modal",
-				"data-target" => "#contact_modal"}
-				= t('app.form.button.get_help')
-		%div.col-sm-7
-			= f.primary t('quote.form.button.get_quote')
-		
+	= render("submit_with_help", :form => f, :label => t('quote.form.button.get_quote'))

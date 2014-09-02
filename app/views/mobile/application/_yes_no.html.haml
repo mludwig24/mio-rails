@@ -1,0 +1,9 @@
+= form.form_group field, label: { text: label } do
+	%div.btn-group.max-options-2{"data-toggle" => "buttons"}
+		= form.radio_button field, 1, :label => t('yes'), :inline => true, :label_class => "btn",
+			:label_checked_class => "active"
+		= form.radio_button field, 0, :label => t('no'), :inline => true, :label_class => "btn",
+			:label_checked_class => "active"
+	- if defined?(help)
+		%span.help-block
+			= help

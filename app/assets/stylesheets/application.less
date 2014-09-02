@@ -33,3 +33,40 @@ footer {
 	.alert-info;
 	margin-bottom: 0px;
 }
+.has-error .help-block {
+	.alert-danger;
+}
+.btn-group {
+	label.radio-inline.btn {
+		.btn-info;
+		input + span.glyphicon:after {
+			content: " ";
+		}
+		input:checked  + span.glyphicon {
+			.glyphicon-ok-circle;
+			&:before {
+				margin-right: 5px;
+			}
+		}
+	}
+	@media (max-width: @screen-sm-max) {
+		width: 100%;
+		&.max-options-2 label.radio-inline.btn { // Only two options, so make them wide.
+			width: 50%;
+		}
+		&.max-options-3 label.radio-inline.btn { // Only three options, so make them wide.
+			width: 33%;
+		}
+		&.max-options-4 label.radio-inline.btn { // Only four options, so make them wide.
+			width: 25%;
+		}
+		&.max-options-5 label.radio-inline.btn {
+			width: 20%;
+		}
+	}
+}
+.submit_with_help {
+	button {
+		margin-bottom: 10px;
+	}
+}

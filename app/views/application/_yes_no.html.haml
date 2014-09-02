@@ -1,0 +1,6 @@
+= form.form_group field, label: { text: label } do
+	= form.radio_button field, 1, :label => t('yes'), :inline => true
+	= form.radio_button field, 0, :label => t('no'), :inline => true
+	- if defined?(help)
+		%span.help-block
+			= help
