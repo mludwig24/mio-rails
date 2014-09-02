@@ -35,6 +35,7 @@ class String
 end
 
 # Re-opening the Bootstrap Form to customize.
+# See:  https://github.com/bootstrap-ruby/rails-bootstrap-forms
 module BootstrapForm
 	module Helpers
 		module Bootstrap
@@ -53,8 +54,26 @@ module BootstrapForm
 			end
 		end
 	end
+	class FormBuilder
+		def radio_button(name, value, *args)
+			options = args.extract_options!.symbolize_keys!
+			args << options.except(:label, :help, :inline, :label_class, :label_checked_class)
+			## Add a class if this is the "active" radio button.
+			if @object.has_attribute?(name) and @object.send(name).to_s == value.to_s
+				options[:label_class] = options[:label_class].to_s + " " + options[:label_checked_class].to_s
+			end
+			## Add the glyphicon class for mobile "buttons" support.  Add this support via CSS.
+			html = super + content_tag(:span, "", class: "glyphicon") + content_tag(:span, options[:label])
+			if options[:inline]
+				label(name, html, class: options[:label_class].to_s + " radio-inline", value: value)
+			else
+				content_tag(:div, class: "radio") do
+					label(name, html, value: value, class: options[:label_class].to_s)
+				end
+			end
+		end
+	end
 end
-
 # Phone validation:
 class PhoneValidator < ActiveModel::EachValidator
 	@@default_options = {}
