@@ -20,17 +20,13 @@
 
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
 	
-	%ul{:class => "errors", "ng-show" => "false"}
-		- @quote.errors.each do |key,value|
-			%li{:class => "has-error", "id" => "error_#{key}"}
-				= value
+	- f.error_summary
 	%h3
 		= t('quote.form.header.travel_dates')
 	= f.date_select :enter_date,
 		:start_year => Date.today.year,
 		:end_year => (Date.today + 1.year).year,
-		:default => @quote.enter_date || Date.today,
-		:help => "Lorem ipsum dolem sore."
+		:default => @quote.enter_date || Date.today
 	= f.date_select :leave_date,
 		:start_year => Date.today.year,
 		:end_year => (Date.today + 1.year).year,

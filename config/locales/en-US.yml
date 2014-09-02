@@ -1,6 +1,14 @@
 ---
 en-US:
   activerecord:
+    help:
+      quote:
+        enter_date: When you headed south?
+      popup:
+        quote:
+          enter_date: Oh snap, it pops up!
+          leave_date: "This one really POPS."
+          value: "The popup for the vehicle value."
     attributes:
       quote:
         enter_date: Date Entering Mexico
