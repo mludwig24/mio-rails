@@ -76,30 +76,14 @@ module BootstrapForm
 			help_text = object.errors[name].join(", ") if has_error?(name) && inline_errors
 			return if help_text === false
 			help_text ||= I18n.t(name, scope: "activerecord.help.#{object.class.to_s.downcase}", default: '')
-			help_tag = content_tag(:span, help_text, {class: 'help-block', "data-toggle" => "modal"}) if help_text.present?
+			help_tag = content_tag(:span, help_text.html_safe, {class: 'help-block', "data-toggle" => "modal"}) if help_text.present?
 			help_pop_text = I18n.t(name, scope: "activerecord.help.popup.#{object.class.to_s.downcase}", default: '')
 			if help_pop_text.present?
-				help_pop_tag = content_tag(:div,
-						class: "modal fade help_popup_modal",
-						id: "help_popup_#{object.class.to_s.downcase}_#{name}",
-						"data-help_popup_for" => "#{object.class.to_s.downcase}_#{name}") do
-					content_tag(:div, class: "modal-dialog") do
-						content_tag(:div, class: "modal-content") do
-							dialog = content_tag(:div, class: "modal-header") do
-								header = content_tag(:button, class: "close", "data-dismiss" => "modal") do
-									content_tag(:span, "x")
-								end
-								header += content_tag(:h3, I18n.t(name, scope: "activerecord.attributes.#{object.class.to_s.downcase}"))
-							end
-							dialog += content_tag(:div, class: "modal-body") do
-								content_tag(:p, help_pop_text)
-							end
-							dialog += content_tag(:div, class: "modal-footer") do
-								content_tag(:button, I18n.t('global.close'), class: "btn btn-primary", "data-dismiss" => "modal")
-							end
-						end
-					end
- 				end
+				help_pop_tag = content_tag(:div, help_pop_text.html_safe,
+						class: "help-popup-content hide",
+						"data-help-popup-id" => "help-popup-#{object.class.to_s.downcase}-#{name}",
+						"data-help-popup-for" => "#{object.class.to_s.downcase}_#{name}",
+						"data-help-popup-title" => I18n.t(name, scope: "activerecord.attributes.#{object.class.to_s.downcase}"))
  				return help_tag ? help_tag + help_pop_tag : help_pop_tag
 			end
 			return help_tag

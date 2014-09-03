@@ -3,12 +3,15 @@ en-US:
   activerecord:
     help:
       quote:
-        enter_date: When you headed south?
+        value: Example in-page help box.  Go see <a href="http://kbb.com/" target="_blank">
+          Kelly Blue Book</a> for the value of your vehicle, you dunce.
       popup:
         quote:
-          enter_date: Oh snap, it pops up!
-          leave_date: "This one really POPS."
-          value: "The popup for the vehicle value."
+          value: Your vehicle's valuation is based on Actual Cash Value obtained
+            at the time of an incident through <a href="http://kbb.com/" target="_blank">
+            Kelly Blue Book</a>'s valuation system.
+          model_id: Your vehicle model isn't rocket surgery.
+          make_id: Your vehicle make?
     attributes:
       quote:
         enter_date: Date Entering Mexico
