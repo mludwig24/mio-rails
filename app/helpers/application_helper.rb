@@ -80,7 +80,7 @@ module BootstrapForm
 			help_pop_text = I18n.t(name, scope: "activerecord.help.popup.#{object.class.to_s.downcase}", default: '')
 			if help_pop_text.present?
 				help_pop_tag = content_tag(:div, help_pop_text.html_safe,
-						class: "help-popup-content hide",
+						class: "help-popup-content help-block",
 						"data-help-popup-id" => "help-popup-#{object.class.to_s.downcase}-#{name}",
 						"data-help-popup-for" => "#{object.class.to_s.downcase}_#{name}",
 						"data-help-popup-title" => I18n.t(name, scope: "activerecord.attributes.#{object.class.to_s.downcase}"))
