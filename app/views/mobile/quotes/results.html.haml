@@ -8,14 +8,17 @@
 				%a{:href => "\##{term.downcase}",
 					:role => "tab",
 					"data-toggle" => "tab"}
-					= t("quote.results.labels.#{term}")
+					%div.term
+						= t("quote.results.labels.#{term}")
+					%div.lowest_price
+						= "(#{t('quote.results.labels.from_rate', :price => number_to_currency(@rates.for_term(term).lowest_price['total_price']))})"
 	%div.quote_results.mobile.tab-content
 		- @rates.terms.each do |term|
 			%div.col-xs-12.tab-pane{:id => "#{term.downcase}", :class => "#{term == 'daily' ? 'active' : ''}"}
 				%h3 
 					= t("quote.results.labels.#{term}")
 				%hr
-				- @rates.underwriters.each do |underwriter|
+				- @rates.for_term(term).sort_by_price!.underwriters.each do |underwriter|
 					%div.col-xs-12.col-sm-12
 						%h4.underwriter
 							%img{"src" => @rates.select { |r| r["underwriter_name"] == underwriter }.first["underwriter_image"]}
@@ -24,8 +27,8 @@
 						- @rates.for_underwriter(underwriter).for_term(term).each do |r|
 							%div.quote_result.col-xs-12
 								= render('individual_result', r: r, quote: @quote)
-
-%div.hide
+%hr
+%div
 	%h2
 		= t('quote.form.header.edit_quote')
 	= render "quote_form", :quote => @quote

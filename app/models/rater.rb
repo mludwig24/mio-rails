@@ -92,6 +92,25 @@ module Rater
 		def for_term(value) ## Proxy to "for".
 			self.for("term", value)
 		end
+		def first
+			@data.first
+		end
+		def sort_by_price!
+			@data = sorted_by_price()
+			return self
+		end
+		def sort_by_price
+			Quote.new(@data_obj, sorted_by_price())
+		end
+		def lowest_price ## Just to get the lowest price from this list.
+			sort_by_price.first
+		end
+		private
+		def sorted_by_price
+			@data.sort_by {|rate|
+				rate["total_price"].to_f
+			}
+		end
 	end
 	class CreatePolicy < Quote
 		attr_accessor :rate, :client_key, :policy

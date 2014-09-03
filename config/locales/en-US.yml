@@ -112,6 +112,7 @@ en-US:
         daily: Daily
         sixmo: Six Month
         annual: Annual
+        from_rate: From %{price}
       button:
         buy_now: Buy Now!
         details:
