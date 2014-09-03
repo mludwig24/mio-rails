@@ -14,33 +14,7 @@
 					%hr
 					- @rates.for_underwriter(underwriter).for_term(term).each do |r|
 						%div.quote_result{"class" => "col-lg-#{(12 / @rates.for_underwriter(underwriter).for_term(term).count).floor} col-md-#{(12 / @rates.for_underwriter(underwriter).for_term(term).count).floor} col-sm-12"}
-							%span.total_price
-								= number_to_currency(r["total_price"])
-							%br.clear
-							%a.btn.btn-success.buy_now{"href" => @quote.app == nil ? new_app_path(uid: r['underwriter'], tid: r['term'], qid: @quote.token) : app_path(@quote.app, uid: r['underwriter'], tid: r['term'], qid: @quote.token)}
-								= t('quote.results.button.buy_now')
-							%br.clear
-							%a.btn.btn-default.btn-link.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_details", "data-toggle" => "modal"}
-								= t("quote.results.button.details.#{r['underwriter_coverage_desc']}")
-							%div.modal{"id" => "result_#{r['underwriter']}_details", "role" => "dialog"}
-								%div.modal-dialog.modal-lg
-									%div.modal-content
-										%div.modal-header
-											%button.close{"data-dismiss" => "modal"}
-												%span{"aria-hidden" => "true"} &times;
-												%span.sr-only Close
-											%h4
-												= t('quote.results.headers.coverage_details')
-										%div.modal-body
-											%dl
-												- r["coverage"].each do |coverage|
-													%dt
-														%dfn
-															= t("quote.results.coverage.#{coverage}.header")
-													%dd
-														= t("quote.results.coverage.#{coverage}.details")
-										%div.modal-footer
-											%button.btn.btn-default{"data-dismiss" => "modal"} Close
+							= render('individual_result', r: r, quote: @quote)
 					%br.clear
 					%hr
 	%br.clear
