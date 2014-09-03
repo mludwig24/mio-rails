@@ -3,7 +3,7 @@ en:
   activerecord:
     attributes:
       quote:
-        enter_date: Date Headed to Meheeko
+        enter_date: Date Headed to Mexico
         leave_date: Date Leaving Mexico
         towing: Towing Coverage
         uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
