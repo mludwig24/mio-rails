@@ -70,4 +70,5 @@ gem 'email_validator'
 
 group :development do
 	gem 'guard-livereload', require: false
+	gem 'i18n-tasks-ar', '~> 0.1.0', require: false
 end

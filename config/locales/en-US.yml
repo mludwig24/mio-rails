@@ -3,13 +3,10 @@ en-US:
   activerecord:
     help:
       quote:
-        value: Example in-page help box.  Go see <a href="http://kbb.com/" target="_blank">
-          Kelly Blue Book</a> for the value of your vehicle, you dunce.
+        value: Example in-page help box.  Go see <a href="http://kbb.com/" target="_blank"> Kelly Blue Book</a> for the value of your vehicle, you dunce.
       popup:
         quote:
-          value: Your vehicle's valuation is based on Actual Cash Value obtained
-            at the time of an incident through <a href="http://kbb.com/" target="_blank">
-            Kelly Blue Book</a>'s valuation system.
+          value: Your vehicle's valuation is based on Actual Cash Value obtained at the time of an incident through <a href="http://kbb.com/" target="_blank"> Kelly Blue Book</a>'s valuation system.
           model_id: Your vehicle model isn't rocket surgery.
           make_id: Your vehicle make?
     attributes:
@@ -17,14 +14,10 @@ en-US:
         enter_date: Date Entering Mexico
         leave_date: Date Leaving Mexico
         towing: Towing Coverage
-        uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
-          insurance policy?
-        under21: Will there be drivers operating this vehicle, under 21 or over 80
-          years of age?
-        beyond_freezone: Are you traveling ONLY in the states of Baja and/or Sonora?
-          If you are unsure, please say no.
-        visit_reason: Which of the following best describes the reason for your visit
-          to Mexico?
+        uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian insurance policy?
+        under21: Will there be drivers operating this vehicle, under 21 or over 80 years of age?
+        beyond_freezone: Are you traveling ONLY in the states of Baja and/or Sonora? If you are unsure, please say no.
+        visit_reason: Which of the following best describes the reason for your visit to Mexico?
         visit_reasons:
           '1': Driving to Vacation Destination/Tourist Visa
           '2': Visiting Friends or Family
@@ -104,8 +97,7 @@ en-US:
       vehicle_value:
         liability_only: Liability only
     disclosure:
-      towed_units_disclosure: Each self propelled vehicle that is being towed must
-        ALSO have its own insurance policy when it is being driven.
+      towed_units_disclosure: Each self propelled vehicle that is being towed must ALSO have its own insurance policy when it is being driven.
       towed_units_disclosure_header: Towed units disclosure header
     results:
       labels:
@@ -122,13 +114,10 @@ en-US:
       coverage:
         collision:
           header: 'Property Damage:'
-          details: This includes coverage for collision, overturning, glass breakage,
-            and is subject to the deductible.
+          details: This includes coverage for collision, overturning, glass breakage, and is subject to the deductible.
         theft:
           header: 'Theft:'
-          details: This coverage includes total theft of the vehicle. Note that partial
-            theft coverage is not available in Mexico unless you purchase an extended
-            coverage option.
+          details: This coverage includes total theft of the vehicle. Note that partial theft coverage is not available in Mexico unless you purchase an extended coverage option.
       headers:
         quote_results: Quote results
         coverage_details: Coverage details
@@ -163,6 +152,7 @@ en-US:
         step_4: Pay & View Policy
         have_questions: Purchasing Help
         get_help: Have questions?  We can help!
+        agree_and_pay: Agree and pay
       recap:
         button:
           edit_personal: Edit personal
@@ -182,6 +172,11 @@ en-US:
       disclosures: Disclosures
       payment: Payment
       vehicle_info: Vehicle info
+      thank_you: Thank you
+      print_me: Print me
+      other_info: Other info
+      contact_info: Contact info
+      check_email: Check email
     thank_you:
       policy_pdf:
         body: Thank you for purchasing.  You're awesome.  More sales verbiage goes here.
@@ -191,14 +186,18 @@ en-US:
         body: You don't have to print this, either.  It's another massive document full of even more legal crap.  Good luck actually reading it.
       check_email:
         body: You'll also get a copy of this in your email, but it just leads back here, so just click the provided print button.
+    button:
+      tnc_pdf: Tnc pdf
+      opt_travel_tnc_pdf: Opt travel tnc pdf
+      policy_pdf: Policy pdf
   nav:
     english: English
     spanish: Español
     quote:
-      new: "New Quote"
-      results: "Quote Results"
+      new: New Quote
+      results: Quote Results
     app:
-      personal: "Personal Info"
+      personal: Personal Info
   greetings:
     hello: Hi, world!
     goodbye: Peace, world!
