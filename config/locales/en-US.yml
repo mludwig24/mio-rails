@@ -3,26 +3,68 @@ en-US:
   activerecord:
     help:
       quote:
-        value: Have you verified the current market value with KBB? We suggest using either the <a href="http://kbb.com/" target="_blank">
-            Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank">
-            NADA</a> Guide to determine the value of your vehicle. 
-        towing: You must list any and all towed units! Failing to do so can result in no coverage. Also, each self propelled vehicle must have its own policy when it is driven.
+        value: Have you verified the current market value with KBB? We suggest using
+          either the <a href="http://kbb.com/" target="_blank"> Kelly Blue Book</a>'s
+          or <a href="http://www.nadaguides.com?" target="_blank"> NADA</a> Guide
+          to determine the value of your vehicle.
+        towing: You must list any and all towed units! Failing to do so can result
+          in no coverage. Also, each self propelled vehicle must have its own policy
+          when it is driven.
       popup:
         quote:
-          value: Insurance policies that cover theft of or damage to a vehicle use the Actual Cash Value or the present market value, as the basis for valuing the vehicle in the event of a loss. If you have an accident or your vehicle is stolen, the company will pay you based on your vehicle's Acetual Cash Value. We suggest you use one of two auto industry guides <a href="http://kbb.com/" target="_blank"> to help you determine the present value of your vehicle. 
+          value: Insurance policies that cover theft of or damage to a vehicle use
+            the Actual Cash Value or the present market value, as the basis for valuing
+            the vehicle in the event of a loss. If you have an accident or your vehicle
+            is stolen, the company will pay you based on your vehicle's Acetual Cash
+            Value. We suggest you use one of two auto industry guides <a href="http://kbb.com/"
+            target="_blank"> to help you determine the present value of your vehicle.
             Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank">
           model_id: Your vehicle model isn't rocket surgery.
           make_id: Your vehicle make?
-          enter_date: Enter the date you will be entering Mexico. If you purchase your policy befor the day it becomes effective it will go into effect at 12:01 AM on the effective date and will cover you for the entirety of the day uou enter. If you purchase your policy on the day you are entering Mexico, your coverage becomes effective at the time you purchased your policy. The time you purchased the policy is date staped and printed on your policy.
-          leave_date: Enter the date you will be leaving Mexico. The policy will cover you for the entirety of the day you leave. All policies end at 12:01 AM (just after midnight on the day after you leave Mexico. The maximum policy period is 1 Year.
-          Year: Enter the year of your vehicle. Vehicles over 20 years old are eligible for liability, legal aid, and travel assistance coverage only. 
-          liability_limit: Liabity coverage pays for the bolidy injury or property damage to third parties in the event that you are found negligent in a covered accident. Liability coverage does not coverage damages to occupants of your vehicle or damage to your vehiclde. We recommend purchasing no less than $300,000 CSL, and if possible more due to recent changes in Mexican liability law.
-          fixed_deductibles: There are two types of deductibles 1. Fixed deductibles which are $500 for Section 1 perils and $1,000 for Section 2 perils. 2. Percentage deductibles are based on the value of the vehicle, but are subject to minimums based the vehicle type. While the minimum deductible varies by company the percentage for Section 1 is 2% and is 5% for Section 2. 
-          uscoll_sc: If you do not have collision and theft coverage on your current US/Canadian policy , please select "no" for the question. Only vehihicles which carry collission and theft on a current (non-Mexico_ policy ar eeligible for collission and theft coverage in Mexico.
-          Towing: If you are towing a trailer or another vehicle you must declare it on your online application. If you do not declare all towed units, and have an accident, you claim can be denied. To add physical damage coverage to a towed unit, please list a dollar value for each towed unit. There is no coverage for vehicles, ATVs, motorcycles, or boats once they are unloaded from the trailer, each of these types of vehicles will need a separate policy when being operated.  
+          enter_date: Enter the date you will be entering Mexico. If you purchase
+            your policy befor the day it becomes effective it will go into effect
+            at 12:01 AM on the effective date and will cover you for the entirety
+            of the day uou enter. If you purchase your policy on the day you are entering
+            Mexico, your coverage becomes effective at the time you purchased your
+            policy. The time you purchased the policy is date staped and printed on
+            your policy.
+          leave_date: Enter the date you will be leaving Mexico. The policy will cover
+            you for the entirety of the day you leave. All policies end at 12:01 AM
+            (just after midnight on the day after you leave Mexico. The maximum policy
+            period is 1 Year.
+          Year: Enter the year of your vehicle. Vehicles over 20 years old are eligible
+            for liability, legal aid, and travel assistance coverage only.
+          liability_limit: Liabity coverage pays for the bolidy injury or property
+            damage to third parties in the event that you are found negligent in a
+            covered accident. Liability coverage does not coverage damages to occupants
+            of your vehicle or damage to your vehiclde. We recommend purchasing no
+            less than $300,000 CSL, and if possible more due to recent changes in
+            Mexican liability law.
+          fixed_deductibles: There are two types of deductibles 1. Fixed deductibles
+            which are $500 for Section 1 perils and $1,000 for Section 2 perils. 2.
+            Percentage deductibles are based on the value of the vehicle, but are
+            subject to minimums based the vehicle type. While the minimum deductible
+            varies by company the percentage for Section 1 is 2% and is 5% for Section
+            2.
+          uscoll_sc: If you do not have collision and theft coverage on your current
+            US/Canadian policy , please select "no" for the question. Only vehihicles
+            which carry collission and theft on a current (non-Mexico_ policy ar eeligible
+            for collission and theft coverage in Mexico.
+          Towing: If you are towing a trailer or another vehicle you must declare
+            it on your online application. If you do not declare all towed units,
+            and have an accident, you claim can be denied. To add physical damage
+            coverage to a towed unit, please list a dollar value for each towed unit.
+            There is no coverage for vehicles, ATVs, motorcycles, or boats once they
+            are unloaded from the trailer, each of these types of vehicles will need
+            a separate policy when being operated.
         app:
-          license_plate_state: You must have a valid non-Mexican Driver's license and be at least 18 years of age to be covered under this policy. 
-          first_name: Please enter the name on the vehicle registration. This can be a personal name or a company name. Please note that any one may legal drive the insured vehicle as long as they have the owners permission, have a valid drivers' license, and are not a Mexican citizen. It is not necessary to list all driver's.
+          license_plate_state: You must have a valid non-Mexican Driver's license
+            and be at least 18 years of age to be covered under this policy.
+          first_name: Please enter the name on the vehicle registration. This can
+            be a personal name or a company name. Please note that any one may legal
+            drive the insured vehicle as long as they have the owners permission,
+            have a valid drivers' license, and are not a Mexican citizen. It is not
+            necessary to list all driver's.
     attributes:
       quote:
         enter_date: Date Entering Mexico
@@ -58,6 +100,16 @@ en-US:
         towed_unit_type: Towed unit type
         towed_unit_year: Towed unit year
         towed_unit_value: Towed unit value
+        created_at: Created At
+        updated_at: Updated At
+        body_style: Body Style
+        liability: Liability
+        extended_travel: Extended Travel
+        other_model: Other Model
+        token: Token
+        api_quote_id: Api Quote
+        make_label: Make Label
+        model_label: Model Label
       app:
         vin: Vehicle Identification Number (VIN)
         cc_num: Credit Card Number
@@ -77,6 +129,23 @@ en-US:
         license_plate_state: License Plate State
         us_insurance_company: US Insurance Company
         ownership: Ownership
+        created_at: Created At
+        updated_at: Updated At
+        quote_id: Quote
+        tid: Tid
+        uid: Uid
+        token: Token
+        type: Type
+        us_insurance_policy: Us Insurance Policy
+        us_insurance_expiration: Us Insurance Expiration
+        finance_company: Finance Company
+        finance_account: Finance Account
+        finance_address: Finance Address
+        finance_city: Finance City
+        finance_state: Finance State
+        finance_zip: Finance Zip
+        payment_method_nonce: Payment Method Nonce
+        v3_policy_id: V3 Policy
       towed:
         vin: Vehicle Identification Number (VIN)
         make: Make
@@ -85,12 +154,19 @@ en-US:
         value: Value
         license_plate: License plate
         license_plate_state: License plate state
+        type_id: Type
+        quote_id: Quote
+        type_label: Type Label
       driver:
         first_name: First Name
         last_name: Last Name
       drivers:
         first_name: Given Name
         last_name: Family Name
+        token: Token
+        app_id: App
+        created_at: Created At
+        updated_at: Updated At
     errors:
       messages:
         blank: must be provided
@@ -99,10 +175,11 @@ en-US:
         quote:
           attributes:
             enter_date:
-              after_or_equal_to: The enter date you have input into the system is in the past
+              after_or_equal_to: The enter date you have input into the system is
+                in the past
               before: The enter date is after the leave date
-            leave_date: The date you will leave Mexico is after the date you plan to enter Mexico
-          
+            leave_date: The date you will leave Mexico is after the date you plan
+              to enter Mexico
   quote:
     form:
       header:
@@ -204,21 +281,25 @@ en-US:
       vehicle_info: Vehicle info
     thank_you:
       policy_pdf:
-        body: Thank you for purchasing.  You're awesome.  More sales verbiage goes here.
+        body: Thank you for purchasing.  You're awesome.  More sales verbiage goes
+          here.
       tnc_pdf:
-        body: You don't have to print this.  It's a massive document that is full of legal crap.  It is just for your reference.  Better verbiage goes here.
+        body: You don't have to print this.  It's a massive document that is full
+          of legal crap.  It is just for your reference.  Better verbiage goes here.
       opt_travel_tnc:
-        body: You don't have to print this, either.  It's another massive document full of even more legal crap.  Good luck actually reading it.
+        body: You don't have to print this, either.  It's another massive document
+          full of even more legal crap.  Good luck actually reading it.
       check_email:
-        body: You'll also get a copy of this in your email, but it just leads back here, so just click the provided print button.
+        body: You'll also get a copy of this in your email, but it just leads back
+          here, so just click the provided print button.
   nav:
     english: English
     spanish: Español
     quote:
-      new: "New Quote"
-      results: "Quote Results"
+      new: New Quote
+      results: Quote Results
     app:
-      personal: "Personal Info"
+      personal: Personal Info
   greetings:
     hello: Hi, world!
     goodbye: Peace, world!
