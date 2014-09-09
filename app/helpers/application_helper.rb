@@ -32,6 +32,9 @@ class String
 	def phone?
 		self.raw_phone.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/) != nil
 	end
+	def slug
+		self.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+	end
 end
 
 # Re-opening the Bootstrap Form to customize.
