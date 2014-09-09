@@ -5,7 +5,7 @@ en-US:
       quote:
         value: Have you verified the current market value with KBB? We suggest using
           either the <a href="http://kbb.com/" target="_blank"> Kelly Blue Book</a>'s
-          or <a href="http://www.nadaguides.com?" target="_blank"> NADA</a> Guide
+          or <a href="http://www.nadaguides.com?" target="_blank"> NADA Guide</a>
           to determine the value of your vehicle.
         towing: You must list any and all towed units! Failing to do so can result
           in no coverage. Also, each self propelled vehicle must have its own policy
@@ -18,9 +18,9 @@ en-US:
             is stolen, the company will pay you based on your vehicle's Acetual Cash
             Value. We suggest you use one of two auto industry guides <a href="http://kbb.com/"
             target="_blank"> to help you determine the present value of your vehicle.
-            Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank">
-          model_id: Your vehicle model isn't rocket surgery.
-          make_id: Your vehicle make?
+            Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank"> NADA Guide</a>. 
+          model_id: Please select your vehicle model.
+          make_id: Please select your vehicle make.
           enter_date: Enter the date you will be entering Mexico. If you purchase
             your policy befor the day it becomes effective it will go into effect
             at 12:01 AM on the effective date and will cover you for the entirety
@@ -104,7 +104,7 @@ en-US:
         updated_at: Updated At
         body_style: Body Style
         liability: Liability
-        extended_travel: Extended Travel
+        extended_travel: Extended Travel Assistance
         other_model: Other Model
         token: Token
         api_quote_id: Api Quote
@@ -161,8 +161,8 @@ en-US:
         first_name: First Name
         last_name: Last Name
       drivers:
-        first_name: Given Name
-        last_name: Family Name
+        first_name: First Name
+        last_name: Last Name
         token: Token
         app_id: App
         created_at: Created At
@@ -183,15 +183,15 @@ en-US:
   quote:
     form:
       header:
-        new_quote: Create Quote
+        new_quote: Mexico Auto Insurance Quote
         travel_dates: Dates Traveling To Mexico
         towed_unit_sub: Towed Unit {1}
         edit_quote: Edit quote
-        vehicle_information: Vehicle information
-        towed_units: Towed units
-        coverage_information: Coverage information
-        underwriting_information: Underwriting information
-      other_model_placeholder: model
+        vehicle_information: Vehicle Information
+        towed_units: Towed Units
+        coverage_information: Coverage Information
+        underwriting_information: Underwriting Information
+      other_model_placeholder: Model
       towing_anything_value_label:
         zero: Declined - Never towing in Mexico
         one: Towing up to %{count} unit
