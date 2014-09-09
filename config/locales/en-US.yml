@@ -3,19 +3,31 @@ en-US:
   activerecord:
     help:
       quote:
-        value: Example in-page help box.  Go see <a href="http://kbb.com/" target="_blank">
-          Kelly Blue Book</a> for the value of your vehicle, you dunce.
+        value: Have you verified the current market value with KBB? We suggest using either the <a href="http://kbb.com/" target="_blank">
+            Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank">
+            NADA</a> Guide to determine the value of your vehicle. 
+        towing: You must list any and all towed units! Failing to do so can result in no coverage. Also, each self propelled vehicle must have its own policy when it is driven.
       popup:
         quote:
-          value: Your vehicle's valuation is based on Actual Cash Value obtained
-            at the time of an incident through <a href="http://kbb.com/" target="_blank">
-            Kelly Blue Book</a>'s valuation system.
+          value: Insurance policies that cover theft of or damage to a vehicle use the Actual Cash Value or the present market value, as the basis for valuing the vehicle in the event of a loss. If you have an accident or your vehicle is stolen, the company will pay you based on your vehicle's Acetual Cash Value. We suggest you use one of two auto industry guides <a href="http://kbb.com/" target="_blank"> to help you determine the present value of your vehicle. 
+            Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank">
           model_id: Your vehicle model isn't rocket surgery.
           make_id: Your vehicle make?
+          enter_date: Enter the date you will be entering Mexico. If you purchase your policy befor the day it becomes effective it will go into effect at 12:01 AM on the effective date and will cover you for the entirety of the day uou enter. If you purchase your policy on the day you are entering Mexico, your coverage becomes effective at the time you purchased your policy. The time you purchased the policy is date staped and printed on your policy.
+          leave_date: Enter the date you will be leaving Mexico. The policy will cover you for the entirety of the day you leave. All policies end at 12:01 AM (just after midnight on the day after you leave Mexico. The maximum policy period is 1 Year.
+          Year: Enter the year of your vehicle. Vehicles over 20 years old are eligible for liability, legal aid, and travel assistance coverage only. 
+          liability_limit: Liabity coverage pays for the bolidy injury or property damage to third parties in the event that you are found negligent in a covered accident. Liability coverage does not coverage damages to occupants of your vehicle or damage to your vehiclde. We recommend purchasing no less than $300,000 CSL, and if possible more due to recent changes in Mexican liability law.
+          fixed_deductibles: There are two types of deductibles 1. Fixed deductibles which are $500 for Section 1 perils and $1,000 for Section 2 perils. 2. Percentage deductibles are based on the value of the vehicle, but are subject to minimums based the vehicle type. While the minimum deductible varies by company the percentage for Section 1 is 2% and is 5% for Section 2. 
+          uscoll_sc: If you do not have collision and theft coverage on your current US/Canadian policy , please select "no" for the question. Only vehihicles which carry collission and theft on a current (non-Mexico_ policy ar eeligible for collission and theft coverage in Mexico.
+          Towing: If you are towing a trailer or another vehicle you must declare it on your online application. If you do not declare all towed units, and have an accident, you claim can be denied. To add physical damage coverage to a towed unit, please list a dollar value for each towed unit. There is no coverage for vehicles, ATVs, motorcycles, or boats once they are unloaded from the trailer, each of these types of vehicles will need a separate policy when being operated.  
+        app:
+          license_plate_state: You must have a valid non-Mexican Driver's license and be at least 18 years of age to be covered under this policy. 
+          first_name: Please enter the name on the vehicle registration. This can be a personal name or a company name. Please note that any one may legal drive the insured vehicle as long as they have the owners permission, have a valid drivers' license, and are not a Mexican citizen. It is not necessary to list all driver's.
     attributes:
       quote:
         enter_date: Date Entering Mexico
         leave_date: Date Leaving Mexico
+        vehicle_type: Vehicle Type
         towing: Towing Coverage
         uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
           insurance policy?
@@ -38,11 +50,11 @@ en-US:
           '3': Between 90 and 180 days
           '4': More than 180 days
         liability_limit: Liability limit
-        fixed_deductibles: Fixed deductibles
+        fixed_deductibles: Quote with Fixed deductibles
         make_id: Make
         model_id: Model
-        year: Year
-        value: Value
+        year: Model Year
+        value: Vehicle Value
         towed_unit_type: Towed unit type
         towed_unit_year: Towed unit year
         towed_unit_value: Towed unit value
@@ -50,20 +62,20 @@ en-US:
         vin: Vehicle Identification Number (VIN)
         cc_num: Credit Card Number
         cc_exp: Credit Card Expiration
-        first_name: First name
-        last_name: Last name
+        first_name: First Name
+        last_name: Last Name
         address: Address
         city: City
         state: State
         zip: Zip
         phone: Phone
         email: Email
-        license_number: License number
-        license_state: License state
+        license_number: Driver's License Number
+        license_state: License State
         registration: Registration
-        license_plate: License plate
-        license_plate_state: License plate state
-        us_insurance_company: Us insurance company
+        license_plate: License Plate
+        license_plate_state: License Plate State
+        us_insurance_company: US Insurance Company
         ownership: Ownership
       towed:
         vin: Vehicle Identification Number (VIN)
@@ -74,8 +86,8 @@ en-US:
         license_plate: License plate
         license_plate_state: License plate state
       driver:
-        first_name: Given Name
-        last_name: Family Name
+        first_name: First Name
+        last_name: Last Name
       drivers:
         first_name: Given Name
         last_name: Family Name
@@ -83,6 +95,14 @@ en-US:
       messages:
         blank: must be provided
         inclusion: selection was invalid
+      models:
+        quote:
+          attributes:
+            enter_date:
+              after_or_equal_to: The enter date you have input into the system is in the past
+              before: The enter date is after the leave date
+            leave_date: The date you will leave Mexico is after the date you plan to enter Mexico
+          
   quote:
     form:
       header:
