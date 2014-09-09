@@ -18,10 +18,12 @@
 			%div.modal-body
 				%dl
 					- r["coverage"].each do |coverage|
-						%dt
-							%dfn
-								= t("quote.results.coverage.#{coverage}.header")
-						%dd
-							= t("quote.results.coverage.#{coverage}.details")
+						- scope = "quote.results.coverage"
+						- unless t("#{coverage}.header", scope: scope).start_with?("DELETE")
+							%dt
+								%dfn
+									= t("#{coverage}.header", scope: scope)
+							%dd
+								= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.#{coverage}.details", scope: scope)
 			%div.modal-footer
 				%button.btn.btn-default{"data-dismiss" => "modal"} Close
