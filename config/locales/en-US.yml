@@ -260,6 +260,7 @@ en-US:
         step_4: Pay & View Policy
         have_questions: Purchasing Help
         get_help: Have questions?  We can help!
+        agree_and_pay: Agree and pay
       recap:
         button:
           edit_personal: Edit personal
@@ -279,6 +280,11 @@ en-US:
       disclosures: Disclosures
       payment: Payment
       vehicle_info: Vehicle info
+      thank_you: Thank you
+      print_me: Print me
+      other_info: Other info
+      contact_info: Contact info
+      check_email: Check email
     thank_you:
       policy_pdf:
         body: Thank you for purchasing.  You're awesome.  More sales verbiage goes
@@ -292,6 +298,10 @@ en-US:
       check_email:
         body: You'll also get a copy of this in your email, but it just leads back
           here, so just click the provided print button.
+    button:
+      tnc_pdf: Tnc pdf
+      opt_travel_tnc_pdf: Opt travel tnc pdf
+      policy_pdf: Policy pdf
   nav:
     english: English
     spanish: Español
