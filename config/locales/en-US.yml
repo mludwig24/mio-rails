@@ -149,6 +149,7 @@ en-US:
         payment_method_nonce: Payment Method Nonce
         v3_policy_id: V3 Policy
         agreement: Agree to Terms of Sale
+        signer: Electronicly Signed By
       towed:
         vin: Vehicle Identification Number (VIN)
         make: Make
