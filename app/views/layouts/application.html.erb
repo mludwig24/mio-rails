@@ -85,24 +85,6 @@
       I18n.locale = "<%= I18n.locale %>";
       I18n.fallbacks = true;
     </script>
-    <div class="modal fade" id="contact_modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-            <h3><%= t('general.contact_modal.header') %></h3>
-          </div>
-          <div class="modal-body">
-            <p>Contact form and info goes here.  Big phone number.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="btn btn-primary"><%= t('global.close') %></button>
-          </div>
-        </div>
-      </div>
-    </div>
     <% if content_for?(:extra_js) %>
       <%= yield(:extra_js) %>
     <% end %>

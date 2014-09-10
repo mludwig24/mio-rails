@@ -68,7 +68,7 @@
 						{include_blank: t('general.forms.select_one')},
 						class: "required"
 					= f.form_group :agreement, label: { text: t('activerecord.attributes.app.agreement') } do
-						= f.check_box :agreement, :label => t('app.disclosure.agreement.label'),
+						= f.check_box :agreement, :label => t('app.disclosure.agreement.label', tnc_link: @rate.rate["tnc_pdf"]).html_safe,
 							:inline => true,
 							:class => "required"
 					= f.static_control :total_price do
