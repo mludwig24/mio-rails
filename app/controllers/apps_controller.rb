@@ -37,7 +37,7 @@ class AppsController < ApplicationController
 		@app.update(init_params)
 		if @app.valid?
 			if @app.save()
-				redirect_to app_personal_path(@app)
+				redirect_to app_personal_path(@app) and return
 			end
 		end
 		render "personal"
