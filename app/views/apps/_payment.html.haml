@@ -17,6 +17,8 @@
 			errorClass: 'has-error',
 			validClass: 'has-success',
 			onKeyUp: false,
+			errorPlacement: (error, element) ->
+				jQuery(element).closest('div').append(error)
 			highlight: (element, errorClass) ->
 				jQuery(element).closest('.form-group').addClass(errorClass)
 			unhighlight: (element, errorClass, validClass) ->
