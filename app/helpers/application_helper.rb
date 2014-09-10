@@ -4,7 +4,7 @@ end
 # Re-opening string to create phone numbers.
 class String
 	def raw_phone
-		digits = self.split(//)
+		digits = self.gsub(/\D/, '').split(//)
 
 		if (digits.length == 11 and digits[0] == '1')
 			# Strip leading 1
