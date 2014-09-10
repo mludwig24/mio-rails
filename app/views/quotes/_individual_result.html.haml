@@ -24,6 +24,6 @@
 								%dfn
 									= t("#{coverage}.header", scope: scope)
 							%dd
-								= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.#{coverage}.details", scope: scope)
+								= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.#{coverage}.details", scope: scope, tnc_link: r["tnc_link"])
 			%div.modal-footer
 				%button.btn.btn-default{"data-dismiss" => "modal"} Close
