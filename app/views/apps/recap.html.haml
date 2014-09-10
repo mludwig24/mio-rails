@@ -32,7 +32,8 @@
 					= t('app.headers.disclosures')
 			%div.panel-body
 				%div.well.well-lg.disclosures
-					= render 'disclosures', quote: @app.quote
+					-# Need the tnc_link for disclosures.
+					= render 'disclosures', quote: @app.quote, tnc_link: @rate.rate["tnc_link"]
 				-# Modal is in the payment partial.
 				%button.btn.btn-primary.btn-lg.col-xs-12{:type => "button",
 					:data => {:toggle => "modal",

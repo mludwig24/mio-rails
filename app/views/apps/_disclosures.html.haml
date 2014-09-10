@@ -1,6 +1,6 @@
 - scope = 'app.disclosure'
-- %w{2013_law_reform cancellations pdf_reader claims}.each do |disc|
+- %w{2013_law_reform cancellations pdf_reader claims tnc_link}.each do |disc|
 	%h4
-		= t("#{disc}.header", scope:scope)
+		= t("#{disc}.header", scope:scope, tnc_link: tnc_link)
 	%p
-		= t("#{disc}.body", scope:scope)
+		= t("#{disc}.body", scope:scope).html_safe
