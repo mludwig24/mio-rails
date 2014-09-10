@@ -398,7 +398,7 @@ en-US:
         add_driver: Add driver
     disclosure:
       agreement:
-        label: By clicking this box, you agree to the disclosures detailed on this page.
+        label: By checking this box, you agree to the disclosures detailed on this page.
       other_drivers: Drivers do not need to be listed to have coverage, but can be for your convenience. 
       2013_law_reform:
         header: 2013 Mexico Law Reform- Higher Liability Limits Recommended
