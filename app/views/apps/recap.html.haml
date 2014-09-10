@@ -33,7 +33,7 @@
 			%div.panel-body
 				%div.well.well-lg.disclosures
 					-# Need the tnc_link for disclosures.
-					= render 'disclosures', quote: @app.quote, tnc_link: @rate.rate["tnc_link"]
+					= render 'disclosures', quote: @app.quote, tnc_link: @rate.rate["tnc_pdf"]
 				-# Modal is in the payment partial.
 				%button.btn.btn-primary.btn-lg.col-xs-12{:type => "button",
 					:data => {:toggle => "modal",
