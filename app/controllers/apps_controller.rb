@@ -40,6 +40,7 @@ class AppsController < ApplicationController
 				redirect_to app_personal_path(@app)
 			end
 		end
+		render "personal"
 	end
 	## Saving changes, needs to be aware of the steps.
 	def update
