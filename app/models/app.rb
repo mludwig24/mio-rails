@@ -77,7 +77,7 @@ class App < ActiveRecord::Base
 
 	validates_presence_of :uid, :tid
 	validates_presence_of :first_name, :last_name, :address, :city, :state,
-		:zip, :phone, :email, :license_number, :license_state,
+		:zip, :phone, :email, :license_number,
 		:if => Proc.new { |app| app.validate_personal? }
 	validates :state, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_personal? }
@@ -88,11 +88,12 @@ class App < ActiveRecord::Base
 	validates :license_state, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_personal? }
 	validates_presence_of :vin, :registration, :us_insurance_company,
-		:us_insurance_policy, :us_insurance_expiration, :ownership,
-		:license_plate, :license_plate_state,
+		:us_insurance_policy, :us_insurance_expiration, :license_plate,
+		:if => Proc.new { |app| app.validate_vehicle? }
+	validates :registration, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_vehicle? }
 	validates_presence_of :finance_company, :finance_account,
-		:finance_address, :finance_city, :finance_state, :finance_zip,
+		:finance_address, :finance_city, :finance_zip,
 		:if => Proc.new { |app| app.validate_finance? }
 	validates :finance_state, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_finance? }
