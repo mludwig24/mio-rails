@@ -405,13 +405,13 @@ en-US:
         body: Due to a radical change to Mexico Liability Law, we now recommend that all our customers purchase a minimum of $300,000 in Liability coverage, and seriously consider the $500,000 limit! In the past, the liability damages imposed on an at-fault driver who caused a negligent fatality in Mexico were capped at 730 days multiplied by the local Mexico Minimum Wage (approximately $ 50,000 total damages in most Mexican States). Effective immediately, that limit has been increased by the Mexican Government to 5,000 days multiplied by the local Mexico minimum wage (up to approximately $ 300,000 US Dollars total damages, depending on the Mexican State). We strongly suggest that you now use the same level of care regarding Mexico Liability limits that you would use when purchasing a US or Canadian auto liability policy. The radical change to Mexico Liability law means that claims for Death Liability in Mexico will now be similar to the damages that are often imposed by courts in the US and Canada in similar cases.
       pdf_reader: 
         header: PDF Documents
-        body: 'In order to view the documents associated with this certificate you will need to have Adobe Reader installed.  This is free software that will allow you to read "PDF" documents.  Please click the following link to get Adobe Reader: <a href="http://www.adobe.com/products/acrobat/readstep2.html" target="_blank"> Adobe Reader</a> '
+        body: 'In order to view the documents associated with this certificate you will need to have Adobe Reader installed.  This is free software that will allow you to read "PDF" documents.  Please click the following link to get Adobe Reader: <a href="http://get.adobe.com/reader/" target="_blank"> Adobe Reader</a> '
       claims:
         header: In Case of a Claim
         body: In the unfortunate event that you may need to make a claim on this policy, you must report this claim in Mexico before returning to the United States. If you leave Mexico before obtaining the adjuster's report your claim may be denied.
       cancellations:
         header: Cancellations and Refunds
-        body:All 6 month and annual policies are fully earned 15 days after the effective date of the policy.  Daily polices are not eligible for refunds or cancellations after the effective date of the policy. Six month and annual policies allow for refunds and/or cancellations up to 15 days after effective date at a pro-rated daily rate. Pro-rates will be based on the actual cost of a 1 to 15 day policy. A cancellation fee equal to half of the Policy Fee will be retained on all cancellations. Note: Six month and annual polices carry high discount rates; daily policy amounts exceed 6-month rates after an average of 27 days.
+        body: "All 6 month and annual policies are fully earned 15 days after the effective date of the policy.  Daily polices are not eligible for refunds or cancellations after the effective date of the policy. Six month and annual policies allow for refunds and/or cancellations up to 15 days after effective date at a pro-rated daily rate. Pro-rates will be based on the actual cost of a 1 to 15 day policy. A cancellation fee equal to half of the Policy Fee will be retained on all cancellations. Note: Six month and annual polices carry high discount rates; daily policy amounts exceed 6-month rates after an average of 27 days."
       tnc_link:
         header: Policy Terms and Conditions
         body: By purchasing this policy you are agreeing to the <a href="%{tnc_link}" target="_blank"> legally binding terms and conditions of the policy</a>. 
@@ -430,6 +430,7 @@ en-US:
       other_info: Other info
       contact_info: Contact info
       check_email: Check email
+      coverage: Quote Details
     thank_you:
       policy_pdf:
         body: Thank you for purchasing.  You're awesome.  More sales verbiage goes
