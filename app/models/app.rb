@@ -95,10 +95,8 @@ class App < ActiveRecord::Base
 		:if => Proc.new { |app| app.validate_personal? }
 	validates :license_state, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_personal? }
-	validates_presence_of :vin, :registration, :us_insurance_company,
+	validates_presence_of :vin, :us_insurance_company,
 		:us_insurance_policy, :us_insurance_expiration, :license_plate,
-		:if => Proc.new { |app| app.validate_vehicle? }
-	validates :registration, :inclusion => valid_us_states,
 		:if => Proc.new { |app| app.validate_vehicle? }
 	validates_presence_of :finance_company, :finance_account,
 		:finance_address, :finance_city, :finance_zip,

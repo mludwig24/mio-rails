@@ -12,7 +12,6 @@
 		= t('app.form.header.power_unit_info')
 	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
 	= f.text_field :vin
-	= f.select :registration, us_states, {include_blank: t('general.forms.select_one')}
 	= f.text_field :license_plate
 	= f.select :license_plate_state, us_states, {include_blank: t('general.forms.select_one')}
 	= f.text_field :us_insurance_company

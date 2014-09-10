@@ -126,7 +126,6 @@ en-US:
         email: Email
         license_number: Driver's License Number
         license_state: License State
-        registration: Registration
         license_plate: License Plate Number
         license_plate_state: License Plate State
         us_insurance_company: US Insurance Company
@@ -388,7 +387,7 @@ en-US:
         step_4: Pay & View Policy
         have_questions: Purchasing Help
         get_help: Have questions?  We can help!
-        agree_and_pay: Agree and pay
+        agree_and_pay: Sign & Purchase
       recap:
         button:
           edit_personal: Edit Personal Information

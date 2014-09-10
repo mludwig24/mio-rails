@@ -205,7 +205,7 @@ module Rater
 			api_data["policy"]["term"] = @data_obj.app.tid
 			## Power Unit.
 			api_data["power_unit"]["vin"] = @data_obj.app.vin
-			api_data["power_unit"]["registration"] = @data_obj.app.registration
+			api_data["power_unit"]["registration"] = "AZ" # Static per DK.
 			api_data["power_unit"]["us_insurance_company"] = @data_obj.app.us_insurance_company
 			api_data["power_unit"]["us_insurance_policy"] = @data_obj.app.us_insurance_policy
 			api_data["power_unit"]["us_insurance_expiration"] = @data_obj.app.us_insurance_expiration.strftime(@@date_format)
