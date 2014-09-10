@@ -62,6 +62,13 @@
 						- @rate.errors["credit_card"].each_pair do |code,msg|
 							%div.alert.alert-danger.col-xs-12
 								= msg
+					= f.select :signer, options_for_select(@app.valid_signers),
+						{include_blank: t('general.forms.select_one')},
+						class: "required"
+					= f.form_group :agreement, label: { text: t('activerecord.attributes.app.agreement') } do
+						= f.check_box :agreement, :label => t('app.disclosure.agreement.label'),
+							:inline => true,
+							:class => "required"
 					= f.static_control :total_price do
 						= number_to_currency(@rate.rate["total_price"])
 					%div.show

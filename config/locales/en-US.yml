@@ -10,6 +10,8 @@ en-US:
         towing: You must list any and all towed units! Failing to do so can result
           in no coverage. Also, each self propelled vehicle must have its own policy
           when it is driven.
+      app:
+        signer: "Please select the name of the policy purchaser."
       popup:
         quote:
           value: Insurance policies that cover theft of or damage to a vehicle use
@@ -146,6 +148,7 @@ en-US:
         finance_zip: Finance Company Zip
         payment_method_nonce: Payment Method Nonce
         v3_policy_id: V3 Policy
+        agreement: Agree to Terms of Sale
       towed:
         vin: Vehicle Identification Number (VIN)
         make: Make
@@ -393,6 +396,8 @@ en-US:
       buttons:
         add_driver: Add driver
     disclosure:
+      agreement:
+        label: By clicking this box, you agree to the disclosures detailed on this page.
       other_drivers: Drivers do not need to be listed to have coverage, but can be for your convenience. 
       2013_law_reform:
         header: 2013 Mexico Law Reform- Higher Liability Limits Recommended

@@ -5,7 +5,7 @@ class App < ActiveRecord::Base
 	accepts_nested_attributes_for :drivers
 	accepts_nested_attributes_for :quote
 
-	attr_reader :cc_num, :cc_exp, :policy, :rates
+	attr_reader :cc_num, :cc_exp, :policy, :rates, :signer, :agreement
 	def cc_num=(cc_num)
 		raise "Should never try to set a credit card number!"
 	end
@@ -73,6 +73,14 @@ class App < ActiveRecord::Base
 	end
 	def financed?
 		return self.class.financed?(self.ownership)
+	end
+
+	def valid_signers
+		result = ["#{self.first_name} #{self.last_name}".titleize,]
+		self.drivers.each do |driver|
+			result << "#{driver.first_name} #{driver.last_name}".titleize
+		end
+		return result
 	end
 
 	validates_presence_of :uid, :tid
