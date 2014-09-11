@@ -234,13 +234,13 @@ en-US:
           header: '3rd Party Liability:' 
         legal:
           header: 'Legal Assitance'
-        medical_2000/10000:
+        medical_200010000:
           header: 'Medical Payments:'
-        medical_10000/50000:
+        medical_1000050000:
           header: 'Medical Payments:'
-        medical_5000/25000:
+        medical_500025000:
           header: 'Medical Payments:'
-        medical_15000/75000:
+        medical_1500075000:
           header: 'Medical Payments:'
         medical_30000-csl:
           header: 'Medical Payments:'
@@ -336,13 +336,13 @@ en-US:
             details: This policy provides coverage for partial theft and is subject to a $1,000 USD deductible.
           fixed_ded: 
             details: "Deductibles: $500 for collission and $1,000 for total theft. Additional Extended Coverage: Deductibles: $1,000 for partial theft and vandalism."
-          medical_2000/10000:
+          medical_200010000:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $2,000 USD per person / $10,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.
-          medical_5000/25000:
+          medical_500025000:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $5,000 USD per person / $25,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
-          medical_10000/50000:
+          medical_1000050000:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $10,000 USD per person / $50,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
-          medical_15000/75000:
+          medical_1500075000:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $15,000 USD per person / $75,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_30000-csl:
             details: This policy will pay medical expenses as a result of a covered vehicle accident up to $30,000 CSL per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
