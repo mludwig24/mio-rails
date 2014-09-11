@@ -147,7 +147,6 @@ en-US:
         payment_method_nonce: Payment Method Nonce
         v3_policy_id: V3 Policy
         agreement: I agree
-          label: By checking this box I am afirming that I have read, understand, and agree with the disclosures on this page. 
       towed:
         vin: Vehicle Identification Number (VIN)
         make: Make
@@ -445,10 +444,12 @@ en-US:
         body: In the unfortunate event that you may need to make a claim on this policy, you must report this claim in Mexico before returning to the United States. If you leave Mexico before obtaining the adjuster's report your claim may be denied.
       cancellations:
         header: Cancellations and Refunds
-        body: All 6 month and annual policies are fully earned 15 days after the effective date of the policy.  Daily polices are not eligible for refunds or cancellations after the effective date of the policy. Six month and annual policies allow for refunds and/or cancellations up to 15 days after effective date at a pro-rated daily rate. Pro-rates will be based on the actual cost of a 1 to 15 day policy. A cancellation fee equal to half of the Policy Fee will be retained on all cancellations. Note: Six month and annual polices carry high discount rates; daily policy amounts exceed 6-month rates after an average of 27 days.
+        body: "All 6 month and annual policies are fully earned 15 days after the effective date of the policy.  Daily polices are not eligible for refunds or cancellations after the effective date of the policy. Six month and annual policies allow for refunds and/or cancellations up to 15 days after effective date at a pro-rated daily rate. Pro-rates will be based on the actual cost of a 1 to 15 day policy. A cancellation fee equal to half of the Policy Fee will be retained on all cancellations. Note: Six month and annual polices carry high discount rates; daily policy amounts exceed 6-month rates after an average of 27 days."
       tnc_link:
         header: Policy Terms and Conditions
         body: By purchasing this policy you are agreeing to the <a href="%{tnc_link}" target="_blank"> legally binding terms and conditions of the policy</a>. 
+      agreement:
+        label: By checking this box I am afirming that I have read, understand, and agree with the disclosures on this page. 
     headers:
       application: Application
       new_app: New application
@@ -464,8 +465,9 @@ en-US:
       other_info: Other info
       contact_info: Contact info
       check_email: Check email
-    thank_you: Your Policy is Ready
-      policy_pdf: Print Policy
+      thank_you: Your Policy is Ready
+    thank_you:
+      policy_pdf:
         body: Thank you for purchasing your Mexico Insurance policy with us. Please print your policy declarations page by clicking on the link above. This document is required to make a claim in Mexico. Always carry this document with you while in Mexico. 
       tnc_pdf:
         body: The Terms And Conditions document is the legally binding contract for your Mexico Auto Insurance policy.  This document is not required to file a claim, however it is the insured's responsibility to read and understand this document.  
@@ -473,7 +475,6 @@ en-US:
         body: The Terms And Conditions document is the legally binding contract for your extended travel assistance coverage.  This document is not required to file a claim, however it is the insured's responsibility to read and understand this document. 
       check_email:
         body: You will also get a copy of your policy via email. If you need to access and print your policy at a later time, make changes to your policy, or purchase a new policy in the future you can do so by logging back into our system. A copy of your policy with instructions on how to log into the system have been emailed to you. If you did not receive this email, please check your spam folder. If you have high security in place you may need to modify these settings to receive the email. In the email you will find your username (generally, the same as your email address), your password (generated for you) and links to return to our site to retrieve this policy, or purchase another policy.
-
     button:
       tnc_pdf: Auto Policy Terms and Conditions
       opt_travel_tnc_pdf: Travel Assistance Terms and Conditions
