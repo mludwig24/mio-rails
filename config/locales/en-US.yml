@@ -346,7 +346,7 @@ en-US:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $15,000 USD per person / $75,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_30000-csl:
             details: This policy will pay medical expenses as a result of a covered vehicle accident up to $30,000 CSL per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
-        grupo-national-provincial:
+        grupo-nacional-provincial:
           standard:
             <<: *default-coverage
             percent_ded:
@@ -398,7 +398,7 @@ en-US:
             uninsured_motorist: DELETE
       headers:
         quote_results: Quote results
-        coverage_details: Coverage Details
+        coverage_details: Coverage Details - %{underwriter} - %{underwriter_coverage}
       buttons:
         buy_now: Buy Now
         details: Details

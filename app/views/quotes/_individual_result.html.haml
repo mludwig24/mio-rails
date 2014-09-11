@@ -14,7 +14,8 @@
 					%span{"aria-hidden" => "true"} &times;
 					%span.sr-only Close
 				%h4
-					= t('quote.results.headers.coverage_details')
+					= t('quote.results.headers.coverage_details', underwriter: r['underwriter_name'], underwriter_coverage: r['underwriter_coverage_desc'].titleize)
+
 			%div.modal-body
 				%dl
 					- r["coverage"].each do |coverage|
