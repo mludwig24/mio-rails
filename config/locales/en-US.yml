@@ -16,8 +16,7 @@ en-US:
             the Actual Cash Value or the present market value, as the basis for valuing
             the vehicle in the event of a loss. If you have an accident or your vehicle
             is stolen, the company will pay you based on your vehicle's Acetual Cash
-            Value. We suggest you use one of two auto industry guides <a href="http://kbb.com/"
-            target="_blank"> to help you determine the present value of your vehicle.
+            Value. We suggest you use one of two auto industry guides to help you determine the present value of your vehicle.
             Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank"> NADA Guide</a>. 
           model_id: Please select your vehicle model.
           make_id: Please select your vehicle make.
@@ -181,6 +180,9 @@ en-US:
               before: The enter date is after the leave date
             leave_date: The date you will leave Mexico is after the date you plan
               to enter Mexico
+        app:
+          attributes:
+            us_insurance_expiration: The expiration date you have entered is not in the future, please review and correct.
   quote:
     form:
       header:
@@ -238,7 +240,9 @@ en-US:
           header: 'Medical Payments:'
         medical_5000/25000:
           header: 'Medical Payments:'
-        medical_30000:
+        medical_15000/75000:
+          header: 'Medical Payments:'
+        medical_30000-csl:
           header: 'Medical Payments:'
         underwriter_travel:
           header: 'Travel Assitance:' 
@@ -340,7 +344,7 @@ en-US:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $10,000 USD per person / $50,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_15000/75000:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $15,000 USD per person / $75,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
-          medical_30000:
+          medical_30000-csl:
             details: This policy will pay medical expenses as a result of a covered vehicle accident up to $30,000 CSL per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
         grupo-national-provincial:
           standard:
@@ -349,7 +353,8 @@ en-US:
               details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $500 for cars and $1,000 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000 for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
             legal:
               details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
-            labor_rates: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
+            labor_rates: 
+              details: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
           extended:
             <<: *default-coverage
             legal:
@@ -365,7 +370,8 @@ en-US:
               details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $350 for cars and $$750 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $800 for cars and $1,200 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
             legal:
               details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
-            labor_rates: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
+            labor_rates: 
+              details: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
           extended:
             <<: *default-coverage
             legal:
@@ -381,7 +387,8 @@ en-US:
               details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $500 for cars and $1,000 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000 for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
             legal:
               details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
-            labor_rates: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
+            labor_rates: 
+              details: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
           extended:
             <<: *default-coverage
             legal:
@@ -461,7 +468,7 @@ en-US:
       payment: Payment
       vehicle_info: Vehicle Information
       thank_you: Thank you
-      print_me: Print me
+      print_me: You will need to print your policy. To start the process click on print policy.
       other_info: Other info
       contact_info: Contact info
       check_email: Check email
