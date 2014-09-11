@@ -462,7 +462,7 @@ en-US:
     error_alert:
       zero: No errors have occured, although if you are seeing this we have a problem
       one: There was an error in your input. Please review and correct it below.
-      other:There were errors in your input. Please review and correct them below. 
+      other: There were errors in your input. Please review and correct them below. 
   general:
     forms:
       select_one: Select one
