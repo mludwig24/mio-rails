@@ -4,21 +4,21 @@ class Quote < ActiveRecord::Base
 	has_many :toweds, dependent: :destroy
 	accepts_nested_attributes_for :toweds
 	
-	validates :fixed_deductibles, :presence => true,
+	validates :fixed_deductibles,
 		:inclusion => {:in => [0, 1]}
-	validates :liability_limit, :presence => true,
+	validates :liability_limit,
 		:inclusion => {:in => Proc.new { 
 			Quote.valid_liability_limits() }}
-	validates :under21, :presence => true,
+	validates :under21,
 		:inclusion => {:in => [0, 1]}
-	validates :beyond_freezone, :presence => true,
+	validates :beyond_freezone,
 		:inclusion => {:in => [0, 1]}
-	validates :uscoll_sc, :presence => true,
+	validates :uscoll_sc,
 		:inclusion => {:in => [0, 1]}
-	validates :days_veh_in_mexico, :presence => true,
+	validates :days_veh_in_mexico,
 		:inclusion => {:in => Proc.new { 
 			Quote.valid_days_veh_in_mexico() }}
-	validates :visit_reason, :presence => true,
+	validates :visit_reason,
 		:inclusion => {:in => Proc.new { 
 			Quote.valid_visit_reasons() }}
 	validates_presence_of :enter_date, :leave_date, :vehicle_type, :year,
