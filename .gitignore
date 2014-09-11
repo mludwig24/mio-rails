@@ -9,7 +9,7 @@
 
 # Ignore bundler config.
 /.bundle
-/Gemfile.lock
+# /Gemfile.lock ## Per heroku, allow it in.
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
