@@ -1,12 +1,3 @@
-- if @quote.errors.any?
-	%div#error_explanation
-		%h2
-			= t('global.headers.errors_occurred', count: @quote.errors.count)
-		%ul
-			- @quote.errors.full_messages.each do |msg|
-				%li.has_error
-					= msg
-
 %div{"ng-show" => "false", "id" => "ng-prepopulate"}
 	- @quote.toweds.each_index do |c|
 		%div{"data-name" => "towed_unit_#{c+1}_type_id",
@@ -19,8 +10,7 @@
 			"data-value" => @quote.toweds[c].id}
 
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
-	
-	- f.error_summary
+	= f.alert_message t('global.error_alert', count: @quote.errors.count)
 	%h3
 		= t('quote.form.header.travel_dates')
 	= f.date_select :enter_date,

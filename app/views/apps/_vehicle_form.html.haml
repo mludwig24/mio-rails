@@ -1,13 +1,6 @@
-- if @app.errors.any?
-	%div#error_explanation
-		%h2
-			= t('global.headers.errors_occurred', count: @quote.errors.count)
-		%ul
-			- @app.errors.full_messages.each do |msg|
-				%li.has_error
-					= msg
 
 = bootstrap_form_for(@app, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "VehicleFormController" }) do |f|
+	= f.alert_message t('global.error_alert', count: @app.errors.count)
 	%h3
 		= t('app.form.header.power_unit_info')
 	%input{"type" => "hidden", "name" => "step", "value" => @app.step}
