@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql
+  adapter: postgresql
   host: localhost
   username: root
   password: abc123
@@ -25,7 +25,7 @@ test:
 
 production:
   <<: *default
-  adapter: mysql
+  adapter: postgresql
   host: <%= ENV['MIO_DB_HOST'] %>
   username: <%= ENV['MIO_DB_USERNAME'] %>
   password: <%= ENV['MIO_DB_PASSWORD'] %>
