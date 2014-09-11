@@ -307,36 +307,36 @@ en-US:
             details: This policy will pay medical expenses as a result of a covered vehicle accident of $15,000 USD per person / $75,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_30000:
             details: This policy will pay medical expenses as a result of a covered vehicle accident up to $30,000 CSL per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
-      grupo-national-provincial:
-        standard:
-          <<: *default-coverage
-          percent_ded:
-            details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $500 for cars and $1,000 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000 for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
-          legal:
-            details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
-        extended:
-          <<: *default-coverage
-          legal:
-            details: This policy will provide up to $50,000 USD for a covered loss in the event you need bail bonds or legal assistance.
-          uninsured_motorist:
-            details: If you are involved in an accident in which an uninsured third party is at fault as determined by the legal authorities, and you sustain damage to your vehicle, we will pay for damages to your vehicle and waive your deductible.
-          labor_rates:
-            details: "The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased as follows: Cars - $50 USD per hour, Pickups/SUV - $55 UDS per hour, Motorhomes - $70 per hour"
-      aba-seguros:
-        standard:
-          <<: *default-coverage
-          percent_ded:
-            details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $350 for cars and $$750 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $800 for cars and $1,200 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
-          legal:
-            details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
-        extended:
-          <<: *default-coverage
-          legal:
-            details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
-          uninsured_motorist:
-            details: If you are involved in an accident in which an uninsured third party is at fault as determined by the legal authorities, and you sustain damage to your vehicle, we will pay for damages to your vehicle and waive your deductible.
-          labor_rates:
-            details: The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased to $75 USD per hour regardless of the type of vehicle.
+        grupo-national-provincial:
+          standard:
+            <<: *default-coverage
+            percent_ded:
+              details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $500 for cars and $1,000 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000 for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
+            legal:
+              details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
+          extended:
+            <<: *default-coverage
+            legal:
+              details: This policy will provide up to $50,000 USD for a covered loss in the event you need bail bonds or legal assistance.
+            uninsured_motorist:
+              details: If you are involved in an accident in which an uninsured third party is at fault as determined by the legal authorities, and you sustain damage to your vehicle, we will pay for damages to your vehicle and waive your deductible.
+            labor_rates:
+              details: "The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased as follows: Cars - $50 USD per hour, Pickups/SUV - $55 UDS per hour, Motorhomes - $70 per hour"
+        aba-seguros:
+          standard:
+            <<: *default-coverage
+            percent_ded:
+              details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $350 for cars and $$750 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $800 for cars and $1,200 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
+            legal:
+              details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
+          extended:
+            <<: *default-coverage
+            legal:
+              details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
+            uninsured_motorist:
+              details: If you are involved in an accident in which an uninsured third party is at fault as determined by the legal authorities, and you sustain damage to your vehicle, we will pay for damages to your vehicle and waive your deductible.
+            labor_rates:
+              details: The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased to $75 USD per hour regardless of the type of vehicle.
         ace-seguros:
           standard:
             <<: *default-coverage
@@ -459,6 +459,10 @@ en-US:
     'yes': 'Yes'
     'no': 'No'
     close: Close
+    error_alert:
+      zero: No errors have occured, although if you are seeing this we have a problem
+      one: There was an error in your input. Please review and correct it below.
+      other:There were errors in your input. Please review and correct them below. 
   general:
     forms:
       select_one: Select one
