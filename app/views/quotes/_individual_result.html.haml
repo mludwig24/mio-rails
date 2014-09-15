@@ -1,11 +1,15 @@
-%span.total_price
-	= number_to_currency(r["total_price"])
-%br.clear
-%a.btn.btn-success.buy_now{"href" => quote.app == nil ? new_app_path(uid: r['underwriter'], tid: r['term'], qid: quote.token) : app_path(quote.app, uid: r['underwriter'], tid: r['term'], qid: quote.token)}
-	= t('quote.results.button.buy_now')
-%br.clear
-%a.btn.btn-default.btn-link.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_details", "data-toggle" => "modal"}
-	= t("quote.results.button.details.#{r['underwriter_coverage_desc']}")
+%div.quote_result
+	%span.total_price
+		= number_to_currency(r["total_price"])
+	%br.clear
+	%a.btn.btn-success.buy_now{"href" => quote.app == nil ? new_app_path(uid: r['underwriter'], tid: r['term'], qid: quote.token) : app_path(quote.app, uid: r['underwriter'], tid: r['term'], qid: quote.token)}
+		= t('quote.results.button.buy_now')
+	%br.clear
+	%a.btn.btn-default.btn-link.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_details", "data-toggle" => "modal"}
+		= t("quote.results.button.details.#{r['underwriter_coverage_desc']}")
+	- if Rails.env == "development"
+		%a.btn.btn-danger.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_debug", "data-toggle" => "modal"}
+			= t("quote.results.button.debug")
 %div.modal{"id" => "result_#{r['underwriter']}_details", "role" => "dialog"}
 	%div.modal-dialog.modal-lg
 		%div.modal-content
@@ -26,5 +30,20 @@
 									= t("#{coverage.slug}.header", scope: scope)
 							%dd
 								= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.#{coverage.slug}.details", scope: scope, tnc_link: r["tnc_pdf"])
-			%div.modal-footer
-				%button.btn.btn-default{"data-dismiss" => "modal"} Close
+		%div.modal-footer
+			%button.btn.btn-default{"data-dismiss" => "modal"} Close
+- if Rails.env == "development"
+	%div.modal{"id" => "result_#{r['underwriter']}_debug", "role" => "dialog"}
+		%div.modal-dialog.modal-lg
+			%div.modal-content
+				%div.modal-header
+					%button.close{"data-dismiss" => "modal"}
+						%span{"aria-hidden" => "true"} &times;
+						%span.sr-only Close
+					%h4
+						= t('quote.results.headers.debug', underwriter: r['underwriter_name'], underwriter_coverage: r['underwriter_coverage_desc'].titleize)
+
+				%div.modal-body
+					= debug r
+				%div.modal-footer
+					%button.btn.btn-default{"data-dismiss" => "modal"} Close

@@ -25,7 +25,7 @@
 							= underwriter
 						%br.clear
 						- @rates.for_underwriter(underwriter).for_term(term).each do |r|
-							%div.quote_result.col-xs-12
+							%div.col-xs-12
 								= render('individual_result', r: r, quote: @quote)
 %hr
 %div
