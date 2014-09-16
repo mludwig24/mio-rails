@@ -8,6 +8,9 @@
 			"data-value" => @quote.toweds[c].value}
 		%div{"data-name" => "towed_unit_#{c+1}_id",
 			"data-value" => @quote.toweds[c].id}
+		- @quote.toweds[c].errors.keys.each do |key|
+			%div{:id => "error_towed_unit_#{c+1}_#{key}"}
+				= @quote.toweds[c].errors.get(key).join(", ")
 
 = bootstrap_form_for(@quote, layout: :horizontal, label_col: "col-sm-5", control_col: "col-sm-7", html: { "ng-controller" => "MakeModelController" }) do |f|
 	= f.alert_message t('global.error_alert', count: @quote.errors.count)
@@ -78,7 +81,7 @@
 			%input{"type" => "hidden",
 				"name" => 'quote[toweds_attributes][{{$index}}][type_label]', 
 				"ng-value" => 'getTUType($parent["towed_unit_"+i+"_type_id"])'}
-			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_type')}"}
+			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_type_id')}"}
 				= f.static_control :towed_unit_type, "label" => t('activerecord.attributes.quote.towed_unit_type') do
 					%select{"name" => "quote[toweds_attributes][{{$index}}][type_id]", 
 							:class => "form-control",
@@ -90,8 +93,8 @@
 							"ng-selected" => 'tut.id == $parent["towed_unit_"+i+"_type_id"]'}
 							{{tut.en}}
 					%span{:class => "help-block",
-						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type')",
-						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type')"}
+						"ng-show" => "hasError('#error_towed_unit_' + ($index+1) + '_type_id')",
+						"ng-bind" => "getError('#error_towed_unit_' + ($index+1) + '_type_id')"}
 			%div{"ng-class" => "{'has-error': hasError('#error_towed_unit_' + ($index+1) + '_year')}"}
 				= f.static_control :towed_unit_year, label: t('activerecord.attributes.quote.towed_unit_year') do
 					= select nil, "quote[toweds_attributes][{{$index}}][year]",

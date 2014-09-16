@@ -55,6 +55,29 @@ module BootstrapForm
 					content_tag(:div, html)
 				end
 			end
+			def alert_message(title, options = {})
+				css = options[:class] || 'alert alert-danger'
+
+				if object.respond_to?(:errors) && object.errors.full_messages.any?
+					content_tag :div, class: css do
+						concat content_tag :p, title
+						concat error_summary unless options[:error_summary] == false
+					end
+				end
+			end
+			def error_summary
+				content_tag :ul, class: 'rails-bootstrap-forms-error-summary' do
+					puts object.errors.inspect()
+					object.errors.keys.each do |key|
+						concat content_tag(:li,
+							object.errors.full_message(
+								key,
+								object.errors.get(key).join(", ")
+							),
+							{id: "error_#{key}"})
+					end
+				end
+			end
 		end
 	end
 	class FormBuilder
