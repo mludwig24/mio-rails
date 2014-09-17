@@ -70,5 +70,5 @@ gem 'email_validator'
 
 group :development do
 	gem 'guard-livereload', require: false
-	gem 'guard-test', require: false
+	gem 'guard-minitest', require: false
 end
