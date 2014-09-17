@@ -67,7 +67,8 @@ gem 'nested_form'
 gem 'date_validator', '~> 0.7.0'
 ## Validate emails.
 gem 'email_validator'
-
+## Validate phones.
+gem 'phony_rails'
 group :development do
 	gem 'guard-livereload', require: false
 	gem 'guard-minitest', require: false
