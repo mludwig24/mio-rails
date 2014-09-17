@@ -16,14 +16,21 @@
 	= f.alert_message t('global.error_alert', count: @quote.errors.count)
 	%h3
 		= t('quote.form.header.travel_dates')
-	= f.date_select :enter_date,
-		:start_year => Date.today.year,
-		:end_year => (Date.today + 1.year).year,
-		:default => @quote.enter_date || Date.today
-	= f.date_select :leave_date,
-		:start_year => Date.today.year,
-		:end_year => (Date.today + 1.year).year,
-		:default => Date.today + 1.day
+	%div{"data-behaviour" => "date-range"}
+		= f.date_field :enter_date,
+			:start_year => Date.today.year,
+			:end_year => (Date.today + 1.year).year,
+			:default => @quote.enter_date || Date.today,
+			:placeholder => l(Date.today),
+			"data-behaviour" => "date-picker",
+			"data-constrain-start-date" => l(Date.today),
+			"data-constrain-end-date" => "+1y"
+		= f.date_field :leave_date,
+			:start_year => Date.today.year,
+			:end_year => (Date.today + 1.year).year,
+			:default => Date.today + 1.day,
+			:placeholder => l(Date.today),
+			"data-behaviour" => "date-picker"
 	%h3
 		= t('quote.form.header.vehicle_information')
 	= f.select :vehicle_type, [], {:include_blank => t('general.forms.select_one')},
