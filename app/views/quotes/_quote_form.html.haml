@@ -24,13 +24,15 @@
 			:placeholder => l(Date.today),
 			"data-behaviour" => "date-picker",
 			"data-constrain-start-date" => l(Date.today),
-			"data-constrain-end-date" => "+1y"
+			"data-constrain-end-date" => "+1y",
+			:icon => "calendar"
 		= f.date_field :leave_date,
 			:start_year => Date.today.year,
 			:end_year => (Date.today + 1.year).year,
 			:default => Date.today + 1.day,
 			:placeholder => l(Date.today),
-			"data-behaviour" => "date-picker"
+			"data-behaviour" => "date-picker",
+			:icon => "calendar"
 	%h3
 		= t('quote.form.header.vehicle_information')
 	= f.select :vehicle_type, [], {:include_blank => t('general.forms.select_one')},
