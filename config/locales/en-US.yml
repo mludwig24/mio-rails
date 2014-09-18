@@ -22,10 +22,8 @@ en-US:
             the Actual Cash Value or the present market value, as the basis for valuing
             the vehicle in the event of a loss. If you have an accident or your vehicle
             is stolen, the company will pay you based on your vehicle's Acetual Cash
-            Value. We suggest you use one of two auto industry guides to help you
-            determine the present value of your vehicle. <a href="http://www.kbb.com"
-            target="_blank"> Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?"
-            target="_blank"> NADA Guide</a>.
+            Value. We suggest you use one of two auto industry guides to help you determine the present value of your vehicle. <a href="http://www.kbb.com" target="_blank">
+            Kelly Blue Book</a>'s or <a href="http://www.nadaguides.com?" target="_blank"> NADA Guide</a>. 
           model_id: Please select your vehicle model.
           make_id: Please select your vehicle make.
           enter_date: Enter the date you will be entering Mexico. If you purchase
@@ -55,8 +53,8 @@ en-US:
             2.
           uscoll_sc: If you do not have collision and theft coverage on your current
             US/Canadian policy , please select "no" for the question. Only vehihicles
-            which carry collission and theft on a current (non-Mexico) policy are
-            eligible for collission and theft coverage in Mexico.
+            which carry collission and theft on a current (non-Mexico) policy are eligible
+            for collission and theft coverage in Mexico.
           Towing: If you are towing a trailer or another vehicle you must declare
             it on your online application. If you do not declare all towed units,
             and have an accident, you claim can be denied. To add physical damage
@@ -65,8 +63,8 @@ en-US:
             are unloaded from the trailer, each of these types of vehicles will need
             a separate policy when being operated.
         app:
-          license_state: You must have a valid non-Mexican Driver's license and be
-            at least 18 years of age to be covered under this policy.
+          license_state: You must have a valid non-Mexican Driver's license
+            and be at least 18 years of age to be covered under this policy.
           first_name: Please enter the name on the vehicle registration. This can
             be a personal name or a company name. Please note that any one may legal
             drive the insured vehicle as long as they have the owners permission,
@@ -147,7 +145,7 @@ en-US:
         us_insurance_expiration: Us Insurance Expiration Date
         finance_company: Finance Company
         finance_account: Finance Account Number
-        finance_address: Finance Company Address
+        finance_address: Finance Company Address 
         finance_city: Finance Company City
         finance_state: Finance Company State
         finance_zip: Finance Company Zip
@@ -190,8 +188,7 @@ en-US:
               to enter Mexico
         app:
           attributes:
-            us_insurance_expiration: The expiration date you have entered is not in
-              the future, please review and correct.
+            us_insurance_expiration: The expiration date you have entered is not in the future, please review and correct.
   quote:
     form:
       header:
@@ -232,17 +229,17 @@ en-US:
         collision:
           header: 'Section 1 (Collision):'
         theft:
-          header: 'Section 2 (Theft):'
-        percent_ded:
+          header: 'Section 2 (Theft):'  
+        percent_ded: 
           header: 'Percentage Deductible:'
         us_repair:
-          header: 'US Repair:'
+          header: 'US Repair:' 
         labor_rates:
           header: 'Labor Rate:'
-        liability:
-          header: '3rd Party Liability:'
+        liability: 
+          header: '3rd Party Liability:' 
         legal:
-          header: Legal Assitance
+          header: 'Legal Assitance'
         medical_200010000:
           header: 'Medical Payments:'
         medical_1000050000:
@@ -254,13 +251,13 @@ en-US:
         medical_30000-csl:
           header: 'Medical Payments:'
         underwriter_travel:
-          header: 'Travel Assitance:'
+          header: 'Travel Assitance:' 
         mexassist_medevac:
           header: 'Medical Evacuation:'
         mexassist_trip_interuption:
-          header: 'Plane Tickets Home:'
+          header: 'Plane Tickets Home:' 
         mexassist_road_assist:
-          header: 'Roadside Assistance:'
+          header: 'Roadside Assistance:' 
         mexassist_rental_car:
           header: 'Rental Car:'
         mexassist_atm_safe:
@@ -272,9 +269,9 @@ en-US:
         generic_mexassist_medevac:
           header: 'Medical Evacuation:'
         generic_mexassist_trip_interuption:
-          header: 'Plane Tickets Home:'
+          header: 'Plane Tickets Home:' 
         generic_mexassist_road_assist:
-          header: 'Roadside Assistance:'
+          header: 'Roadside Assistance:' 
         generic_mexassist_rental_car:
           header: 'Rental Car:'
         generic_mexassist_atm_safe:
@@ -286,940 +283,124 @@ en-US:
         extended:
           header: 'Extended Coverage:'
         vandalism:
-          header: Vandalism
+          header: 'Vandalism'
         partial_theft:
           header: 'Partial Theft:'
-        fixed_ded:
+        fixed_ded: 
           header: 'Deductibles:'
         us_laborrate:
           header: 'US Labor Rate:'
-        uninsured_motorist:
-          header: 'Uninsured Motorist Deductible Waiver:'
-        default:
+        uninsured_motorist: 
+            header: 'Uninsured Motorist Deductible Waiver:'
+        default: &default-coverage
           collision:
             details: This includes coverage for collision, overturning, glass breakage,
               and is subject to the deductible.
           theft:
-            details: This coverage includes total theft of the vehicle. Note that
-              partial theft coverage is not available in Mexico unless you purchase
-              an extended coverage option.
+            details: This coverage includes total theft of the vehicle. Note that partial
+              theft coverage is not available in Mexico unless you purchase an extended
+              coverage option.
           us_repair:
-            details: Regardless of the policy you choose you can have your vehicle
-              repaired in the US. However, the labor rate will vary based on the policy
-              you purchase. Standard coverage will pay a labor rate equal to the going
-              Mexican labor rate. The extended coverage will have an increased labor
-              rate.
-          liability:
-            details: In the event of an accident, this coverage protects you from
-              bodily injury or property damages to thrid parties. This does not provide
-              coverage to passengers inside the insured vehicle. We recommend purchasing
-              the highest limits you can afford, but no less than $300,000 CSL.
+            details: Regardless of the policy you choose you can have your vehicle repaired in the US. However, the labor rate will vary based on the policy you purchase. Standard coverage will pay a labor rate equal to the going Mexican labor rate. The extended coverage will have an increased labor rate. 
+          liability: 
+            details: In the event of an accident, this coverage protects you from bodily injury or property damages to thrid parties. This does not provide coverage to passengers inside the insured vehicle. We recommend purchasing the highest limits you can afford, but no less than $300,000 CSL.
           underwriter_travel:
-            details: The underwriter provides a basic level of roadside assistance,
-              for a more a more comprehensive package please purchase the extended
-              travel assistance options.
+            details: The underwriter provides a basic level of roadside assistance, for a more a more comprehensive package please purchase the extended travel assistance options.
           mexassist_medevac:
-            details: This policy includes the extended travel assistance package which
-              includes limited medical evacuation for certain situations, please see
-              the terms and conditions for more detail.
+            details: This policy includes the extended travel assistance package which includes limited medical evacuation for certain situations, please see the terms and conditions for more detail.
           mexassist_trip_interuption:
-            details: This policy includes the extended travel assistance package which
-              includes plane tickets home for certain situations, please see the terms
-              and conditions for more detail.
+            details: This policy includes the extended travel assistance package which includes plane tickets home for certain situations, please see the terms and conditions for more detail.
           mexassist_road_assist:
-            details: This policy includes the extended travel assistance package which
-              includes travel assistance for certain situations, please see the terms
-              and conditions for more detail.
+            details: This policy includes the extended travel assistance package which includes travel assistance for certain situations, please see the terms and conditions for more detail.
           mexassist_rental_car:
-            details: This policy includes the extended travel assistance package which
-              provides a rental car for certain situations, please see the terms and
-              conditions for more detail.
+            details: This policy includes the extended travel assistance package which provides a rental car for certain situations, please see the terms and conditions for more detail.
           mexassist_atm_safe:
             header: DELETE
           mexassist_247_assist:
             header: DELETE
           mexassist_travel:
-            details: MexVisit® is our exclusive branded Travel Assistance product,
-              and is not available from any other agent or underwriter. When our optional
-              MexVisit® Travel Assistance coverage is purchased, in addition to the
-              regular tourist auto policy, coverage includes not only excellent auto
-              insurance protection from Mexico's finest underwriters, but also the
-              best travel assistance coverage available in the marketplace. Coverage
-              is available 24 hours a day, 365 days a year, through a live case monitoring
-              contact center. MexVisit® is available as an option on all policies.
+            details: MexVisit® is our exclusive branded Travel Assistance product, and is not available from any other agent or underwriter. When our optional MexVisit® Travel Assistance coverage is purchased, in addition to the regular tourist auto policy, coverage includes not only excellent auto insurance protection from Mexico's finest underwriters, but also the best travel assistance coverage available in the marketplace. Coverage is available 24 hours a day, 365 days a year, through a live case monitoring contact center. MexVisit® is available as an option on all policies. 
           generic_mexassist_medevac:
-            details: This policy includes the extended travel assistance package which
-              includes limited medical evacuation for certain situations, please see
-              the terms and conditions for more detail.
+            details: This policy includes the extended travel assistance package which includes limited medical evacuation for certain situations, please see the terms and conditions for more detail.
           generic_mexassist_trip_interuption:
-            details: This policy includes the extended travel assistance package which
-              includes plane tickets home for certain situations, please see the terms
-              and conditions for more detail.
+            details: This policy includes the extended travel assistance package which includes plane tickets home for certain situations, please see the terms and conditions for more detail.
           generic_mexassist_road_assist:
-            details: This policy includes the extended travel assistance package which
-              includes travel assistance for certain situations, please see the terms
-              and conditions for more detail.
+            details: This policy includes the extended travel assistance package which includes travel assistance for certain situations, please see the terms and conditions for more detail.
           generic_mexassist_rental_car:
-            details: This policy includes the extended travel assistance package which
-              provides a rental car for certain situations, please see the terms and
-              conditions for more detail.
+            details: This policy includes the extended travel assistance package which provides a rental car for certain situations, please see the terms and conditions for more detail.
           generic_mexassist_atm_safe:
             header: DELETE
           generic_mexassist_247_assist:
             header: DELETE
           generic_mexassist_travel:
-            details: ABA policies included a very extensive Travel Assistance product,
-              and is not available from any other agent or underwriter. When you purchase
-              an ABA policy, in addition to the regular tourist auto policy, coverage
-              includes the best travel assistance coverage available in the marketplace.
-              Coverage is available 24 hours a day, 365 days a year, through a live
-              case monitoring contact center.
+            details: ABA policies included a very extensive Travel Assistance product, and is not available from any other agent or underwriter. When you purchase an ABA policy, in addition to the regular tourist auto policy, coverage includes the best travel assistance coverage available in the marketplace. Coverage is available 24 hours a day, 365 days a year, through a live case monitoring contact center. 
           extended:
-            details: The Extended policy package is a more comprehensive coverage
-              package than that of the standard policy. While coverage varies by carrier
-              it typically provides coverage for vandalism, partial theft, US Labor
-              Rates, and much more.
+            details: The Extended policy package is a more comprehensive coverage package than that of the standard policy. While coverage varies by carrier it typically provides coverage for vandalism, partial theft, US Labor Rates, and much more. 
           vandalism:
-            details: This policy provides coverage for vandalism and is subject to
-              a $1,000 USD deductible.
+            details: This policy provides coverage for vandalism and is subject to a $1,000 USD deductible. 
           partial_theft:
-            details: This policy provides coverage for partial theft and is subject
-              to a $1,000 USD deductible.
-          fixed_ded:
-            details: 'Deductibles: $500 for collission and $1,000 for total theft.
-              Additional Extended Coverage: Deductibles: $1,000 for partial theft
-              and vandalism.'
+            details: This policy provides coverage for partial theft and is subject to a $1,000 USD deductible.
+          fixed_ded: 
+            details: "Deductibles: $500 for collission and $1,000 for total theft. Additional Extended Coverage: Deductibles: $1,000 for partial theft and vandalism."
           medical_200010000:
-            details: This policy will pay medical expenses as a result of a covered
-              vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-              Coverage is afforded to the driver and occupants in the vehicle at the
-              time of the accident.
+            details: This policy will pay medical expenses as a result of a covered vehicle accident of $2,000 USD per person / $10,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.
           medical_500025000:
-            details: This policy will pay medical expenses as a result of a covered
-              vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-              Coverage is afforded to the driver and occupants in the vehicle at the
-              time of the accident.
+            details: This policy will pay medical expenses as a result of a covered vehicle accident of $5,000 USD per person / $25,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_1000050000:
-            details: This policy will pay medical expenses as a result of a covered
-              vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-              Coverage is afforded to the driver and occupants in the vehicle at the
-              time of the accident.
+            details: This policy will pay medical expenses as a result of a covered vehicle accident of $10,000 USD per person / $50,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_1500075000:
-            details: This policy will pay medical expenses as a result of a covered
-              vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-              Coverage is afforded to the driver and occupants in the vehicle at the
-              time of the accident.
+            details: This policy will pay medical expenses as a result of a covered vehicle accident of $15,000 USD per person / $75,000 USD per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
           medical_30000-csl:
-            details: This policy will pay medical expenses as a result of a covered
-              vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-              to the driver and occupants in the vehicle at the time of the accident.
+            details: This policy will pay medical expenses as a result of a covered vehicle accident up to $30,000 CSL per accident. Coverage is afforded to the driver and occupants in the vehicle at the time of the accident.    
         grupo-nacional-provincial:
           standard:
-            collision:
-              details: This includes coverage for collision, overturning, glass breakage,
-                and is subject to the deductible.
-            theft:
-              details: This coverage includes total theft of the vehicle. Note that
-                partial theft coverage is not available in Mexico unless you purchase
-                an extended coverage option.
-            us_repair:
-              details: Regardless of the policy you choose you can have your vehicle
-                repaired in the US. However, the labor rate will vary based on the
-                policy you purchase. Standard coverage will pay a labor rate equal
-                to the going Mexican labor rate. The extended coverage will have an
-                increased labor rate.
-            liability:
-              details: In the event of an accident, this coverage protects you from
-                bodily injury or property damages to thrid parties. This does not
-                provide coverage to passengers inside the insured vehicle. We recommend
-                purchasing the highest limits you can afford, but no less than $300,000
-                CSL.
-            underwriter_travel:
-              details: The underwriter provides a basic level of roadside assistance,
-                for a more a more comprehensive package please purchase the extended
-                travel assistance options.
-            mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            mexassist_atm_safe:
-              header: DELETE
-            mexassist_247_assist:
-              header: DELETE
-            mexassist_travel:
-              details: MexVisit® is our exclusive branded Travel Assistance product,
-                and is not available from any other agent or underwriter. When our
-                optional MexVisit® Travel Assistance coverage is purchased, in addition
-                to the regular tourist auto policy, coverage includes not only excellent
-                auto insurance protection from Mexico's finest underwriters, but also
-                the best travel assistance coverage available in the marketplace.
-                Coverage is available 24 hours a day, 365 days a year, through a live
-                case monitoring contact center. MexVisit® is available as an option
-                on all policies.
-            generic_mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            generic_mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            generic_mexassist_atm_safe:
-              header: DELETE
-            generic_mexassist_247_assist:
-              header: DELETE
-            generic_mexassist_travel:
-              details: ABA policies included a very extensive Travel Assistance product,
-                and is not available from any other agent or underwriter. When you
-                purchase an ABA policy, in addition to the regular tourist auto policy,
-                coverage includes the best travel assistance coverage available in
-                the marketplace. Coverage is available 24 hours a day, 365 days a
-                year, through a live case monitoring contact center.
-            extended:
-              details: The Extended policy package is a more comprehensive coverage
-                package than that of the standard policy. While coverage varies by
-                carrier it typically provides coverage for vandalism, partial theft,
-                US Labor Rates, and much more.
-            vandalism:
-              details: This policy provides coverage for vandalism and is subject
-                to a $1,000 USD deductible.
-            partial_theft:
-              details: This policy provides coverage for partial theft and is subject
-                to a $1,000 USD deductible.
-            fixed_ded:
-              details: 'Deductibles: $500 for collission and $1,000 for total theft.
-                Additional Extended Coverage: Deductibles: $1,000 for partial theft
-                and vandalism.'
-            medical_200010000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_500025000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1000050000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1500075000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_30000-csl:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-                to the driver and occupants in the vehicle at the time of the accident.
+            <<: *default-coverage
             percent_ded:
-              details: The policy has percentage deductibles that are 2% for Section
-                1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to
-                minimums equal to $500 for cars and $1,000 for other vehicles (RVs,
-                Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000
-                for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed
-                deductibles of $500 for Section 1 (collision) and $1,000 for Section
-                2 (theft) are available.
+              details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $500 for cars and $1,000 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000 for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
             legal:
-              details: This policy will provide up to $30,000 USD for a covered loss
-                in the event you need bail bonds or legal assistance.
-            labor_rates:
-              details: While this policy will allow the vehicle to be repaired in
-                the US the "shop rate" or labor rate that will be paid will be based
-                on a Mexican labor rate, not a US rate. To increase the labor rate,
-                please purchased the extended policy package.
+              details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
+            labor_rates: 
+              details: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
           extended:
-            collision:
-              details: This includes coverage for collision, overturning, glass breakage,
-                and is subject to the deductible.
-            theft:
-              details: This coverage includes total theft of the vehicle. Note that
-                partial theft coverage is not available in Mexico unless you purchase
-                an extended coverage option.
-            us_repair:
-              details: Regardless of the policy you choose you can have your vehicle
-                repaired in the US. However, the labor rate will vary based on the
-                policy you purchase. Standard coverage will pay a labor rate equal
-                to the going Mexican labor rate. The extended coverage will have an
-                increased labor rate.
-            liability:
-              details: In the event of an accident, this coverage protects you from
-                bodily injury or property damages to thrid parties. This does not
-                provide coverage to passengers inside the insured vehicle. We recommend
-                purchasing the highest limits you can afford, but no less than $300,000
-                CSL.
-            underwriter_travel:
-              details: The underwriter provides a basic level of roadside assistance,
-                for a more a more comprehensive package please purchase the extended
-                travel assistance options.
-            mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            mexassist_atm_safe:
-              header: DELETE
-            mexassist_247_assist:
-              header: DELETE
-            mexassist_travel:
-              details: MexVisit® is our exclusive branded Travel Assistance product,
-                and is not available from any other agent or underwriter. When our
-                optional MexVisit® Travel Assistance coverage is purchased, in addition
-                to the regular tourist auto policy, coverage includes not only excellent
-                auto insurance protection from Mexico's finest underwriters, but also
-                the best travel assistance coverage available in the marketplace.
-                Coverage is available 24 hours a day, 365 days a year, through a live
-                case monitoring contact center. MexVisit® is available as an option
-                on all policies.
-            generic_mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            generic_mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            generic_mexassist_atm_safe:
-              header: DELETE
-            generic_mexassist_247_assist:
-              header: DELETE
-            generic_mexassist_travel:
-              details: ABA policies included a very extensive Travel Assistance product,
-                and is not available from any other agent or underwriter. When you
-                purchase an ABA policy, in addition to the regular tourist auto policy,
-                coverage includes the best travel assistance coverage available in
-                the marketplace. Coverage is available 24 hours a day, 365 days a
-                year, through a live case monitoring contact center.
-            extended:
-              details: The Extended policy package is a more comprehensive coverage
-                package than that of the standard policy. While coverage varies by
-                carrier it typically provides coverage for vandalism, partial theft,
-                US Labor Rates, and much more.
-            vandalism:
-              details: This policy provides coverage for vandalism and is subject
-                to a $1,000 USD deductible.
-            partial_theft:
-              details: This policy provides coverage for partial theft and is subject
-                to a $1,000 USD deductible.
-            fixed_ded:
-              details: 'Deductibles: $500 for collission and $1,000 for total theft.
-                Additional Extended Coverage: Deductibles: $1,000 for partial theft
-                and vandalism.'
-            medical_200010000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_500025000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1000050000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1500075000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_30000-csl:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-                to the driver and occupants in the vehicle at the time of the accident.
+            <<: *default-coverage
             legal:
-              details: This policy will provide up to $50,000 USD for a covered loss
-                in the event you need bail bonds or legal assistance.
+              details: This policy will provide up to $50,000 USD for a covered loss in the event you need bail bonds or legal assistance.
             uninsured_motorist:
-              details: If you are involved in an accident in which an uninsured third
-                party is at fault as determined by the legal authorities, and you
-                sustain damage to your vehicle, we will pay for damages to your vehicle
-                and waive your deductible.
+              details: If you are involved in an accident in which an uninsured third party is at fault as determined by the legal authorities, and you sustain damage to your vehicle, we will pay for damages to your vehicle and waive your deductible.
             us_laborrate:
-              details: 'The policy will pay a higher rate per hour for the labor rate
-                on your repairs rather than the lower Mexican labor rates. The rates
-                will be increased as follows: Cars - $50 USD per hour, Pickups/SUV
-                - $55 UDS per hour, Motorhomes - $70 per hour'
+              details: "The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased as follows: Cars - $50 USD per hour, Pickups/SUV - $55 UDS per hour, Motorhomes - $70 per hour"
         aba-seguros:
           standard:
-            collision:
-              details: This includes coverage for collision, overturning, glass breakage,
-                and is subject to the deductible.
-            theft:
-              details: This coverage includes total theft of the vehicle. Note that
-                partial theft coverage is not available in Mexico unless you purchase
-                an extended coverage option.
-            us_repair:
-              details: Regardless of the policy you choose you can have your vehicle
-                repaired in the US. However, the labor rate will vary based on the
-                policy you purchase. Standard coverage will pay a labor rate equal
-                to the going Mexican labor rate. The extended coverage will have an
-                increased labor rate.
-            liability:
-              details: In the event of an accident, this coverage protects you from
-                bodily injury or property damages to thrid parties. This does not
-                provide coverage to passengers inside the insured vehicle. We recommend
-                purchasing the highest limits you can afford, but no less than $300,000
-                CSL.
-            underwriter_travel:
-              details: The underwriter provides a basic level of roadside assistance,
-                for a more a more comprehensive package please purchase the extended
-                travel assistance options.
-            mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            mexassist_atm_safe:
-              header: DELETE
-            mexassist_247_assist:
-              header: DELETE
-            mexassist_travel:
-              details: MexVisit® is our exclusive branded Travel Assistance product,
-                and is not available from any other agent or underwriter. When our
-                optional MexVisit® Travel Assistance coverage is purchased, in addition
-                to the regular tourist auto policy, coverage includes not only excellent
-                auto insurance protection from Mexico's finest underwriters, but also
-                the best travel assistance coverage available in the marketplace.
-                Coverage is available 24 hours a day, 365 days a year, through a live
-                case monitoring contact center. MexVisit® is available as an option
-                on all policies.
-            generic_mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            generic_mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            generic_mexassist_atm_safe:
-              header: DELETE
-            generic_mexassist_247_assist:
-              header: DELETE
-            generic_mexassist_travel:
-              details: ABA policies included a very extensive Travel Assistance product,
-                and is not available from any other agent or underwriter. When you
-                purchase an ABA policy, in addition to the regular tourist auto policy,
-                coverage includes the best travel assistance coverage available in
-                the marketplace. Coverage is available 24 hours a day, 365 days a
-                year, through a live case monitoring contact center.
-            extended:
-              details: The Extended policy package is a more comprehensive coverage
-                package than that of the standard policy. While coverage varies by
-                carrier it typically provides coverage for vandalism, partial theft,
-                US Labor Rates, and much more.
-            vandalism:
-              details: This policy provides coverage for vandalism and is subject
-                to a $1,000 USD deductible.
-            partial_theft:
-              details: This policy provides coverage for partial theft and is subject
-                to a $1,000 USD deductible.
-            fixed_ded:
-              details: 'Deductibles: $500 for collission and $1,000 for total theft.
-                Additional Extended Coverage: Deductibles: $1,000 for partial theft
-                and vandalism.'
-            medical_200010000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_500025000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1000050000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1500075000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_30000-csl:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-                to the driver and occupants in the vehicle at the time of the accident.
+            <<: *default-coverage
             percent_ded:
-              details: The policy has percentage deductibles that are 2% for Section
-                1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to
-                minimums equal to $350 for cars and $$750 for other vehicles (RVs,
-                Trucks, Vans, etc) Section 2 is subject to minimums equal to $800
-                for cars and $1,200 for other vehicles (RVs, Trucks, Vans, etc). Fixed
-                deductibles of $500 for Section 1 (collision) and $1,000 for Section
-                2 (theft) are available.
+              details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $350 for cars and $$750 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $800 for cars and $1,200 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
             legal:
-              details: This policy will provide up an amount equal to the liability
-                limit in legal assistance for a covered loss in the event you need
-                bail bonds or legal assistance.
-            labor_rates:
-              details: While this policy will allow the vehicle to be repaired in
-                the US the "shop rate" or labor rate that will be paid will be based
-                on a Mexican labor rate, not a US rate. To increase the labor rate,
-                please purchased the extended policy package.
+              details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
+            labor_rates: 
+              details: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
           extended:
-            collision:
-              details: This includes coverage for collision, overturning, glass breakage,
-                and is subject to the deductible.
-            theft:
-              details: This coverage includes total theft of the vehicle. Note that
-                partial theft coverage is not available in Mexico unless you purchase
-                an extended coverage option.
-            us_repair:
-              details: Regardless of the policy you choose you can have your vehicle
-                repaired in the US. However, the labor rate will vary based on the
-                policy you purchase. Standard coverage will pay a labor rate equal
-                to the going Mexican labor rate. The extended coverage will have an
-                increased labor rate.
-            liability:
-              details: In the event of an accident, this coverage protects you from
-                bodily injury or property damages to thrid parties. This does not
-                provide coverage to passengers inside the insured vehicle. We recommend
-                purchasing the highest limits you can afford, but no less than $300,000
-                CSL.
-            underwriter_travel:
-              details: The underwriter provides a basic level of roadside assistance,
-                for a more a more comprehensive package please purchase the extended
-                travel assistance options.
-            mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            mexassist_atm_safe:
-              header: DELETE
-            mexassist_247_assist:
-              header: DELETE
-            mexassist_travel:
-              details: MexVisit® is our exclusive branded Travel Assistance product,
-                and is not available from any other agent or underwriter. When our
-                optional MexVisit® Travel Assistance coverage is purchased, in addition
-                to the regular tourist auto policy, coverage includes not only excellent
-                auto insurance protection from Mexico's finest underwriters, but also
-                the best travel assistance coverage available in the marketplace.
-                Coverage is available 24 hours a day, 365 days a year, through a live
-                case monitoring contact center. MexVisit® is available as an option
-                on all policies.
-            generic_mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            generic_mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            generic_mexassist_atm_safe:
-              header: DELETE
-            generic_mexassist_247_assist:
-              header: DELETE
-            generic_mexassist_travel:
-              details: ABA policies included a very extensive Travel Assistance product,
-                and is not available from any other agent or underwriter. When you
-                purchase an ABA policy, in addition to the regular tourist auto policy,
-                coverage includes the best travel assistance coverage available in
-                the marketplace. Coverage is available 24 hours a day, 365 days a
-                year, through a live case monitoring contact center.
-            extended:
-              details: The Extended policy package is a more comprehensive coverage
-                package than that of the standard policy. While coverage varies by
-                carrier it typically provides coverage for vandalism, partial theft,
-                US Labor Rates, and much more.
-            vandalism:
-              details: This policy provides coverage for vandalism and is subject
-                to a $1,000 USD deductible.
-            partial_theft:
-              details: This policy provides coverage for partial theft and is subject
-                to a $1,000 USD deductible.
-            fixed_ded:
-              details: 'Deductibles: $500 for collission and $1,000 for total theft.
-                Additional Extended Coverage: Deductibles: $1,000 for partial theft
-                and vandalism.'
-            medical_200010000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_500025000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1000050000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1500075000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_30000-csl:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-                to the driver and occupants in the vehicle at the time of the accident.
+            <<: *default-coverage
             legal:
-              details: This policy will provide up an amount equal to the liability
-                limit in legal assistance for a covered loss in the event you need
-                bail bonds or legal assistance.
+              details: This policy will provide up an amount equal to the liability limit in legal assistance for a covered loss in the event you need bail bonds or legal assistance.
             uninsured_motorist:
-              details: If you are involved in an accident in which an uninsured third
-                party is at fault as determined by the legal authorities, and you
-                sustain damage to your vehicle, we will pay for damages to your vehicle
-                and waive your deductible.
+              details: If you are involved in an accident in which an uninsured third party is at fault as determined by the legal authorities, and you sustain damage to your vehicle, we will pay for damages to your vehicle and waive your deductible.
             us_laborrate:
-              details: The policy will pay a higher rate per hour for the labor rate
-                on your repairs rather than the lower Mexican labor rates. The rates
-                will be increased to $75 USD per hour regardless of the type of vehicle.
+              details: The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased to $75 USD per hour regardless of the type of vehicle.
         ace-seguros:
           standard:
-            collision:
-              details: This includes coverage for collision, overturning, glass breakage,
-                and is subject to the deductible.
-            theft:
-              details: This coverage includes total theft of the vehicle. Note that
-                partial theft coverage is not available in Mexico unless you purchase
-                an extended coverage option.
-            us_repair:
-              details: Regardless of the policy you choose you can have your vehicle
-                repaired in the US. However, the labor rate will vary based on the
-                policy you purchase. Standard coverage will pay a labor rate equal
-                to the going Mexican labor rate. The extended coverage will have an
-                increased labor rate.
-            liability:
-              details: In the event of an accident, this coverage protects you from
-                bodily injury or property damages to thrid parties. This does not
-                provide coverage to passengers inside the insured vehicle. We recommend
-                purchasing the highest limits you can afford, but no less than $300,000
-                CSL.
-            underwriter_travel:
-              details: The underwriter provides a basic level of roadside assistance,
-                for a more a more comprehensive package please purchase the extended
-                travel assistance options.
-            mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            mexassist_atm_safe:
-              header: DELETE
-            mexassist_247_assist:
-              header: DELETE
-            mexassist_travel:
-              details: MexVisit® is our exclusive branded Travel Assistance product,
-                and is not available from any other agent or underwriter. When our
-                optional MexVisit® Travel Assistance coverage is purchased, in addition
-                to the regular tourist auto policy, coverage includes not only excellent
-                auto insurance protection from Mexico's finest underwriters, but also
-                the best travel assistance coverage available in the marketplace.
-                Coverage is available 24 hours a day, 365 days a year, through a live
-                case monitoring contact center. MexVisit® is available as an option
-                on all policies.
-            generic_mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            generic_mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            generic_mexassist_atm_safe:
-              header: DELETE
-            generic_mexassist_247_assist:
-              header: DELETE
-            generic_mexassist_travel:
-              details: ABA policies included a very extensive Travel Assistance product,
-                and is not available from any other agent or underwriter. When you
-                purchase an ABA policy, in addition to the regular tourist auto policy,
-                coverage includes the best travel assistance coverage available in
-                the marketplace. Coverage is available 24 hours a day, 365 days a
-                year, through a live case monitoring contact center.
-            extended:
-              details: The Extended policy package is a more comprehensive coverage
-                package than that of the standard policy. While coverage varies by
-                carrier it typically provides coverage for vandalism, partial theft,
-                US Labor Rates, and much more.
-            vandalism:
-              details: This policy provides coverage for vandalism and is subject
-                to a $1,000 USD deductible.
-            partial_theft:
-              details: This policy provides coverage for partial theft and is subject
-                to a $1,000 USD deductible.
-            fixed_ded:
-              details: 'Deductibles: $500 for collission and $1,000 for total theft.
-                Additional Extended Coverage: Deductibles: $1,000 for partial theft
-                and vandalism.'
-            medical_200010000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_500025000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1000050000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1500075000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_30000-csl:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-                to the driver and occupants in the vehicle at the time of the accident.
+            <<: *default-coverage
             percent_ded:
-              details: The policy has percentage deductibles that are 2% for Section
-                1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to
-                minimums equal to $500 for cars and $1,000 for other vehicles (RVs,
-                Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000
-                for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed
-                deductibles of $500 for Section 1 (collision) and $1,000 for Section
-                2 (theft) are available.
+              details: The policy has percentage deductibles that are 2% for Section 1 (collision) and 5% for Section 2 (Theft). Section 1 is subject to minimums equal to $500 for cars and $1,000 for other vehicles (RVs, Trucks, Vans, etc) Section 2 is subject to minimums equal to $1,000 for cars and $1,500 for other vehicles (RVs, Trucks, Vans, etc). Fixed deductibles of $500 for Section 1 (collision) and $1,000 for Section 2 (theft) are available. 
             legal:
-              details: This policy will provide up to $30,000 USD for a covered loss
-                in the event you need bail bonds or legal assistance.
-            labor_rates:
-              details: While this policy will allow the vehicle to be repaired in
-                the US the "shop rate" or labor rate that will be paid will be based
-                on a Mexican labor rate, not a US rate. To increase the labor rate,
-                please purchased the extended policy package.
+              details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
+            labor_rates: 
+              details: While this policy will allow the vehicle to be repaired in the US the "shop rate" or labor rate that will be paid will be based on a Mexican labor rate, not a US rate. To increase the labor rate, please purchased the extended policy package. 
           extended:
-            collision:
-              details: This includes coverage for collision, overturning, glass breakage,
-                and is subject to the deductible.
-            theft:
-              details: This coverage includes total theft of the vehicle. Note that
-                partial theft coverage is not available in Mexico unless you purchase
-                an extended coverage option.
-            us_repair:
-              details: Regardless of the policy you choose you can have your vehicle
-                repaired in the US. However, the labor rate will vary based on the
-                policy you purchase. Standard coverage will pay a labor rate equal
-                to the going Mexican labor rate. The extended coverage will have an
-                increased labor rate.
-            liability:
-              details: In the event of an accident, this coverage protects you from
-                bodily injury or property damages to thrid parties. This does not
-                provide coverage to passengers inside the insured vehicle. We recommend
-                purchasing the highest limits you can afford, but no less than $300,000
-                CSL.
-            underwriter_travel:
-              details: The underwriter provides a basic level of roadside assistance,
-                for a more a more comprehensive package please purchase the extended
-                travel assistance options.
-            mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            mexassist_atm_safe:
-              header: DELETE
-            mexassist_247_assist:
-              header: DELETE
-            mexassist_travel:
-              details: MexVisit® is our exclusive branded Travel Assistance product,
-                and is not available from any other agent or underwriter. When our
-                optional MexVisit® Travel Assistance coverage is purchased, in addition
-                to the regular tourist auto policy, coverage includes not only excellent
-                auto insurance protection from Mexico's finest underwriters, but also
-                the best travel assistance coverage available in the marketplace.
-                Coverage is available 24 hours a day, 365 days a year, through a live
-                case monitoring contact center. MexVisit® is available as an option
-                on all policies.
-            generic_mexassist_medevac:
-              details: This policy includes the extended travel assistance package
-                which includes limited medical evacuation for certain situations,
-                please see the terms and conditions for more detail.
-            generic_mexassist_trip_interuption:
-              details: This policy includes the extended travel assistance package
-                which includes plane tickets home for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_road_assist:
-              details: This policy includes the extended travel assistance package
-                which includes travel assistance for certain situations, please see
-                the terms and conditions for more detail.
-            generic_mexassist_rental_car:
-              details: This policy includes the extended travel assistance package
-                which provides a rental car for certain situations, please see the
-                terms and conditions for more detail.
-            generic_mexassist_atm_safe:
-              header: DELETE
-            generic_mexassist_247_assist:
-              header: DELETE
-            generic_mexassist_travel:
-              details: ABA policies included a very extensive Travel Assistance product,
-                and is not available from any other agent or underwriter. When you
-                purchase an ABA policy, in addition to the regular tourist auto policy,
-                coverage includes the best travel assistance coverage available in
-                the marketplace. Coverage is available 24 hours a day, 365 days a
-                year, through a live case monitoring contact center.
-            extended:
-              details: The Extended policy package is a more comprehensive coverage
-                package than that of the standard policy. While coverage varies by
-                carrier it typically provides coverage for vandalism, partial theft,
-                US Labor Rates, and much more.
-            vandalism:
-              details: This policy provides coverage for vandalism and is subject
-                to a $1,000 USD deductible.
-            partial_theft:
-              details: This policy provides coverage for partial theft and is subject
-                to a $1,000 USD deductible.
-            fixed_ded:
-              details: 'Deductibles: $500 for collission and $1,000 for total theft.
-                Additional Extended Coverage: Deductibles: $1,000 for partial theft
-                and vandalism.'
-            medical_200010000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $2,000 USD per person / $10,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_500025000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $5,000 USD per person / $25,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1000050000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $10,000 USD per person / $50,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_1500075000:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident of $15,000 USD per person / $75,000 USD per accident.
-                Coverage is afforded to the driver and occupants in the vehicle at
-                the time of the accident.
-            medical_30000-csl:
-              details: This policy will pay medical expenses as a result of a covered
-                vehicle accident up to $30,000 CSL per accident. Coverage is afforded
-                to the driver and occupants in the vehicle at the time of the accident.
+            <<: *default-coverage
             legal:
-              details: This policy will provide up to $30,000 USD for a covered loss
-                in the event you need bail bonds or legal assistance.
+              details: This policy will provide up to $30,000 USD for a covered loss in the event you need bail bonds or legal assistance.
             us_laborrate:
-              details: 'The policy will pay a higher rate per hour for the labor rate
-                on your repairs rather than the lower Mexican labor rates. The rates
-                will be increased as follows: Cars - $50 USD per hour, Pickups/SUV
-                - $70 UDS per hour, Motorhomes - $75 per hour, Motorcycles - $50 USD
-                per hour     '
+              details: "The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. The rates will be increased as follows: Cars - $50 USD per hour, Pickups/SUV - $70 UDS per hour, Motorhomes - $75 per hour, Motorcycles - $50 USD per hour     "
             uninsured_motorist: DELETE
       headers:
         quote_results: Quote results
@@ -1264,55 +445,24 @@ en-US:
       buttons:
         add_driver: Add driver
     disclosure:
-      other_drivers: Drivers do not need to be listed to have coverage, but can be
-        for your convenience.
+      other_drivers: Drivers do not need to be listed to have coverage, but can be for your convenience.
       2013_law_reform:
         header: 2013 Mexico Law Reform - Higher Liability Limits Recommended
-        body: Due to a radical change to Mexico Liability Law, we now recommend that
-          all our customers purchase a minimum of $300,000 in Liability coverage,
-          and seriously consider the $500,000 limit! In the past, the liability damages
-          imposed on an at-fault driver who caused a negligent fatality in Mexico
-          were capped at 730 days multiplied by the local Mexico Minimum Wage (approximately
-          $ 50,000 total damages in most Mexican States). Effective immediately, that
-          limit has been increased by the Mexican Government to 5,000 days multiplied
-          by the local Mexico minimum wage (up to approximately $ 300,000 US Dollars
-          total damages, depending on the Mexican State). We strongly suggest that
-          you now use the same level of care regarding Mexico Liability limits that
-          you would use when purchasing a US or Canadian auto liability policy. The
-          radical change to Mexico Liability law means that claims for Death Liability
-          in Mexico will now be similar to the damages that are often imposed by courts
-          in the US and Canada in similar cases.
-      pdf_reader:
+        body: Due to a radical change to Mexico Liability Law, we now recommend that all our customers purchase a minimum of $300,000 in Liability coverage, and seriously consider the $500,000 limit! In the past, the liability damages imposed on an at-fault driver who caused a negligent fatality in Mexico were capped at 730 days multiplied by the local Mexico Minimum Wage (approximately $ 50,000 total damages in most Mexican States). Effective immediately, that limit has been increased by the Mexican Government to 5,000 days multiplied by the local Mexico minimum wage (up to approximately $ 300,000 US Dollars total damages, depending on the Mexican State). We strongly suggest that you now use the same level of care regarding Mexico Liability limits that you would use when purchasing a US or Canadian auto liability policy. The radical change to Mexico Liability law means that claims for Death Liability in Mexico will now be similar to the damages that are often imposed by courts in the US and Canada in similar cases.
+      pdf_reader: 
         header: PDF Documents
-        body: 'In order to view the documents associated with this certificate you
-          will need to have Adobe Reader installed.  This is free software that will
-          allow you to read "PDF" documents.  Please click the following link to get
-          Adobe Reader: <a href="http://get.adobe.com/reader/" target="_blank"> Adobe
-          Reader</a>.'
+        body: 'In order to view the documents associated with this certificate you will need to have Adobe Reader installed.  This is free software that will allow you to read "PDF" documents.  Please click the following link to get Adobe Reader: <a href="http://get.adobe.com/reader/" target="_blank"> Adobe Reader</a>.'
       claims:
         header: In Case of a Claim
-        body: In the unfortunate event that you may need to make a claim on this policy,
-          you must report this claim in Mexico before returning to the United States.
-          If you leave Mexico before obtaining the adjuster's report your claim may
-          be denied.
+        body: In the unfortunate event that you may need to make a claim on this policy, you must report this claim in Mexico before returning to the United States. If you leave Mexico before obtaining the adjuster's report your claim may be denied.
       cancellations:
         header: Cancellations and Refunds
-        body: 'All 6 month and annual policies are fully earned 15 days after the
-          effective date of the policy.  Daily polices are not eligible for refunds
-          or cancellations after the effective date of the policy. Six month and annual
-          policies allow for refunds and/or cancellations up to 15 days after effective
-          date at a pro-rated daily rate. Pro-rates will be based on the actual cost
-          of a 1 to 15 day policy. A cancellation fee equal to half of the Policy
-          Fee will be retained on all cancellations. Note: Six month and annual polices
-          carry high discount rates; daily policy amounts exceed 6-month rates after
-          an average of 27 days.'
+        body: "All 6 month and annual policies are fully earned 15 days after the effective date of the policy.  Daily polices are not eligible for refunds or cancellations after the effective date of the policy. Six month and annual policies allow for refunds and/or cancellations up to 15 days after effective date at a pro-rated daily rate. Pro-rates will be based on the actual cost of a 1 to 15 day policy. A cancellation fee equal to half of the Policy Fee will be retained on all cancellations. Note: Six month and annual polices carry high discount rates; daily policy amounts exceed 6-month rates after an average of 27 days."
       tnc_link:
         header: Policy Terms and Conditions
-        body: By purchasing this policy you are agreeing to the <a href="%{tnc_link}"
-          target="_blank"> legally binding terms and conditions of the policy</a>.
+        body: By purchasing this policy you are agreeing to the <a href="%{tnc_link}" target="_blank"> legally binding terms and conditions of the policy</a>. 
       agreement:
-        label: By checking this box I am afirming that I have read, understand, and
-          agree with the disclosures on this page.
+        label: By checking this box I am afirming that I have read, understand, and agree with the disclosures on this page. 
     headers:
       application: Application
       new_app: New application
@@ -1323,40 +473,22 @@ en-US:
       disclosures: Disclosures
       payment: Payment
       vehicle_info: Vehicle Information
-      thank_you: Your Policy is Ready
-      print_me: You will need to print your policy. To start the process click on
-        print policy.
+      thank_you: Thank you
+      print_me: You will need to print your policy. To start the process click on print policy.
       other_info: Other info
       contact_info: Contact info
       check_email: Check email
+      thank_you: Your Policy is Ready
       coverage: Coverage
     thank_you:
       policy_pdf:
-        body: Thank you for purchasing your Mexico Insurance policy with us. Please
-          print your policy declarations page by clicking on the link above. This
-          document is required to make a claim in Mexico. Always carry this document
-          with you while in Mexico.
+        body: Thank you for purchasing your Mexico Insurance policy with us. Please print your policy declarations page by clicking on the link above. This document is required to make a claim in Mexico. Always carry this document with you while in Mexico. 
       tnc_pdf:
-        body: The Terms And Conditions document is the legally binding contract for
-          your Mexico Auto Insurance policy.  This document is not required to file
-          a claim, however it is the insured's responsibility to read and understand
-          this document.
+        body: The Terms And Conditions document is the legally binding contract for your Mexico Auto Insurance policy.  This document is not required to file a claim, however it is the insured's responsibility to read and understand this document.  
       opt_travel_tnc:
-        body: The Terms And Conditions document is the legally binding contract for
-          your extended travel assistance coverage.  This document is not required
-          to file a claim, however it is the insured's responsibility to read and
-          understand this document.
+        body: The Terms And Conditions document is the legally binding contract for your extended travel assistance coverage.  This document is not required to file a claim, however it is the insured's responsibility to read and understand this document. 
       check_email:
-        body: You will also get a copy of your policy via email. If you need to access
-          and print your policy at a later time, make changes to your policy, or purchase
-          a new policy in the future you can do so by logging back into our system.
-          A copy of your policy with instructions on how to log into the system have
-          been emailed to you. If you did not receive this email, please check your
-          spam folder. If you have high security in place you may need to modify these
-          settings to receive the email. In the email you will find your username
-          (generally, the same as your email address), your password (generated for
-          you) and links to return to our site to retrieve this policy, or purchase
-          another policy.
+        body: You will also get a copy of your policy via email. If you need to access and print your policy at a later time, make changes to your policy, or purchase a new policy in the future you can do so by logging back into our system. A copy of your policy with instructions on how to log into the system have been emailed to you. If you did not receive this email, please check your spam folder. If you have high security in place you may need to modify these settings to receive the email. In the email you will find your username (generally, the same as your email address), your password (generated for you) and links to return to our site to retrieve this policy, or purchase another policy.
     button:
       tnc_pdf: Auto Policy Terms and Conditions
       opt_travel_tnc_pdf: Travel Assistance Terms and Conditions
@@ -1382,7 +514,7 @@ en-US:
     error_alert:
       zero: No errors have occured, although if you are seeing this we have a problem
       one: There was an error in your input. Please review and correct it below.
-      other: There were errors in your input. Please review and correct them below.
+      other: There were errors in your input. Please review and correct them below. 
   general:
     forms:
       select_one: Select one
