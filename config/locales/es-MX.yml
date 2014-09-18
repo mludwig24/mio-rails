@@ -1,6 +1,11 @@
 ---
 es-MX:
   date:
+    input:
+      formats: 
+        - :default
+        - :long
+        - :short
     formats:
       javascript: "dd/mm/yyyy"
   global:

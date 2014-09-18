@@ -68,6 +68,7 @@ class QuotesController < ApplicationController
 		end
 	end
 	def quote_params
+		delocalize_config = { :enter_date => :date, :leave_date => :date }
 		params.require(:quote).permit(
 			:enter_date, :leave_date, :vehicle_type, :year, :make_id, 
 			:model_id, :value, :towing, :liability_limit, 
@@ -75,6 +76,6 @@ class QuotesController < ApplicationController
 			:extended_travel, :beyond_freezone, :under21, :uscoll_sc, 
 			:days_veh_in_mexico, :visit_reason, :make_label, :model_label,
 			:toweds_attributes => [ :id, :type_id, :type_label, :value, :year ]
-		)
+		).delocalize(delocalize_config)
 	end
 end

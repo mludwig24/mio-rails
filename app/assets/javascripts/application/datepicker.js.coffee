@@ -17,14 +17,27 @@ check_daterange = (obj) ->
 				$lower_part.datepicker('setDate', $upper_date)
 		$upper_part.datepicker('setStartDate', $lower_date)
 
+Date.prototype.mobile = ->
+	return new Array(this.getFullYear(), this.getFullMonth() + 1, this.getDate()).join("-")
+
 jQuery ($) ->
-	parseDate = $.fn.datepicker.DPGlobal.parseDate
-	jQuery('[data-behaviour="date-picker"]').datepicker({
+	DATEPICKER_OPTIONS = {
 		autoclose: true,
 		todayHighlight: true,
 		language: I18n.locale,
 		format: I18n.t('date.formats.javascript', {defaultValue: "mm-dd-yyyy"})
-	})
+	};
+	parseDate = $.fn.datepicker.DPGlobal.parseDate
+
+	jQuery('[data-behaviour="date-picker"]').datepicker(DATEPICKER_OPTIONS)
+	## Mobile adds the question of weather or not to datepick.
+	jQuery('[data-behaviour="date-picker-mobile"]').each (c,obj) ->
+		$obj = jQuery(obj)
+		if !Modernizr.inputtypes.date ## Browser doesn't support date inputs.
+			$obj.datepicker(DATEPICKER_OPTIONS)
+		else
+			## Make sure it is of type date.
+			$obj.attr('type', 'date')
 	## Pick up clicks on the calendar icon, too.
 	jQuery('[data-behaviour="date-picker"]').each (c,obj) ->
 		$obj = jQuery(obj)

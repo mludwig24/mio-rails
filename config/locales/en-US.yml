@@ -1,5 +1,11 @@
 ---
 en-US:
+  date:
+    input:
+      formats: 
+        - :default
+        - :long
+        - :short
   activerecord:
     help:
       quote:
