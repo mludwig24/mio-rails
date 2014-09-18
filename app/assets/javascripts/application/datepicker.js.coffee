@@ -25,6 +25,11 @@ jQuery ($) ->
 		language: I18n.locale,
 		format: I18n.t('date.formats.javascript', {defaultValue: "mm-dd-yyyy"})
 	})
+	## Pick up clicks on the calendar icon, too.
+	jQuery('[data-behaviour="date-picker"]').each (c,obj) ->
+		$obj = jQuery(obj)
+		jQuery('span.form-control-feedback', $obj.closest('div')).click (e,o) ->
+			$obj.datepicker('show')
 	jQuery('input[data-behaviour="date-picker"]', jQuery('[data-behaviour="date-range"]')).each (c,obj) ->
 		jQuery(obj).change (e,o) ->
 			check_daterange(this)

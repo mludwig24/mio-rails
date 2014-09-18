@@ -1,0 +1,16 @@
+%div{"data-behaviour" => "date-range"}
+	= form.date_field low_date,
+		:start_year => Date.today.year,
+		:end_year => (Date.today + 1.year).year,
+		:default => quote.enter_date || Date.today,
+		:placeholder => l(Date.today),
+		:type => "date",
+		:min => Date.today,
+		:max => Date.today + 1.year
+	= form.date_field high_date,
+		:start_year => Date.today.year,
+		:end_year => (Date.today + 1.year).year,
+		:default => Date.today + 1.day,
+		:placeholder => l(Date.today),
+		:type => "date",
+		:min => "#quote_enter_date"
