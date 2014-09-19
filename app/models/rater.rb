@@ -172,7 +172,7 @@ module Rater
 			api_data["power_unit"]["year"] = @data_obj.year
 			api_data["power_unit"]["style"] = @data_obj.vehicle_type
 			api_data["power_unit"]["make"] = @data_obj.make_id
-			api_data["power_unit"]["model"] = @data_obj.model_id
+			api_data["power_unit"]["model"] = @data_obj.model_id.present? ? @data_obj.model_id : @data_obj.other_model
 			api_data["power_unit"]["value"] = @data_obj.value.to_i
 			## Underwriting.
 			api_data["underwriting"] = Hash.new()
