@@ -3,20 +3,24 @@
 
 - if @rates.errors == nil ## No errors.
 	%div.quote_results
-		- @rates.underwriters.each do |underwriter|
-			%div{"class" => "col-lg-#{(12.00 * ((@rates.for_underwriter(underwriter).count / (@rates.terms.count * 1.00)) / (@rates.count / @rates.terms.count))).floor} col-md-#{(12.00 * ((@rates.for_underwriter(underwriter).count / (@rates.terms.count * 1.00)) / (@rates.count / @rates.terms.count))).floor} col-sm-12"}
-				%h4.underwriter
-					%img{"src" => @rates.select { |r| r["underwriter_name"] == underwriter }.first["underwriter_image"]}
-					= underwriter
-				- @rates.for_underwriter(underwriter).terms.each do |term|
-					%h5.term
-						= t("quote.results.labels.#{term}")
-					%hr
-					- @rates.for_underwriter(underwriter).for_term(term).each do |r|
-						%div{"class" => "col-lg-#{(12 / @rates.for_underwriter(underwriter).for_term(term).count).floor} col-md-#{(12 / @rates.for_underwriter(underwriter).for_term(term).count).floor} col-sm-12"}
-							= render('individual_result', r: r, quote: @quote)
-					%br.clear
-					%hr
+		- if @rates.underwriters.any?
+			- @rates.underwriters.each do |underwriter|
+				%div{"class" => "col-lg-#{(12.00 * ((@rates.for_underwriter(underwriter).count / (@rates.terms.count * 1.00)) / (@rates.count / @rates.terms.count))).floor} col-md-#{(12.00 * ((@rates.for_underwriter(underwriter).count / (@rates.terms.count * 1.00)) / (@rates.count / @rates.terms.count))).floor} col-sm-12"}
+					%h4.underwriter
+						%img{"src" => @rates.select { |r| r["underwriter_name"] == underwriter }.first["underwriter_image"]}
+						= underwriter
+					- @rates.for_underwriter(underwriter).terms.each do |term|
+						%h5.term
+							= t("quote.results.labels.#{term}")
+						%hr
+						- @rates.for_underwriter(underwriter).for_term(term).each do |r|
+							%div{"class" => "col-lg-#{(12 / @rates.for_underwriter(underwriter).for_term(term).count).floor} col-md-#{(12 / @rates.for_underwriter(underwriter).for_term(term).count).floor} col-sm-12"}
+								= render('individual_result', r: r, quote: @quote)
+						%br.clear
+						%hr
+		- else ## No rates returned.
+			%div.alert.alert-danger
+				= t('quote.results.no_results_to_display').html_safe
 	%br.clear
 
 %div
