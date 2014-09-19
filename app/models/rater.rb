@@ -165,7 +165,7 @@ module Rater
 			## Limits.
 			api_data["limits"] = Hash.new()
 			api_data["limits"]["liability"] = @data_obj.liability_limit.to_i
-			api_data["limits"]["extended_travel"] = true ## Always include MexVisit.
+			api_data["limits"]["extended_travel"] = @data_obj.extended_travel == 1 ## Always include MexVisit.
 			## Power Unit.
 			api_data["power_unit"] = Hash.new()
 			api_data["power_unit"]["type"] = "power" # Always.

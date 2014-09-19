@@ -114,6 +114,9 @@
 
 	= render("yes_no", :form => f, :field => :fixed_deductibles,
 		:label => t('activerecord.attributes.quote.fixed_deductibles'))
+	- if @quote.persisted?
+		= render("yes_no", :form => f, :field => :extended_travel,
+			:label => t('activerecord.attributes.quote.extended_travel'))
 	%h3
 		= t('quote.form.header.underwriting_information')
 	= f.select :days_veh_in_mexico, options_for_select(@quote.valid_days_veh_in_mexico.collect { |i| [t("activerecord.attributes.quote.days_veh_in_mexico_options.#{i}"), i]}, @quote.days_veh_in_mexico),
