@@ -30,10 +30,10 @@ class Quote < ActiveRecord::Base
 	validates :leave_date, :date => {
 		:after_or_equal_to => :enter_date,
 		## 1 year days is too far.
-		:before => Proc.new { Date.today + 366 }}
+		:before => Proc.new { |quote| quote.enter_date + 1.year + 30.days }}
 	validates :enter_date, :date => {
 		:after_or_equal_to => Proc.new { Date.today },
-		:before => Proc.new { Date.today + 90 }, ## 90 days is too far.
+		:before => Proc.new { Date.today + 90.days }, ## 90 days is too far.
 	}
 	validates :year, numericality: { only_integer: true },
 		:inclusion => {:in => Proc.new { 
