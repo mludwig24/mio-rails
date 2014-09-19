@@ -5,18 +5,24 @@
 	%a.btn.btn-success.buy_now{"href" => quote.app == nil ? new_app_path(uid: r['underwriter'], tid: r['term'], qid: quote.token) : app_path(quote.app, uid: r['underwriter'], tid: r['term'], qid: quote.token)}
 		= t('quote.results.button.buy_now')
 	%br.clear
+	- if r['limited_coverage_errors']
+		%a.btn.btn-warning.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_limited_coverage", "data-toggle" => "modal"}
+			= t("quote.results.button.limited_coverage")
+		%br.clear
 	%a.btn.btn-default.btn-link.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_details", "data-toggle" => "modal"}
 		= t("quote.results.button.details.#{r['underwriter_coverage_desc']}")
 	- if Rails.env == "development"
 		%a.btn.btn-danger.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_debug", "data-toggle" => "modal"}
 			= t("quote.results.button.debug")
+
 %div.modal{"id" => "result_#{r['underwriter']}_details", "role" => "dialog"}
 	%div.modal-dialog.modal-lg
 		%div.modal-content
 			%div.modal-header
 				%button.close{"data-dismiss" => "modal"}
 					%span{"aria-hidden" => "true"} &times;
-					%span.sr-only Close
+					%span.sr-only 
+						= t('global.close')
 				%h4
 					= t('quote.results.headers.coverage_details', underwriter: r['underwriter_name'], underwriter_coverage: r['underwriter_coverage_desc'].titleize)
 
@@ -36,7 +42,28 @@
 					%dd
 						= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.tnc_pdf.details", scope: scope, tnc_link: r["tnc_pdf"]).html_safe
 		%div.modal-footer
-			%button.btn.btn-default{"data-dismiss" => "modal"} Close
+			%button.btn.btn-default{"data-dismiss" => "modal"} 
+				= t('global.close')
+- if r['limited_coverage_errors']
+	%div.modal{"id" => "result_#{r['underwriter']}_limited_coverage", "role" => "dialog"}
+		%div.modal-dialog.modal-lg
+			%div.modal-content
+				%div.modal-header
+					%button.close{"data-dismiss" => "modal"}
+						%span{"aria-hidden" => "true"} &times;
+						%span.sr-only 
+							= t('global.close')
+					%h4
+						= t('quote.results.headers.limited_coverage', underwriter: r['underwriter_name'], underwriter_coverage: r['underwriter_coverage_desc'].titleize)
+
+				%div.modal-body
+					%dl
+						- r['limited_coverage_errors'].each do |k|
+							%dd
+								= k[1].html_safe
+				%div.modal-footer
+					%button.btn.btn-default{"data-dismiss" => "modal"} 
+						= t('global.close')
 - if Rails.env == "development"
 	%div.modal{"id" => "result_#{r['underwriter']}_debug", "role" => "dialog"}
 		%div.modal-dialog.modal-lg
@@ -44,11 +71,13 @@
 				%div.modal-header
 					%button.close{"data-dismiss" => "modal"}
 						%span{"aria-hidden" => "true"} &times;
-						%span.sr-only Close
+						%span.sr-only 
+							= t('global.close')
 					%h4
 						= t('quote.results.headers.debug', underwriter: r['underwriter_name'], underwriter_coverage: r['underwriter_coverage_desc'].titleize)
 
 				%div.modal-body
 					= debug r
 				%div.modal-footer
-					%button.btn.btn-default{"data-dismiss" => "modal"} Close
+					%button.btn.btn-default{"data-dismiss" => "modal"} 
+						= t('global.close')
