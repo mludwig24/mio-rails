@@ -22,14 +22,19 @@
 
 			%div.modal-body
 				%dl
+					- scope = "quote.results.coverage"
 					- r["coverage"].each do |coverage|
-						- scope = "quote.results.coverage"
 						- unless t("#{coverage}.header", scope: scope).start_with?("DELETE")
 							%dt
 								%dfn
 									= t("#{coverage.slug}.header", scope: scope)
 							%dd
 								= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.#{coverage.slug}.details", scope: scope, tnc_link: r["tnc_pdf"])
+					%dt
+						%dfn
+							= t("tnc_pdf.header", scope: scope)
+					%dd
+						= t("#{r['underwriter_name'].slug}.#{r['underwriter_coverage_desc'].slug}.tnc_pdf.details", scope: scope, tnc_link: r["tnc_pdf"])
 		%div.modal-footer
 			%button.btn.btn-default{"data-dismiss" => "modal"} Close
 - if Rails.env == "development"
