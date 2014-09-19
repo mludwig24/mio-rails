@@ -26,7 +26,7 @@
 	label: t('activerecord.attributes.app.ownership'),
 	value: @app.ownership
 - if @quote.toweds.count > 0
-	%div.alert.alert-info
+	%div.alert.alert-warning
 		%strong
 			= t('app.disclosure.towing.header')
 		= t('app.disclosure.towing.body')
