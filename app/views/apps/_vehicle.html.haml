@@ -25,6 +25,11 @@
 = render "recap_field",
 	label: t('activerecord.attributes.app.ownership'),
 	value: @app.ownership
+- if @quote.toweds.count > 0
+	%div.alert.alert-info
+		%strong
+			= t('app.disclosure.towing.header')
+		= t('app.disclosure.towing.body')
 - @quote.toweds.each do |towed|
 	%div.panel-heading
 		%h3.panel-title
