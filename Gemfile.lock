@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/clemens/delocalize.git
+  remote: git://github.com/jackiig/delocalize.git
   revision: c839ba3b17538fea78c57c8c077c54f53555ba80
   branch: 1-0-beta
   specs:
