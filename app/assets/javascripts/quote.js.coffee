@@ -8,6 +8,13 @@ String.format = (input) ->
 		reg = new RegExp("\\{" + _i + "\\}", "gm");
 		input = input.replace(reg, arg);
 	return input
+
+String.slug = (input) ->
+	input = input.replace(/^\s+|\s+$/g, "").toLowerCase() # trim and force lowercase
+	# remove invalid chars, collapse whitespace and replace by -, collapse dashes
+	input = input.replace(/[^a-z0-9 -]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-")
+	return input
+
 Array::where = (query) ->
     return [] if typeof query isnt "object"
     hit = Object.keys(query).length
@@ -29,6 +36,10 @@ mioApp.filter 'range', ->
 mioApp.filter 'format', ->
 	return String.format
 
+## This is for excluding specific vehicle types.
+EXCLUDE_VEHICLE_TYPES = [22]
+
+
 mioApp.controller 'MakeModelController', ($scope, $http) ->
 	$scope.vehicle_types ?= []
 	$scope.makes ?= []
@@ -44,7 +55,13 @@ mioApp.controller 'MakeModelController', ($scope, $http) ->
 		$scope.update()
 	$scope.update = ->
 		$http.get($scope.getUrl()).success (data) ->
-			angular.copy data.vehicle_types, $scope.vehicle_types if data.vehicle_types
+			if data.vehicle_types
+				vehicle_types = []
+				for vt in data.vehicle_types
+					if vt.id not in EXCLUDE_VEHICLE_TYPES
+						vt.label = I18n.t(["quote", "form", "vehicle_types", String.slug(vt.label)].join("."))
+						vehicle_types.push vt
+				angular.copy vehicle_types, $scope.vehicle_types
 			angular.copy data.makes, $scope.makes if data.makes
 			if data.models
 				angular.copy data.models, $scope.models

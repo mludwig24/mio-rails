@@ -12,7 +12,7 @@
 	%a.btn.btn-default.btn-link.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_details", "data-toggle" => "modal"}
 		= t("quote.results.button.details.#{r['underwriter_coverage_desc']}")
 	- if Rails.env == "development"
-		%a.btn.btn-danger.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_debug", "data-toggle" => "modal"}
+		%a.btn.btn-danger.btn-xs.coverage{"data-target" => "#result_#{r['underwriter']}_#{r['term']}_debug", "data-toggle" => "modal"}
 			= t("quote.results.button.debug")
 
 %div.modal{"id" => "result_#{r['underwriter']}_details", "role" => "dialog"}
@@ -66,7 +66,7 @@
 					%button.btn.btn-default{"data-dismiss" => "modal"} 
 						= t('global.close')
 - if Rails.env == "development"
-	%div.modal{"id" => "result_#{r['underwriter']}_debug", "role" => "dialog"}
+	%div.modal{"id" => "result_#{r['underwriter']}_#{r['term']}_debug", "role" => "dialog"}
 		%div.modal-dialog.modal-lg
 			%div.modal-content
 				%div.modal-header

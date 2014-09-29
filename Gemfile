@@ -47,7 +47,7 @@ gem "i18n-js"
 gem "i18n-tasks"
 gem 'http_accept_language'
 ## Allows the dates to be input in the format the user expects.
-gem 'delocalize', github: 'clemens/delocalize', branch: '1-0-beta'
+gem 'delocalize', github: 'jackiig/delocalize', branch: '1-0-beta'
 ## Store the sessions in the DB.
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 ## Used to make plain objects into xml and json.
