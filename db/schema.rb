@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825190950) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140919154520) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -90,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140825190950) do
     t.integer  "fixed_deductibles"
     t.integer  "body_style"
     t.integer  "liability"
-    t.integer  "extended_travel"
+    t.integer  "extended_travel",    default: 1
     t.integer  "beyond_freezone"
     t.integer  "under21"
     t.integer  "uscoll_sc"
