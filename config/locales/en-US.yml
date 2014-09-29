@@ -42,10 +42,10 @@ en-US:
             covered accident. Liability coverage does not provide coverage for injuries to occupants
             of your vehicle, or damages to your vehicle. We recommend purchasing a combined single limit of $300,000 CSL or more, due to recent changes in
             Mexican liability law.
-          fixed_deductibles: There are two types of deductibles available: Fixed deductibles;
-            which are $500 for collision and other Section 1 perils, and $1,000 for theft and other Section 2 perils. Percentage deductibles; which are based on the value of the vehicle,  but also
-            subject to minimums based on the vehicle type. While the minimum deductible
-            varies by company, the percentage amount for collision and other Section 1 is 2% of the vehicle's value, and the amount for theft and other section 2 perils is 5% of the vehicle's value.
+          fixed_deductibles: "There are two types of deductibles available: Fixed deductibles;
+                      which are $500 for collision and other Section 1 perils, and $1,000 for theft and other Section 2 perils. Percentage deductibles; which are based on the value of the vehicle,  but also
+                      subject to minimums based on the vehicle type. While the minimum deductible
+                      varies by company, the percentage amount for collision and other Section 1 is 2% of the vehicle's value, and the amount for theft and other section 2 perils is 5% of the vehicle's value."
           uscoll_sc: If you do not have collision and theft coverage on your current
             US/Canadian policy , please select "no" for this question. Only vehicles
             which carry collision and theft on a current (non-Mexico) policy, are eligible
@@ -181,8 +181,8 @@ en-US:
               before: The enter date is after the leave date
             leave_date: The date you will leave Mexico is after the date you plan
               to enter Mexico
-              before: The enter date is after the leave date
-              not_a_date: Your date leaving Mexico is before the date entering Mexico. 
+            before: The enter date is after the leave date
+            not_a_date: Your date leaving Mexico is before the date entering Mexico. 
         app:
           attributes:
             us_insurance_expiration: The expiration date you have entered is not in the future, please review and correct.
@@ -206,6 +206,10 @@ en-US:
         get_quote: Get My Quote
       vehicle_value:
         liability_only: Liability only
+      vehicle_types:
+        "car-pickup-suv-van": "Car / Pickup / SUV / Van"
+        "rv": "Motorhome"
+        "motorcycle": "Motorcycle"
     disclosure:
       towed_units_disclosure: Each self propelled vehicle that is being towed must
         ALSO have its own insurance policy when it is being driven.
