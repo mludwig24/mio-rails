@@ -68,7 +68,9 @@ en-US:
     attributes:
       quote:
         enter_date: Date Entering Mexico
+          not_a_date: Please input a valid date.
         leave_date: Date Leaving Mexico
+          not_a_date: Please input a valid date.
         vehicle_type: Vehicle Type
         towing: Towing Coverage
         uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
@@ -223,8 +225,8 @@ en-US:
         from_rate: As Low As %{price}
       button:
         buy_now: Buy Now!
+        limited_coverage: Liability Only
         details:
-          limited_coverage: Liability Only
           extended: Extended Coverage
           standard: Standard Coverage
           flex: Flex Coverage
