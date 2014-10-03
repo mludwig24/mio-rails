@@ -215,6 +215,7 @@ en-US:
         ALSO have its own insurance policy when it is being driven.
       towed_units_disclosure_header: Towed units disclosure header
     results:
+      no_results_to_display: Unfortunately, we are unable to provide a quote for the risk characteristics you have described.
       labels:
         daily: Daily
         sixmo: Six Month
@@ -223,9 +224,10 @@ en-US:
       button:
         buy_now: Buy Now!
         details:
-          Extended: Extended Coverage
-          Standard: Standard Coverage
-          Flex: Flex Coverage
+          limited_coverage: Liability Only
+          extended: Extended Coverage
+          standard: Standard Coverage
+          flex: Flex Coverage
       coverage:
         tnc_pdf: 
           header: 'Policy Terms and Conditions:'
@@ -376,6 +378,8 @@ en-US:
               details: "The policy will pay a higher rate per hour, for the labor rate on your repairs, rather than the lower Mexican labor rates."
             labor_rates: 
               details: "The rates will be increased as follows: Cars - $50 USD per hour, Pickups/SUV - $55 UDS per hour, Motorhomes - $70 per hour"
+            tnc_pdf:
+              details: As always, review the <a href="%{tnc_link}" target="_blank">Terms & Conditions</a> of your policy before purchasing.
         aba-seguros:
           standard:
             <<: *default-coverage
@@ -397,6 +401,8 @@ en-US:
               details: The policy will pay a higher rate per hour for the labor rate on your repairs rather than the lower Mexican labor rates. 
             labor_rates: 
               details: "The rates will be increased to $75 USD per hour regardless of the type of vehicle."
+            tnc_pdf:
+              details: As always, review the <a href="%{tnc_link}" target="_blank">Terms & Conditions</a> of your policy before purchasing.
         ace-seguros:
           standard:
             <<: *default-coverage
@@ -417,9 +423,12 @@ en-US:
             uninsured_motorist: DELETE
             labor_rates: 
               details: "The rates will be increased as follows: Cars - $50 USD per hour, Pickups/SUV - $70 UDS per hour, Motorhomes - $75 per hour, Motorcycles - $50 USD per hour "
+            tnc_pdf:
+              details: As always, review the <a href="%{tnc_link}" target="_blank">Terms & Conditions</a> of your policy before purchasing.
       headers:
         quote_results: Quote results
         coverage_details: Coverage Details - %{underwriter} - %{underwriter_coverage}
+        limited_coverage: %{underwriter} - Liability Only
       buttons:
         buy_now: Buy Now
         details: Details
