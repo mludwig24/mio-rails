@@ -68,9 +68,7 @@ en-US:
     attributes:
       quote:
         enter_date: Date Entering Mexico
-          not_a_date: Please input a valid date.
         leave_date: Date Leaving Mexico
-          not_a_date: Please input a valid date.
         vehicle_type: Vehicle Type
         towing: Towing Coverage
         uscoll_sc: Do you carry Collision and Theft coverage on your current US/Canadian
@@ -181,10 +179,10 @@ en-US:
               after_or_equal_to: The enter date you have input into the system is
                 in the past
               before: The enter date is after the leave date
-            leave_date: The date you will leave Mexico is after the date you plan
-              to enter Mexico
-            before: The enter date is after the leave date
-            not_a_date: Your date leaving Mexico is before the date entering Mexico. 
+              not_a_date: Please input a valid date.
+            leave_date: 
+              before: The enter date is after the leave date
+              not_a_date: Please input a valid date.
         app:
           attributes:
             us_insurance_expiration: The expiration date you have entered is not in the future, please review and correct.
