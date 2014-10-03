@@ -428,7 +428,7 @@ en-US:
       headers:
         quote_results: Quote results
         coverage_details: Coverage Details - %{underwriter} - %{underwriter_coverage}
-        limited_coverage: %{underwriter} - Liability Only
+        limited_coverage: "%{underwriter} - Liability Only"
       buttons:
         buy_now: Buy Now
         details: Details
