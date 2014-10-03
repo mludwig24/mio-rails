@@ -6,6 +6,9 @@ en-US:
         - :default
         - :long
         - :short
+    human:
+      formats:
+        default: 'mm-dd-yyyy'
   activerecord:
     help:
       quote:

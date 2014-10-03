@@ -4,7 +4,7 @@
 		:start_year => Date.today.year,
 		:end_year => (Date.today + 1.year).year,
 		:default => l(quote.enter_date || Date.today),
-		:placeholder => l(Date.today),
+		:placeholder => t('date.human.formats.default'),
 		"data-behaviour" => "date-picker",
 		"data-constrain-start-date" => l(Date.today),
 		"data-constrain-end-date" => "+1y",
@@ -14,6 +14,6 @@
 		:start_year => Date.today.year,
 		:end_year => (Date.today + 1.year).year,
 		:default => l(Date.today + 1.day),
-		:placeholder => l(Date.today),
+		:placeholder => t('date.human.formats.default'),
 		"data-behaviour" => "date-picker",
 		:icon => "calendar"
