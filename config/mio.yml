@@ -1,6 +1,8 @@
 development: &development
   mio_api_url: "http://lightbulb.iig-dev.com:9004/api/"
   mio_api_username: "test3"
+  mio_api_agtdst: "12345"
+  mio_api_office_code: ""
   mio_api_key: "118226b2-1d81-11e4-b4a0-0800271afd7b"
 
 test:

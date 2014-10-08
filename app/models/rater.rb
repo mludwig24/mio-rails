@@ -154,6 +154,8 @@ module Rater
 			## API Key info.
 			api_data["auth"] = Hash.new()
 			api_data["auth"]["username"] = ENV["mio_api_username"]
+			api_data["auth"]["agtdst"] = ENV["mio_api_agtdst"]
+			api_data["auth"]["office_code"] = ENV["mio_api_office_code"]
 			api_data["auth"]["api_key"] = ENV["mio_api_key"]
 			## Travel Dates.
 			api_data["quote"] = Hash.new()
