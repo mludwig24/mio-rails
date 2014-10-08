@@ -18,7 +18,7 @@ en-US:
           to determine the value of your vehicle.
         towing: You must list any and all towed units! Failing to do so can result
           in no coverage. Also, each self propelled vehicle must have its own policy
-          when it is driven.
+          when it is driven. A boat and a boat trailer are considered 2 towed units.
       popup:
         quote:
           value: Insurance policies that cover theft of or damage to a vehicle use
@@ -48,15 +48,15 @@ en-US:
           fixed_deductibles: "There are two types of deductibles available: Fixed deductibles;
                       which are $500 for collision and other Section 1 perils, and $1,000 for theft and other Section 2 perils. Percentage deductibles; which are based on the value of the vehicle,  but also
                       subject to minimums based on the vehicle type. While the minimum deductible
-                      varies by company, the percentage amount for collision and other Section 1 is 2% of the vehicle's value, and the amount for theft and other section 2 perils is 5% of the vehicle's value."
+                      varies by company, the percentage amount for collision and other Section 1 perils is 2% of the vehicle's value, and the amount for theft and other section 2 perils is 5% of the vehicle's value."
           uscoll_sc: If you do not have collision and theft coverage on your current
-            US/Canadian policy , please select "no" for this question. Only vehicles
+            US/Canadian policy, please select "no" for this question. Only vehicles
             which carry collision and theft on a current (non-Mexico) policy, are eligible
             for collision and theft coverage in Mexico.
           Towing: If you are towing a trailer or another vehicle you must declare
             it on your online application. If you do not declare all towed units,
             and have an accident, you claim can be denied. To add physical damage
-            coverage to a towed unit, please list a dollar value for each towed unit.
+            coverage to a towed unit, please list a dollar value for each towed unit. A boat is considered one towed unit, the boat trailer is considered another.
             There is no coverage for vehicles, ATVs, motorcycles, or boats once they
             are unloaded from the trailer, each of these types of vehicles will need
             a separate policy when being operated.
@@ -492,7 +492,7 @@ en-US:
         label: By checking this box I am afirming that I have read, understand, and agree with the disclosures on this page. 
       towing:
         header: Towing
-        body: Only towed units that are listed on the policy will be covered. If you have not listed a trailer or other towed unit that will be towed it may void the policy. 
+        body: Only towed units that are listed on the policy will be covered. If you have not listed a trailer or other towed unit that will be towed it may void the policy. A boat and its trailer are considered 2 separate towed units.
     headers:
       application: Application
       new_app: New application
