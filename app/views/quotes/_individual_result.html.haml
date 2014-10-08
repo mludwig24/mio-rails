@@ -80,5 +80,7 @@
 				%div.modal-body
 					= debug r
 				%div.modal-footer
+					%a.btn.btn-danger{:href => r['issue_link'], :target => "_blank"}
+						= t('quote.results.button.debug_on_v3')
 					%button.btn.btn-default{"data-dismiss" => "modal"} 
 						= t('global.close')
