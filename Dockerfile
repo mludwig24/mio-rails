@@ -24,4 +24,4 @@ ADD . /usr/src/app
 RUN bin/rake assets:precompile
 
 EXPOSE 8080
-CMD ["unicorn_rails"]
+CMD ["unicorn_rails", "-c", "config/unicorn.rb"]
