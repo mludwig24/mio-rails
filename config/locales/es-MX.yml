@@ -6,6 +6,9 @@ es-MX:
         - :default
         - :long
         - :short
+    human:
+      formats:
+        default: 'dd-mm-yyyy'
   activerecord:
     help:
       quote:
@@ -68,9 +71,7 @@ es-MX:
     attributes:
       quote:
         enter_date: Fecha de Entrada a México
-          not_a_date: Por favor seleccione una fecha valida.
         leave_date: Fecha de salida de México
-          not_a_date: Por favor seleccione una fecha valida.
         vehicle_type: Tipo de Vehículo
         towing: Cobertura de Remolque
         uscoll_sc: ¿Cuenta con cobertura para robo y colisión en su póliza de seguro
@@ -178,6 +179,7 @@ es-MX:
         quote:
           attributes:
             enter_date:
+              not_a_date: Por favor seleccione una fecha valida.
               after_or_equal_to: La fecha de entrada que usted eligio
                 es en el pasado
               before: La Fecha de Entrada es después de la fecha de salida
@@ -242,7 +244,7 @@ es-MX:
         us_repair:
           header: 'Reparación en EE.UU:' 
         labor_rates:
-          header: ''Tarifa de Mano de Obra:'
+          header: 'Tarifa de Mano de Obra:'
         liability: 
           header: 'Responsabilidad por Daños a Terceros:' 
         legal:
@@ -308,7 +310,7 @@ es-MX:
               para robo parcial no está disponible en México al menos que compre la opción
               de cobertura amplia.
           us_repair:
-            details: : Independiente mente de la póliza que elija, usted puede traer su vehículo para reparación en EEUU. Sin embargo, las tarifas de mano de obra dependerán de la póliza que usted compre. La cobertura estándar pagara las tarifas de mano de obra de acuerdo a las tarifas vigentes en México. La cobertura amplia incrementara las tarifas de pago. 
+            details: Independiente mente de la póliza que elija, usted puede traer su vehículo para reparación en EEUU. Sin embargo, las tarifas de mano de obra dependerán de la póliza que usted compre. La cobertura estándar pagara las tarifas de mano de obra de acuerdo a las tarifas vigentes en México. La cobertura amplia incrementara las tarifas de pago. 
           liability: 
             details: En caso de un accidente, es cobertura le protege por lesiones a daños a la propiedad de terceras partes. Esto no proporciona cobertura para los pasajeros dentro del vehículo asegurado. Le  recomendamos comprar el máximo de cobertura que le sea posible pero no menos de  $300,000 LUC.
           underwriter_travel:
@@ -474,7 +476,7 @@ es-MX:
       other_drivers: No necesita nombrar a los conductores, pero se puede hacer para su conveniencia.
       2013_law_reform:
         header: Reforma de Ley  en  México 2013 - Recomendamos Limites de Responsabilidad más Altos
-        body: : Debido a un cambio radical de la Ley Mexicana de Daños a Terceros, ahora recomendamos que todos nuestros clientes compren un mínimo de $300,000 dólares en cobertura de Responsabilidad Civil (RC), y que consideren seriamente comprar  un límite de $500,000 dólares! En el pasado, los daños  de responsabilidad impuestos a un conductor culpable  que causo una víctima mortal por negligencia en se limitaban a 730 días multiplicados por el salario mínimo local en México (aproximadamente $50,000 en daños totales en la mayoría de Estados en México). Con efecto inmediato, ese límite ha sido aumentado por el gobierno Mexicano a 5,000 días multiplicados por el salario mínimo local en México ( Hasta aproximadamente $300,000 Dólares en daños totales, dependiendo del Estado en México). Le sugerimos que ahora utilice el mismo nivel de atención a los límites de Responsabilidad civil en México, al nivel que utilizaría al comprar una póliza de responsabilidad en Estados Unidos o Canadá. El Cambio radical a la Ley de Responsabilidad Civil en México significa que reclamaciones por responsabilidad de muerte en México ahora serán similares a los que son impuestos en las cortes de EE.UU y Canadá en situaciones similares.
+        body: Debido a un cambio radical de la Ley Mexicana de Daños a Terceros, ahora recomendamos que todos nuestros clientes compren un mínimo de $300,000 dólares en cobertura de Responsabilidad Civil (RC), y que consideren seriamente comprar  un límite de $500,000 dólares! En el pasado, los daños  de responsabilidad impuestos a un conductor culpable  que causo una víctima mortal por negligencia en se limitaban a 730 días multiplicados por el salario mínimo local en México (aproximadamente $50,000 en daños totales en la mayoría de Estados en México). Con efecto inmediato, ese límite ha sido aumentado por el gobierno Mexicano a 5,000 días multiplicados por el salario mínimo local en México ( Hasta aproximadamente $300,000 Dólares en daños totales, dependiendo del Estado en México). Le sugerimos que ahora utilice el mismo nivel de atención a los límites de Responsabilidad civil en México, al nivel que utilizaría al comprar una póliza de responsabilidad en Estados Unidos o Canadá. El Cambio radical a la Ley de Responsabilidad Civil en México significa que reclamaciones por responsabilidad de muerte en México ahora serán similares a los que son impuestos en las cortes de EE.UU y Canadá en situaciones similares.
       pdf_reader: 
         header: Documentos PDF
         body: 'Para poder ver los documentos asociados con su certificado, usted necesitara tener Aobe Reader Instalado.  Este es un programa gratis que le permite ver documentos "PDF".  Por favor, haga clic en el siguiente enlace para obtener Adobe Reader: <a href="http://get.adobe.com/reader/" target="_blank"> Adobe Reader</a>.'
