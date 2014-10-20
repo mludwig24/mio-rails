@@ -57,8 +57,8 @@
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to t('nav.english'), url_for(:locale => 'en-US') %></li>
-            <li><%= link_to t('nav.spanish'), url_for(:locale => 'es-MX') %></li>
+            <li><%= link_to t('nav.english'), params.merge(locale: "en-US") %></li>
+            <li><%= link_to t('nav.spanish'), params.merge(locale: "es-MX") %></li>
           </ul>
         </div>
       </div>
