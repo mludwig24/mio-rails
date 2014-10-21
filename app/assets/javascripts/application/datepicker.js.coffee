@@ -25,7 +25,7 @@ jQuery ($) ->
 		autoclose: true,
 		todayHighlight: true,
 		language: I18n.locale,
-		format: I18n.t('date.formats.javascript', {defaultValue: "mm-dd-yyyy"})
+		format: I18n.t('date.human.formats.default', {defaultValue: "mm-dd-yyyy"})
 	};
 	parseDate = $.fn.datepicker.DPGlobal.parseDate
 
