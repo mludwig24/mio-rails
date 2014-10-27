@@ -71,9 +71,7 @@ es-MX:
     attributes:
       quote:
         enter_date: Fecha de Entrada a México
-          not_a_date: Por favor seleccione una fecha valida.
         leave_date: Fecha de salida de México
-          not_a_date: Por favor seleccione una fecha valida.
         vehicle_type: Tipo de Vehículo
         towing: Cobertura de Remolque
         uscoll_sc: ¿Cuenta con cobertura para robo y colisión en su póliza de seguro
@@ -184,8 +182,8 @@ es-MX:
               after_or_equal_to: La fecha de entrada que usted eligio
                 es en el pasado
               before: La Fecha de Entrada es después de la fecha de salida
-            leave_date: La fecha de salida de México es después de la fecha que usted planea 
-              entrar a México
+              not_a_date: Por favor seleccione una fecha valida.
+            leave_date:
               before: La Fecha de Entrada es después de la fecha de salida
               not_a_date: Su fecha de salida de México es antes de la fecha de entrada a México. 
         app:
@@ -477,7 +475,7 @@ es-MX:
       other_drivers: No necesita nombrar a los conductores, pero se puede hacer para su conveniencia.
       2013_law_reform:
         header: Reforma de Ley  en  México 2013 - Recomendamos Limites de Responsabilidad Más Altos
-        body: : Debido a un cambio radical de la Ley Mexicana de Daños a Terceros, ahora recomendamos que todos nuestros clientes compren un mínimo de $300,000 dólares en cobertura de Responsabilidad Civil (RC), y que consideren seriamente comprar  un límite de $500,000 dólares! En el pasado, los daños  de responsabilidad impuestos a un conductor culpable  que causo una víctima mortal por negligencia en se limitaban a 730 días multiplicados por el salario mínimo local en México (aproximadamente $50,000 en daños totales en la mayoría de Estados en México). Con efecto inmediato, ese límite ha sido aumentado por el gobierno Mexicano a 5,000 días multiplicados por el salario mínimo local en México ( Hasta aproximadamente $300,000 Dólares en daños totales, dependiendo del Estado en México). Le sugerimos que ahora utilice el mismo nivel de atención a los límites de Responsabilidad civil en México, al nivel que utilizaría al comprar una póliza de responsabilidad en Estados Unidos o Canadá. El Cambio radical a la Ley de Responsabilidad Civil en México significa que reclamaciones por responsabilidad de muerte en México ahora serán similares a los que son impuestos en las cortes de EE.UU y Canadá en situaciones similares.
+        body: Debido a un cambio radical de la Ley Mexicana de Daños a Terceros, ahora recomendamos que todos nuestros clientes compren un mínimo de $300,000 dólares en cobertura de Responsabilidad Civil (RC), y que consideren seriamente comprar  un límite de $500,000 dólares! En el pasado, los daños  de responsabilidad impuestos a un conductor culpable  que causo una víctima mortal por negligencia en se limitaban a 730 días multiplicados por el salario mínimo local en México (aproximadamente $50,000 en daños totales en la mayoría de Estados en México). Con efecto inmediato, ese límite ha sido aumentado por el gobierno Mexicano a 5,000 días multiplicados por el salario mínimo local en México ( Hasta aproximadamente $300,000 Dólares en daños totales, dependiendo del Estado en México). Le sugerimos que ahora utilice el mismo nivel de atención a los límites de Responsabilidad civil en México, al nivel que utilizaría al comprar una póliza de responsabilidad en Estados Unidos o Canadá. El Cambio radical a la Ley de Responsabilidad Civil en México significa que reclamaciones por responsabilidad de muerte en México ahora serán similares a los que son impuestos en las cortes de EE.UU y Canadá en situaciones similares.
       pdf_reader: 
         header: Documentos PDF
         body: 'Para poder ver los documentos asociados con su certificado, usted necesitara tener Aobe Reader Instalado.  Este es un programa gratis que le permite ver documentos "PDF".  Por favor, haga clic en el siguiente enlace para obtener Adobe Reader: <a href="http://get.adobe.com/reader/" target="_blank"> Adobe Reader</a>.'
