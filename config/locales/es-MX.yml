@@ -16,7 +16,7 @@ es-MX:
           a <a href="http://kbb.com/" target="_blank"> Kelly Blue Book</a>'s
           o <a href="http://www.nadaguides.com?" target="_blank"> NADA Guide</a>
           para determinar el valor de su auto.
-        towing: Usted debe enumarar todas y cada una de las unidades remolcadas! No hacerlo
+        towing: ¡Usted debe enumerar todas y cada una de las unidades remolcadas! No hacerlo
           podria resultar en la anulacion de su cobertura. Tambien recuerde que todo vehiculo  
           auto propulsado debe tener su propia poliza para cuando se esta conduciendo.
       popup:
@@ -29,8 +29,8 @@ es-MX:
             Kelly Blue Book</a> o <a href="http://www.nadaguides.com?" target="_blank"> NADA Guide</a>. 
           model_id: Por Favor seleccione el modelo de su vehículo.
           make_id: Por Favor seleccione la marca del vehículo.
-          enter_date: Seleccione la fecha que entrara a México. Si compra
-            su póliza antes de la fecha de entrada, su póliza entrara en efecto 
+          enter_date: Seleccione la fecha que entrará a México. Si compra
+            su póliza antes de la fecha de entrada, su póliza entrará en efecto 
             a las 12:01 AM de la fecha que su póliza entra en vigor, cubriremos el dia de
             entrada en su totalidad. Si usted compra su poliza el dia que de entrada  a
             Mexico, su cobertura entra en vigor al momento de la compra de su poliza.
@@ -50,7 +50,7 @@ es-MX:
                       están sujetos a un mínimo basado en el tipo del vehículo. Mientras que el deducible minimo mínimo varia por 
                       compañía, el porcentaje para colisión y otras coberturas de la sección  1 es 2% del valor del vehículo, y el 5% del valor del vehículo para robo y otros riesgos bajo la cobertura de la Sección 2."
           uscoll_sc: Si no tiene cobertura para robo y colisión en póliza de seguro actual de
-            EE.UU/Canadá , por favor seleccione “no” para esta pregunta. Solo vehículos
+            EE.UU/Canadá, por favor seleccione “no” para esta pregunta. Solo vehículos
             que tienen cobertura para robo y colisión en su póliza actual (no-Mexicana), son elegibles
             para cobertura de robo y colisión en México.
           Towing: Si va a remolcar un acoplado o algún otro vehículo tiene que declararlo
@@ -71,7 +71,9 @@ es-MX:
     attributes:
       quote:
         enter_date: Fecha de Entrada a México
+          not_a_date: Por favor seleccione una fecha valida.
         leave_date: Fecha de salida de México
+          not_a_date: Por favor seleccione una fecha valida.
         vehicle_type: Tipo de Vehículo
         towing: Cobertura de Remolque
         uscoll_sc: ¿Cuenta con cobertura para robo y colisión en su póliza de seguro
@@ -80,7 +82,7 @@ es-MX:
           vayan a conducir el vehículo en México?
         beyond_freezone: ¿Estará viajando solamente en  Baja  y/o Sonora?
           Si no está seguro seleccione no.
-        visit_reason: Cuál de estas razones describe mejor el propósito de su 
+        visit_reason: ¿Cuál de estas razones describe mejor el propósito de su 
           visita a México?
         visit_reasons:
           '1': Conducir a Vacaciones/Visa de Turista
@@ -179,14 +181,13 @@ es-MX:
         quote:
           attributes:
             enter_date:
-              not_a_date: Por favor seleccione una fecha valida.
               after_or_equal_to: La fecha de entrada que usted eligio
                 es en el pasado
               before: La Fecha de Entrada es después de la fecha de salida
             leave_date: La fecha de salida de México es después de la fecha que usted planea 
               entrar a México
-            before: La Fecha de Entrada es después de la fecha de salida
-            not_a_date: Su fecha de salida de México es antes de la fecha de entrada a México. 
+              before: La Fecha de Entrada es después de la fecha de salida
+              not_a_date: Su fecha de salida de México es antes de la fecha de entrada a México. 
         app:
           attributes:
             us_insurance_expiration: La Fecha de vencimiento que usted selecciono no es en el futuro. Por favor revise y corrija.
@@ -475,8 +476,8 @@ es-MX:
     disclosure:
       other_drivers: No necesita nombrar a los conductores, pero se puede hacer para su conveniencia.
       2013_law_reform:
-        header: Reforma de Ley  en  México 2013 - Recomendamos Limites de Responsabilidad más Altos
-        body: Debido a un cambio radical de la Ley Mexicana de Daños a Terceros, ahora recomendamos que todos nuestros clientes compren un mínimo de $300,000 dólares en cobertura de Responsabilidad Civil (RC), y que consideren seriamente comprar  un límite de $500,000 dólares! En el pasado, los daños  de responsabilidad impuestos a un conductor culpable  que causo una víctima mortal por negligencia en se limitaban a 730 días multiplicados por el salario mínimo local en México (aproximadamente $50,000 en daños totales en la mayoría de Estados en México). Con efecto inmediato, ese límite ha sido aumentado por el gobierno Mexicano a 5,000 días multiplicados por el salario mínimo local en México ( Hasta aproximadamente $300,000 Dólares en daños totales, dependiendo del Estado en México). Le sugerimos que ahora utilice el mismo nivel de atención a los límites de Responsabilidad civil en México, al nivel que utilizaría al comprar una póliza de responsabilidad en Estados Unidos o Canadá. El Cambio radical a la Ley de Responsabilidad Civil en México significa que reclamaciones por responsabilidad de muerte en México ahora serán similares a los que son impuestos en las cortes de EE.UU y Canadá en situaciones similares.
+        header: Reforma de Ley  en  México 2013 - Recomendamos Limites de Responsabilidad Más Altos
+        body: : Debido a un cambio radical de la Ley Mexicana de Daños a Terceros, ahora recomendamos que todos nuestros clientes compren un mínimo de $300,000 dólares en cobertura de Responsabilidad Civil (RC), y que consideren seriamente comprar  un límite de $500,000 dólares! En el pasado, los daños  de responsabilidad impuestos a un conductor culpable  que causo una víctima mortal por negligencia en se limitaban a 730 días multiplicados por el salario mínimo local en México (aproximadamente $50,000 en daños totales en la mayoría de Estados en México). Con efecto inmediato, ese límite ha sido aumentado por el gobierno Mexicano a 5,000 días multiplicados por el salario mínimo local en México ( Hasta aproximadamente $300,000 Dólares en daños totales, dependiendo del Estado en México). Le sugerimos que ahora utilice el mismo nivel de atención a los límites de Responsabilidad civil en México, al nivel que utilizaría al comprar una póliza de responsabilidad en Estados Unidos o Canadá. El Cambio radical a la Ley de Responsabilidad Civil en México significa que reclamaciones por responsabilidad de muerte en México ahora serán similares a los que son impuestos en las cortes de EE.UU y Canadá en situaciones similares.
       pdf_reader: 
         header: Documentos PDF
         body: 'Para poder ver los documentos asociados con su certificado, usted necesitara tener Aobe Reader Instalado.  Este es un programa gratis que le permite ver documentos "PDF".  Por favor, haga clic en el siguiente enlace para obtener Adobe Reader: <a href="http://get.adobe.com/reader/" target="_blank"> Adobe Reader</a>.'
